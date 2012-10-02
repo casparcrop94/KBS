@@ -1,6 +1,6 @@
 <?php
 
-include_once('mysql_connect.php'); // bevat functie om verbinding te maken met een database
+include_once('/inc/mysql_connect.php'); // bevat functie om verbinding te maken met een database
 
 if(!isset($_POST['login'])) {               // Controleren of beide velden (naam + wachtwoord zijn ingevuld)
     print("Geen gebruikersnaam ingevuld!");
