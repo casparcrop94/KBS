@@ -1,6 +1,6 @@
 <?php
 
-define('DOCROOT', dirname(__FILE__)) . '/');
+define('DOCROOT', dirname(__FILE__) . '/');
 define('SERVERPATH', 'http://kbs.nl');
 
 define('DB_HOST', 'localhost');
