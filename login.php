@@ -8,7 +8,7 @@ if(!isset($_POST['login'])) {               // Controleren of beide velden (naam
     print("Geen wachtwoord ingevuld!");
 }
 
-$db = connectToDatabase("root", "usbw", "localhost", "3307", "kbs_test"); // Database verbinding wordt aangemaakt en vastgelegd in $db
+$db = connectToDatabase(); // Database verbinding wordt aangemaakt en vastgelegd in $db
         
 $user = $db->escape_string($_POST['login']);   // De gebruikersnaam wordt tegen SQL-injectie beveiligd
 $pass = $db->escape_string($_POST['password']);// Het wachtwoord wordt tegen SQL-injectie beveiligd
