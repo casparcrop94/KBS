@@ -7,15 +7,16 @@
 
 <body>
 <?php
-include dirname(__FILE__) . '../inc/config.inc.php';
-include 'mysql_connect.php';
+include dirname(__FILE__) . '/../inc/config.inc.php';
+include DOCROOT . 'inc/mysql.inc.php';
 
 function ophalencategorieen()
 {
-	$sth = $dbh->prepare ("SELECT * FROM category");
-	$sth->execute();
-	$result = $sth->fetchAll(PDO::FETCH_ASSOC);
-	return $result;
+    $db = connectToDatabase();
+    $sth = $db->prepare ("SELECT * FROM category");
+    $sth->execute();
+    $result = $sth->fetchAll(PDO::FETCH_ASSOC);
+    return $result;
 }
 ?>
 <form action="opslaanartikel.php" method="post">
@@ -27,7 +28,8 @@ function ophalencategorieen()
 		{
 			print("<option value=".$row["cat_id"].">"); 
 			print($row["naam"]."</option>"); 
-		}?>
+		}
+        ?>
 	</select>
     <input name="date_added" type="text" value="<?php echo mysql_query("SELECT CURDATE()"); ?>" />
     
