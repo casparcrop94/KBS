@@ -1,0 +1,53 @@
+* {
+	margin: 0;
+	padding: 0;
+	outline: none;
+}
+
+html {
+	font-family: Arial, Helvetica;
+}
+
+img {
+	border: none;
+}
+
+#wrapper {
+	width: 960px;
+	margin: 0 auto;
+	border: 1px solid #333;
+	border-top: none;
+	position: relative;
+}
+
+#header {
+	width: 100%;
+	height: 200px;
+	position: relative;
+}
+
+#header-img {
+	width: 100%;
+	height: 150px;
+	position: relative;
+}
+
+#menu {
+	width: 100%;
+	height: 50px;
+	background-color: #ccc;
+	position: relative;
+}
+
+#content {
+	min-height: 200px;
+	position: relative;
+	padding: 5px;
+}
+
+#footer {
+	height: 50px;
+	width: 100%;
+	position: relative;
+	background-color: #ccc;
+}
