@@ -9,6 +9,17 @@
 <?php
 include dirname(__FILE__) . '/../inc/config.inc.php';
 include DOCROOT . 'inc/mysql.inc.php';
+if(isset($_POST['submit']))
+{
+    $title = $_POST['title'];
+    $category = $_POST['category'];
+    $date_added = $_POST['date_added'];
+    $date_edited = $_POST['date_edited'];
+    $text = $_POST['text'];
+    
+
+    mysql_query("INSERT INTO article (cat_id, date added, date_edited, titel, text, published) VALUES ('$category','$date_added','$date_edited','$title', '$text', '$published')");
+}
 
 function ophalencategorieen()
 {
@@ -18,8 +29,23 @@ function ophalencategorieen()
     $result = $sth->fetchAll(PDO::FETCH_ASSOC);
     return $result;
 }
+
+function datumvandaag()
+{
+    $db = connectToDatabase();
+    $sth = $db->prepare ("SELECT NOW()");
+    $sth->execute();
+    $result = $sth->fetchAll(PDO::FETCH_ASSOC);
+       
+    foreach($result as $row)
+        {
+            $datum=$row["NOW()"]; 
+	}
+    return $datum;
+}
+
 ?>
-<form action="opslaanartikel.php" method="post">
+<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 	<input name="title" type="text" size="80" />
     <select name="category">
     	<?php 
@@ -31,9 +57,13 @@ function ophalencategorieen()
 		}
         ?>
 	</select>
-    <input name="date_added" type="text" value="<?php echo mysql_query("SELECT CURDATE()"); ?>" />
-    
+    <input name="date_added" type="text" value="<?php echo datumvandaag(); ?>" />
+    <input name="date_edited" type="text" value="<?php echo datumvandaag(); ?>" />
+    <textarea name="text" rows="4" cols="20">
+    </textarea>
+    <input type="submit" value="Opslaan" name="submit" />    
 </form>
+
 
 </body>
 </html>
