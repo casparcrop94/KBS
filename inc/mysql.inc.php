@@ -1,6 +1,6 @@
 <?php
 
-require_once('config.inc.tpl.php');
+
 
 /*$link = mysql_connect(DB_HOST, DB_USER, DB_PASS);
 
