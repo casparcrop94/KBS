@@ -35,7 +35,7 @@ $id=$_GET['id'];
 
 //Check which option is to be used.
 if($option=='new'){
-	$date_added=datetoday();
+	$date_added=date;
 	$date_edited=datetoday();
 }
 elseif($option=='edit'){
