@@ -1,6 +1,6 @@
 <?php
 //Function to load the categorys from database
-function ophalencategorieen()
+function getcategory()
 {
     $db = connectToDatabase();
     $sth = $db->prepare ("SELECT * FROM category");
