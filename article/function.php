@@ -8,32 +8,19 @@ function getcategory()
     $result = $sth->fetchAll(PDO::FETCH_ASSOC);
     return $result;
 }
-//Get date of today
-function datumvandaag()
+//Get date of added article
+function date_added($id)
 {
     $db = connectToDatabase();
-    $sth = $db->prepare ("SELECT NOW()");
+    $sth = $db->prepare ("SELECT date_added FROM article WHERE ID=$id");
     $sth->execute();
     $result = $sth->fetchAll(PDO::FETCH_ASSOC);
        
     foreach($result as $row)
         {
-            $datum=$row["NOW()"]; 
+            $date=$row["date_added"]; 
 	}
-    return $datum;
+    return $date;
 }
-//Get date of today
-function datumvandaag()
-{
-    $db = connectToDatabase();
-    $sth = $db->prepare ("SELECT NOW()");
-    $sth->execute();
-    $result = $sth->fetchAll(PDO::FETCH_ASSOC);
-       
-    foreach($result as $row)
-        {
-            $datum=$row["NOW()"]; 
-	}
-    return $datum;
-}
+
 ?>

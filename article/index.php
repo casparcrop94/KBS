@@ -17,40 +17,48 @@ if(isset($_POST['submit']))
 {
     //Get data from form and set data into variable.
 	$title = $_POST['title'];
-    $category = $_POST['category'];
+    $option = $_POST['option'];
+	$category = $_POST['category'];
     $date_added = $_POST['date_added'];
     $date_edited = $_POST['date_edited'];
     $text = $_POST['text'];
 	$published = '1';
-    
+    print($option);
+	echo $title.$option.$category.$date_added.$date_edited.$title.$text.$published;
 	if($option=='new')
 	{
-		//Insert data into database.
-		mysql_query("INSERT INTO article (cat_id, date added, date_edited, titel, text, published) VALUES ('$category','$date_added','$date_edited','$title', '$text', '$published')");
+		echo 'test new';//Insert data into database.
+		$db = connectToDatabase();
+		$sth = $db->prepare ("INSERT INTO article (cat_id, date_added, date_edited, title, text, published) 
+		VALUES ('$category','$date_added','$date_edited','$title', '$text','$published')");
+		$sth->execute();
 	}
 	elseif($option=='edit')
 	{
 		//update article.
 	}
+//header("Location: /index.php");
+$option='new';
 }
 
-//Get option and id
+//Get option
 $option=$_GET['option'];
-$id=$_GET['id'];
 
 //Check which option is to be used.
 if($option=='new'){
-	$date_added=date();
-	$date_edited=datetoday();
+	$date_added=date('Y-m-d');
+	$date_edited=date('Y-m-d');
 }
 elseif($option=='edit'){
+	$id=$_GET['id'];
 	$date_added=date_added($id);
-	$date_edited=datetoday();
+	$date_edited=date('d-m-Y');
 }
 
 
 ?>
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+	<input name="option" type="hidden" value="<?php echo $option; ?>" />
 	<input name="title" type="text" size="80" />
     <select name="category">
     	<?php 
@@ -58,7 +66,7 @@ elseif($option=='edit'){
 		foreach($cat as $row)
 		{
 			print("<option value=".$row["cat_id"].">"); 
-			print($row["naam"]."</option>"); 
+			print($row["name"]."</option>"); 
 		}
         ?>
 	</select>
