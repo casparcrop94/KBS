@@ -3,14 +3,14 @@ session_start();
 ob_start();
 
 //Set error rporting
-error_reporting(1);
-ini_set('error_reporting', E_STRICT);
+error_reporting(E_ALL | E_STRICT);
+ini_set('display_errors', 1);
 
 include '/inc/config.inc.php';
 
 $page = isset($_GET['page']) ? $_GET['page']:'home';
 
-if(!file_exists(DOCROOT . '/templates/' . $_GET['page'] . '.php'))
+if(!file_exists(DOCROOT . '/templates/' . $page . '.php'))
 {
 	$page = 'home';
 }
