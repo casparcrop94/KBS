@@ -28,7 +28,7 @@ $res = $sth->fetchAll(PDO::FETCH_ASSOC);
                     echo("<td>".$row['date_added']."</td>");                            // Print de datum
                     echo("<td>".$row['date_edited']."</td>");                   
                     echo("<td>".($row['published'] == 1? "Ja" : "Nee")."</td>");        // Print de publicatiestatus
-                    echo("<td><a href='article/index.php?option=edit&id=".$row['ID']."'>klik</a></td>");      // Print de bewerk knop
+                    echo("<td><a href='article/index.php?option=edit&id=".$row['ID']."'>Bewerk</a></td>");      // Print de bewerk knop
                     echo("</tr>");
                 } 
             ?>
