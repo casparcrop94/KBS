@@ -51,8 +51,8 @@ if(isset($_POST['submit']))
 								WHERE ID=$id");
 		$sth->execute();
 	}
-//header("Location: /index.php");
-$option='new';
+header("Location: overview.php");
+
 }
 
 //Get option
