@@ -8,19 +8,16 @@ function getcategory()
     $result = $sth->fetchAll(PDO::FETCH_ASSOC);
     return $result;
 }
-//Get date of added article
-function date_added($id)
+
+//Get content of added article
+function get_content($id)
 {
     $db = connectToDatabase();
-    $sth = $db->prepare ("SELECT date_added FROM article WHERE ID=$id");
+    $sth = $db->prepare ("SELECT * FROM article WHERE ID=$id");
     $sth->execute();
     $result = $sth->fetchAll(PDO::FETCH_ASSOC);
        
-    foreach($result as $row)
-        {
-            $date=$row["date_added"]; 
-	}
-    return $date;
+    return $result;
 }
 
 ?>
