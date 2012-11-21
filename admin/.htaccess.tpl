@@ -8,5 +8,5 @@ RewriteBase /
 RewriteCond %{SCRIPT_FILENAME} !-f
 RewriteCond %{SCRIPT_FILENAME} !-d
 
-RewriteRule ([a-zA-Z]+) index.php?p=$1 [NC]
-#RewriteRule ([a-zA-Z]+)/([0-9]+)$ index.php?p=$1&id=$2 [NC]
+RewriteRule ^login$ /admin/login.php [NC]
+RewriteRule ^([a-zA-Z]+)$ /admin/index.php?p=$1 [NC]

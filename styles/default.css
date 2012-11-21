@@ -12,6 +12,20 @@ img {
 	border: none;
 }
 
+input[type="text"],
+input[type="password"],
+textarea {
+	outline: 1px solid #ccc;
+	border: none;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+textarea:focus {
+	outline: 2px solid #7a8bac;
+	border: none;
+}
+
 #wrapper {
 	width: 960px;
 	margin: 0 auto;
