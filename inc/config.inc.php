@@ -5,6 +5,6 @@ define('SERVERPATH', 'http://kbs.nl');
 
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
-define('DB_PASS', '');
+define('DB_PASS', 'elspeet');
 define('DB_PORT', '');
-define('DB_DATABASE', 'kbs');
+define('DB_DATABASE', 'kbs_test');
