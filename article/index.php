@@ -3,6 +3,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Untitled Document</title>
+<script type="text/javascript" src="../tinymce/jscripts/tiny_mce/tiny_mce.js"></script>
+
+<script type="text/javascript">
+tinyMCE.init({
+        mode : "textareas"
+});
+</script>
+
 </head>
 
 <body>
@@ -35,7 +43,7 @@ if(isset($_POST['submit']))
 		$db = connectToDatabase();
 		$sth = $db->prepare ("INSERT INTO article (cat_id, date_added, date_edited, title, text, published) 
 		VALUES ('$category','$date_added','$date_edited','$title', '$text','$published')");
-		$sth->execute();
+		$result=$sth->execute();
 	}
 	elseif($option=='edit')
 	{
@@ -49,9 +57,18 @@ if(isset($_POST['submit']))
 								text='$text',
 								published='$published'
 								WHERE ID=$id");
-		$sth->execute();
+		$result=$sth->execute();
 	}
-header("Location: overview.php");
+	
+	if($result==1)
+	{
+		$case="succes";
+	}
+	else
+	{
+		$case="fail";
+	}
+header("Location: overview.php?case=$case");
 
 }
 
@@ -95,39 +112,92 @@ elseif($option=='edit'){
 
 
 ?>
+
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-	<input name="option" type="hidden" value="<?php echo $option; ?>" />
-    <input name="id" type="hidden" value="<?php echo $id; ?>" />
-	<input name="title" type="text" size="80" value="<?php echo $title; ?>"/>
-    <select name="category">
-    	<?php 
-		$cat = getcategory();
-		foreach($cat as $row)
-		{
-			$id = $row["cat_id"];
-			$name = $row["name"];
-			if($id==$category)
+<input name="option" type="hidden" value="<?php echo $option; ?>" />
+<input name="id" type="hidden" value="<?php echo $id; ?>" />	
+<table>
+	<tr>
+    	<td colspan="2">
+        	Titel:
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+        	<input name="title" type="text" size="80" value="<?php echo $title; ?>"/>
+        </td>
+    </tr>
+    <tr>
+    	<td width="150">
+        	Categorie:
+        </td>
+        <td>
+        	<select name="category">
+    		<?php 
+			$cat = getcategory();
+			foreach($cat as $row)
 			{
-				$selected=" selected";
+				$id = $row["cat_id"];
+				$name = $row["name"];
+				if($id==$category)
+				{
+					$selected=" selected";
+				}
+				else
+				{
+					$selected='';
+				}
+				print("<option value=$id".$selected.">"); 
+				print($name."</option>"); 
 			}
-			else
-			{
-				$selected='';
-			}
-			print("<option value=$id".$selected.">"); 
-			print($name."</option>"); 
-		}
-        ?>
-	</select>
-    <input name="date_added" type="text" value="<?php echo $date_added; ?>"/>
-    <input name="date_edited" type="text" value="<?php echo $date_edited; ?>"/>
-    <textarea name="text" rows="4" cols="20"><?php echo $text; ?>
-    </textarea>
-    <select name="published">
-    	<option value="1"<?php echo $published; ?>>Gepubliceerd</option>
-        <option value="0"<?php echo $unpublished; ?>>Gedepubliceerd</option>
-    </select>
-    <input type="submit" value="Opslaan" name="submit" /> 
+        	?>
+            </select>
+        </td>
+    </tr>
+    <tr>
+    	<td>
+        	Aanmaakdatum:
+        </td>
+        <td>
+        	<input name="date_added" type="text" value="<?php echo $date_added; ?>"/>
+        </td>
+    </tr>
+    <tr>
+    	<td>
+        	Laatst bijgewerkt op:
+        </td>
+        <td>
+        	<input name="date_edited" type="text" value="<?php echo $date_edited; ?>"/>
+        </td>
+    </tr>
+    <tr>
+    	<td colspan="2">
+        	Text:
+       	</td>
+    </tr>
+    <tr>
+        <td colspan="2">
+        	<textarea name="text" rows="20" cols="70"><?php echo $text; ?></textarea>
+        </td>
+    <tr />
+    <tr>
+    	<td>
+        	Status:
+        </td>
+        <td>
+        	<select name="published">
+    			<option value="1"<?php echo $published; ?>>Gepubliceerd</option>
+        		<option value="0"<?php echo $unpublished; ?>>Gedepubliceerd</option>
+   			 </select>
+        </td>
+    </tr>
+    <tr>
+    	<td colspan="2">
+        	<input type="submit" value="Opslaan" name="submit" />
+            <input type="button" name="Cancel" value="Annuleren" onclick="window.location = 'overview.php' " />
+        </td>
+    </tr>
+</table> 
 	
 </form>
 
