@@ -1,16 +1,22 @@
 <?php
-ini_set("SMTP", "test.smtp.org");
+//ini_set("SMTP", "test.smtp.org"); //de SMTP-server die gebruikt moet worden
+ini_set("SMTP","mail.vv-elspeet.nl");
+ini_set("smtp_port","587");
+ini_set("sendmail_from","abc@xyz.com");
 $naam = $_POST['naam'];
 $email = $_POST['email'];
+$onderwerp = $_POST['onderwerp'];
 $vraag = $_POST['vraag'];
 
 //$to = 'maartendeboy@hotmail.com';
-$to = 'bouncer@test.smtp.org';
+$to = 'bouncer@test.smtp.org'; //klant's email
 $subject = 'Vraag van bezoeker '.$naam;
 
-$message = 'From: '.$naam."\n";
+$message = 'Van: '.$naam."\n";
 $message .= 'E-mail: '.$email."\n";
-$message .= 'Message: '.$vraag;
+$message .= 'Onderwerp: '.$onderwerp;
+$message .= 'Vraag: <br>'.$vraag;
+
 
 //$headers = 'From: '.$email."\r\n";
 $headers = 'From: maartendeboy@hotmail.com\r\n';
