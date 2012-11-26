@@ -25,7 +25,11 @@ if(!file_exists(DOCROOT . 'templates/' . $page . '.php'))
 	<body>
 		<div id="wrapper">
 			<div id="header">
-				<div id="header-image"></div>
+				<div id="header-image">
+					<a href="/">
+						<img src="/images/header.png" alt="header"/>
+					</a>
+				</div>
 				<div id="menu"></div>
 			</div>
 			<div id="content">
