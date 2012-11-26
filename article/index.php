@@ -1,75 +1,48 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Untitled Document</title>
-</head>
-
-<body>
 <?php
-//Include files to connect with database
-include DOCROOT . 'inc/mysql.inc.php';
-//include function.php
-include DOCROOT . 'article/function.php';
+include(DOCROOT."/inc/mysql.inc.php");
 
-//Check if form is submitted
-if(isset($_POST['submit']))
-{
-    //Get data from form and set data into variable.
-	$title = $_POST['title'];
-    $category = $_POST['category'];
-    $date_added = $_POST['date_added'];
-    $date_edited = $_POST['date_edited'];
-    $text = $_POST['text'];
-	$published = '1';
-    
-	if($option=='new')
-	{
-		//Insert data into database.
-		mysql_query("INSERT INTO article (cat_id, date added, date_edited, titel, text, published) VALUES ('$category','$date_added','$date_edited','$title', '$text', '$published')");
-	}
-	elseif($option=='edit')
-	{
-		//update article.
-	}
+$dbh = connectToDatabase();  // Maak verbinding met de database
+
+if(isset($_GET['option'])) {
+    if($_GET['option'] == "delete") {
+        $sth = $dbh->prepare("DELETE FROM article WHERE ID=:id");
+        $sth->bindParam(":id", $_GET['id']);
+        $sth->execute();
+    }
 }
 
-//Get option and id
-$option=$_GET['option'];
-$id=$_GET['id'];
+$sth = $dbh->query("SELECT A.ID,title,C.name AS catname,date_added,date_edited,published FROM article A JOIN category C ON A.cat_id = C.cat_id ORDER BY ID"); // Haal alle artikelen uit de database
+$sth->execute();
 
-//Check which option is to be used.
-if($option=='new'){
-	$date_added=date();
-	$date_edited=datetoday();
-}
-elseif($option=='edit'){
-	$date_added=date_added($id);
-	$date_edited=datetoday();
-}
-
-
+$res = $sth->fetchAll(PDO::FETCH_ASSOC);
 ?>
-<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-	<input name="title" type="text" size="80" />
-    <select name="category">
-    	<?php 
-		$cat = getcategory();
-		foreach($cat as $row)
-		{
-			print("<option value=".$row["cat_id"].">"); 
-			print($row["naam"]."</option>"); 
-		}
-        ?>
-	</select>
-    <input name="date_added" type="text" value="<?php echo $date_added; ?>" />
-    <input name="date_edited" type="text" value="<?php echo $date_edited; ?>" />
-    <textarea name="text" rows="4" cols="20">
-    </textarea>
-    <input type="submit" value="Opslaan" name="submit" /> 
-	
-</form>
-
-
-</body>
+<!DOCTYPE html>
+<html>
+    <body>
+        <table border="1">
+            <tr>
+                <td>Titel</td> 
+                <td>Categorie</td>
+                <td>Datum aangemaakt</td>
+                <td>Laatst gewijzigd</td> 
+                <td>Gepubliceerd</td>
+                <td>Bewerk</td>
+                <td>Verwijder</td>
+            </tr>
+            <?php 
+                foreach($res as $row) {                                                 // Loop door SQL-resultaten
+                    echo("<tr>");
+                    echo("<td>".$row['title']."</td>");                                 // Print de titel
+                    echo("<td>".$row['catname']."</td>");                               // Print de categorie
+                    echo("<td>".$row['date_added']."</td>");                            // Print de datum
+                    echo("<td>".$row['date_edited']."</td>");                   
+                    echo("<td>".($row['published'] == 1 ? "Ja" : "Nee")."</td>");        // Print de publicatiestatus
+                    echo("<td><a href='article.php?option=edit&id=".$row['ID']."'>Bewerk</a></td>");      // Print de bewerk knop
+                    echo("<td><a href='".$_SERVER['PHP_SELF']."?option=delete&id=".$row['ID']."'>Verwijder</a></td>");
+                    echo("</tr>");
+                } 
+            ?>
+            </tr>
+        </table>
+    </body>
 </html>
