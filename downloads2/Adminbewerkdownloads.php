@@ -1,5 +1,6 @@
 <?php
 include DOCROOT . 'inc/mysql.inc.php';
+// db
 $dbh= connectToDatabase();
  if(isset($_GET['action']))
  {
@@ -24,9 +25,10 @@ if(isset($_POST['submit']))
 {
     $file= $_FILES["file"]["name"];
     $size= ($_FILES["file"]["size"] / 1024); 
-  
+  // bestanden die upgeload mogen worden.
     $allowedExts = array("jpg", "jpeg", "gif", "png", "doc", "docx", "pdf", "pjpeg", "xls", "txt", "pptx", "ppt", "xml", "xlsx");
     $extension = end(explode(".", $_FILES["file"]["name"]));
+        // de size van hoe groot het bestand maximaal mag worden in kb.
         if ($_FILES["file"]["size"] < 8000000
             && in_array($extension, $allowedExts))
             {
@@ -40,7 +42,7 @@ if(isset($_POST['submit']))
             // echo "Type: " . $_FILES["file"]["type"] . "<br />";
             // echo "Size: " . ($_FILES["file"]["size"] / 1024) . " Kb<br />";
             // echo "Temp file: " . $_FILES["file"]["tmp_name"] . "<br />";
-
+    // upload
     if (file_exists( DOCROOT . 'uploads/' .$_FILES["file"]["name"]))
       {
       echo $_FILES["file"]["name"] . " bestaat al. ";
@@ -64,7 +66,7 @@ if(isset($_POST['submit']))
     }
 } 
 
-
+// db
  $sth = $dbh->prepare ("SELECT * FROM downloads");
     $sth->execute();
     $result = $sth->fetchAll(PDO::FETCH_ASSOC); 
@@ -76,18 +78,22 @@ if(isset($_POST['submit']))
     <tr>    
         <th> Downloads </th>    
         <th> Grootte </th>
+        <th> Verwijder </th>
     </tr>
        <?php foreach($result as $row) {
 ?>
     <tr>
+        <?php // Laat het bestand naam zien.?>
         <td> <?php echo ($row["file"]); ?> </td>
+        <?php // Laat de size van het bestand zien in kb.?>
         <td> <?php echo ($row["size"]); ?> kb </td>
+        <?php // Verwijder functie, verwijdert uit de map en de database.?>
         <td> <a href="<?php echo $_SERVER['PHP_SELF']."?action=delete&ID=".$row["ID"] . "&file=".$row["file"]?>">Verwijder</a></td>
     </tr>    
         
  <?php } ?>       
      </table>
-    
+<?php // Het formulier van documenten uploaden. ?>    
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post"
 enctype="multipart/form-data">
 <label for="file">Bestand uploaden:</label>

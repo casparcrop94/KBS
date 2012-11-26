@@ -116,7 +116,6 @@ $option= isset($_GET["option"])?$_GET['option']:'new';
 
 //Check which option is to be used.
 if($option=='new'){
-	$id='';
 	$date_added=date('d-m-Y H:i:s');
 	$date_edited=date('d-m-Y H:i:s');
 	$title =''; 
