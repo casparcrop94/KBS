@@ -22,7 +22,7 @@ if(isset($_GET["case"])) {
     }
 }
 
-$sth = $dbh->query("SELECT A.ID,title,C.name AS catname,date_added,date_edited,published FROM article A JOIN category C ON A.cat_id = C.cat_id ORDER BY ID"); // Haal alle artikelen uit de database
+$sth = $dbh->query("SELECT A.ID,title,C.name AS catname,date_added,date_edited,A.published FROM article A JOIN category C ON A.cat_id = C.cat_id ORDER BY ID"); // Haal alle artikelen uit de database
 $sth->execute();
 
 $res = $sth->fetchAll(PDO::FETCH_ASSOC);
@@ -33,10 +33,7 @@ $res = $sth->fetchAll(PDO::FETCH_ASSOC);
         <?php
         echo($statusText."<br/>");
         ?>
-        <form action="article.php" method="get">
-            <input type="hidden" name="option" value="new"> 
-            <input type="submit" name="" value="Nieuw artikel">
-        </form>
+        <a id="button" href="article.php?option=new">Nieuw artikel</a>
         <br/>
         <table border="1">
             <tr>
