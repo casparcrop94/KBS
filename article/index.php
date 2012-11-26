@@ -33,6 +33,11 @@ $res = $sth->fetchAll(PDO::FETCH_ASSOC);
         <?php
         echo($statusText."<br/>");
         ?>
+        <form action="article.php" method="get">
+            <input type="hidden" name="option" value="new"> 
+            <input type="submit" name="" value="Nieuw artikel">
+        </form>
+        <br/>
         <table border="1">
             <tr>
                 <td>Titel</td> 
@@ -56,7 +61,6 @@ $res = $sth->fetchAll(PDO::FETCH_ASSOC);
                     echo("</tr>");
                 } 
             ?>
-            </tr>
         </table>
     </body>
 </html>
