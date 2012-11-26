@@ -2,12 +2,23 @@
 include(DOCROOT."/inc/mysql.inc.php");
 
 $dbh = connectToDatabase();  // Maak verbinding met de database
+$statusText = "";
 
 if(isset($_GET['option'])) {
     if($_GET['option'] == "delete") {
         $sth = $dbh->prepare("DELETE FROM article WHERE ID=:id");
         $sth->bindParam(":id", $_GET['id']);
         $sth->execute();
+        
+        $statusText = "Artikel succesvol verwijderd.";
+    }
+}
+
+if(isset($_GET["case"])) { 
+    if($_GET["case"] == "succes") { 
+        $statusText = "Artikel succesvol opgeslagen.";
+    } else { 
+        $statusText = "Artikel niet succesvol opgeslagen.";
     }
 }
 
@@ -19,6 +30,9 @@ $res = $sth->fetchAll(PDO::FETCH_ASSOC);
 <!DOCTYPE html>
 <html>
     <body>
+        <?php
+        echo($statusText."<br/>");
+        ?>
         <table border="1">
             <tr>
                 <td>Titel</td> 
@@ -38,7 +52,7 @@ $res = $sth->fetchAll(PDO::FETCH_ASSOC);
                     echo("<td>".$row['date_edited']."</td>");                   
                     echo("<td>".($row['published'] == 1 ? "Ja" : "Nee")."</td>");        // Print de publicatiestatus
                     echo("<td><a href='article.php?option=edit&id=".$row['ID']."'>Bewerk</a></td>");      // Print de bewerk knop
-                    echo("<td><a href='".$_SERVER['PHP_SELF']."?option=delete&id=".$row['ID']."'>Verwijder</a></td>");
+                    echo("<td><a href='".$_SERVER['PHP_SELF']."?option=delete&id=".$row['ID']."'>Verwijder</a></td>"); // Print de verwijder knop
                     echo("</tr>");
                 } 
             ?>
