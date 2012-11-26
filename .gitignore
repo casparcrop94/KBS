@@ -3,7 +3,7 @@
 #################
 inc/config.inc.php
 .htaccess
-
+uploads
 
 eriktest
 
@@ -182,4 +182,8 @@ pip-log.txt
 ## netbeans
 #################
 nbproject
-
+/nbproject
+nbproject/project.properties
+nbproject\project.xml
+nbproject\*
+nbproject/*
