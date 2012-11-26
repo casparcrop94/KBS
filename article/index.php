@@ -8,10 +8,9 @@
 <body>
 <?php
 //Include files to connect with database
-include dirname(__FILE__) . '/../inc/config.inc.php';
 include DOCROOT . 'inc/mysql.inc.php';
 //include function.php
-include DOCROOT . 'articles/function.php';
+include DOCROOT . 'article/function.php';
 
 //Check if form is submitted
 if(isset($_POST['submit']))
@@ -24,9 +23,15 @@ if(isset($_POST['submit']))
     $text = $_POST['text'];
 	$published = '1';
     
-	//Insert data into database.
-    mysql_query("INSERT INTO article (cat_id, date added, date_edited, titel, text, published) VALUES ('$category','$date_added','$date_edited','$title', '$text', '$published')");
-
+	if($option=='new')
+	{
+		//Insert data into database.
+		mysql_query("INSERT INTO article (cat_id, date added, date_edited, titel, text, published) VALUES ('$category','$date_added','$date_edited','$title', '$text', '$published')");
+	}
+	elseif($option=='edit')
+	{
+		//update article.
+	}
 }
 
 //Get option and id
@@ -35,7 +40,7 @@ $id=$_GET['id'];
 
 //Check which option is to be used.
 if($option=='new'){
-	$date_added=date;
+	$date_added=date();
 	$date_edited=datetoday();
 }
 elseif($option=='edit'){
