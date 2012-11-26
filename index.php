@@ -25,8 +25,21 @@ if(!file_exists(DOCROOT . 'templates/' . $page . '.php'))
 	<body>
 		<div id="wrapper">
 			<div id="header">
-				<div id="header-image"></div>
-				<div id="menu"></div>
+				<div id="header-image">
+					<a href="/">
+						<img src="/images/header.png" alt="header"/>
+					</a>
+				</div>
+				<div id="menu">
+					<ul>
+						<li><a href="/home">Home</a></li>
+						<li><a href="/bedrijven">Bedrijven</a></li>
+						<li><a href="/particulier">Particulier</a></li>
+						<li><a href="/artikelen">Artikelen</a></li>
+						<li><a href="/downloads">Downloads</a></li>
+						<li><a href="/contacts">Contact</a></li>
+					</ul>
+				</div>
 			</div>
 			<div id="content">
 				<div id="left-content">
