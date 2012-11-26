@@ -18,7 +18,7 @@ $dbh= connectToDatabase();
     <tr>
         <td> <?php echo ($row["file"]); ?> </td>
         <td> <?php echo ($row["size"]); ?> kb </td>
-        <td> <a href=http://kbs.nl/uploads/ .$_GET["file"] >Download</a> </td>
+        <td> <a href=http://kbs.nl/uploads/<?php echo ($row["file"]); ?> >Download</a> </td>
     </tr>    
         
  <?php } ?>       
