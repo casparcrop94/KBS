@@ -11,7 +11,7 @@ tinyMCE.init({
 		mode : "textareas",
 		theme : "advanced",
 		plugins : "jbimages,autolink,lists,pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template,wordcount,advlist,autosave",
-		language : "nl",
+		language : "en",
  
 		// Theme options
 		theme_advanced_buttons1 : "save,newdocument,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,styleselect,formatselect,fontselect,fontsizeselect",
@@ -223,7 +223,7 @@ elseif($option=='edit'){
     <tr>
     	<td colspan="2">
         	<input type="submit" value="Opslaan" name="submit" />
-            <input type="button" name="Cancel" value="Annuleren" onclick="window.location = 'overview.php' " />
+            <input type="button" name="Cancel" value="Annuleren" onclick="window.location = 'index.php' " />
         </td>
     </tr>
 </table> 
