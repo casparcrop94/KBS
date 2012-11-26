@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Untitled Document</title>
-<script type="text/javascript" src="../scripts/tinymce/jscripts/tiny_mce/tiny_mce.js"></script>
+<script type="text/javascript" src="../scripts/tiny_mce/tiny_mce.js"></script>
 
 <script type="text/javascript">
 tinyMCE.init({
