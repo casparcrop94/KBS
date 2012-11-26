@@ -78,6 +78,7 @@ if(isset($_POST['submit']))
     <tr>    
         <th> Downloads </th>    
         <th> Grootte </th>
+        <th> Verwijder </th>
     </tr>
        <?php foreach($result as $row) {
 ?>
