@@ -68,7 +68,7 @@ if(isset($_POST['submit']))
 	{
 		$case="fail";
 	}
-header("Location: overview.php?case=$case");
+header("Location: index.php?case=$case");
 
 }
 
