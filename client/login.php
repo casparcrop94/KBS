@@ -2,9 +2,9 @@
 session_start();
 include_once(DOCROOT . 'inc/mysql.inc.php'); // bevat functie om verbinding te maken met een database
 
-if(isset($_SESSION['admin']) && $_SESSION['admin'] == true)
+if(isset($_SESSION['client']) && $_SESSION['client'] == true)
 {
-	header('location:/admin/home');
+	header('location:/client/home');
 }
 
 if(isset($_POST['submit']))
@@ -20,18 +20,18 @@ if(isset($_POST['submit']))
             $user = $_POST['login'];   
             $pass = $_POST['password'];
 
-            $sth = $dbh->prepare("SELECT * FROM users WHERE username=:user AND password=:pass");
+            $sth = $dbh->prepare("SELECT * FROM clients WHERE username=:user AND password=:pass");
             $sth->bindParam(":user", $user);
             $sth->bindParam(":pass", $pass);
             $sth->execute();
             if($sth->rowCount())
             {
-            	$_SESSION['admin'] = true;
+            	$_SESSION['client'] = true;
             	
-            	header('location:/admin/home');
+            	header('location:/client/home');
             }
             else {
-            	echo 'combinatie gebruikersnaam/wachtwoord onjuist.';
+            	echo 'Combinatie gebruikersnaam/wachtwoord onjuist.';
             }
             //print_r($sth->fetchAll(PDO::FETCH_ASSOC));
 	}
@@ -41,7 +41,7 @@ if(isset($_POST['submit']))
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<title>Juridische hulp</title>
-		<link rel="stylesheet" type="text/css" href="/styles/admin.css" />
+		<link rel="stylesheet" type="text/css" href="/styles/client.css" />
 	</head>
 	<body>
 		<div id="login-form">
