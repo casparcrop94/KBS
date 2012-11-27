@@ -5,13 +5,13 @@ $dbh= connectToDatabase();
     $sth = $dbh->prepare ("SELECT * FROM downloads");
     $sth->execute();
     $result = $sth->fetchAll(PDO::FETCH_ASSOC);   
-?>    
+    ?>    
 
 <html>
 <body>
 <table border="1">
     <tr>    
-        <th> Downloads </th>    
+        <th> Bestanden </th>    
         <th> Grootte </th>
         <th> Download </th>
     </tr>
@@ -28,7 +28,17 @@ $dbh= connectToDatabase();
         
  <?php } ?>       
      </table>
-   
+<?php
+$url= $row["file"];
+
+function encode_full_url(&$url)
+{
+    $url = urlencode($url);
+    // space
+    $url = str_replace(" ", "$20", $url);
+    return $decodedurl;
+}
+?>    
     
 
 </body>

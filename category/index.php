@@ -1,10 +1,15 @@
 <?php
+//include file to connect with databse
 include(DOCROOT."/inc/mysql.inc.php");
+// Set connection with database into variable
+$dbh = connectToDatabase();  
 
-$dbh = connectToDatabase();  // Maak verbinding met de database
+//define $statustext
 $statusText = "";
 
+//Check if option is defined
 if(isset($_GET['option'])) {
+	//If option is deleted then delete category where id=$id
     if($_GET['option'] == "delete") {
         $sth = $dbh->prepare("DELETE FROM category WHERE cat_id=:id");
         $sth->bindParam(":id", $_GET['id']);
@@ -13,7 +18,7 @@ if(isset($_GET['option'])) {
         $statusText = "Categorie succesvol verwijderd.";
     }
 }
-
+//Check if case is defined
 if(isset($_GET["case"])) { 
     if($_GET["case"] == "succes") { 
         $statusText = "Categorie succesvol opgeslagen.";
@@ -21,28 +26,19 @@ if(isset($_GET["case"])) {
         $statusText = "Categorie niet succesvol opgeslagen.";
     }
 }
-
-$sth = $dbh->query("SELECT * FROM category ORDER BY cat_id"); // Haal alle categorien uit de database
+// Get all categorys from database
+$sth = $dbh->query("SELECT * FROM category ORDER BY cat_id"); 
 $sth->execute();
-
 $res = $sth->fetchAll(PDO::FETCH_ASSOC);
 ?>
-<!DOCTYPE html>
+
 <html>
     <body>
         <?php
         echo($statusText."<br/>");
         ?>
-<<<<<<< HEAD
-		<form action="article.php" method="get">
-            <input type="hidden" name="option" value="new"> 
-            <input type="submit" name="" value="Nieuwe Categorie">
-        </form>
-        <br/>
-=======
 		<a id="button" href="category.php?option=new">Nieuwe categorie</a>
 		<br/>
->>>>>>> dca3e76
         <table border="1">
             <tr>
                 <td>Naam</td> 
@@ -52,13 +48,14 @@ $res = $sth->fetchAll(PDO::FETCH_ASSOC);
 				<td>Verwijder</td>                
             </tr>
             <?php 
-                foreach($res as $row) {                                                // Loop door SQL-resultaten
+				//Print the categorys
+                foreach($res as $row) {                                                
                     echo("<tr>");
-                    echo("<td>".$row['name']."</td>");                                 // Print de titel
-                    echo("<td>".$row['discription']."</td>");                          // Print de beschrijving
-                    echo("<td>".($row['published'] == 1 ? "Ja" : "Nee")."</td>");      // Print de publicatiestatus
-                    echo("<td><a href='category.php?option=edit&id=".$row['cat_id']."'>Bewerk</a></td>");      // Print de bewerk knop
-                    echo("<td><a href='".$_SERVER['PHP_SELF']."?option=delete&id=".$row['cat_id']."'>Verwijder</a></td>"); // Print de verwijder knop
+                    echo("<td>".$row['name']."</td>");                                 
+                    echo("<td>".$row['discription']."</td>");                          
+                    echo("<td>".($row['published'] == 1 ? "Ja" : "Nee")."</td>");      
+                    echo("<td><a href='category.php?option=edit&id=".$row['cat_id']."'>Bewerk</a></td>");      
+                    echo("<td><a href='".$_SERVER['PHP_SELF']."?option=delete&id=".$row['cat_id']."'>Verwijder</a></td>");
                     echo("</tr>");
                 } 
             ?>

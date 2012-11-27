@@ -1,22 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<?php
-//Get option
-$option= isset($_GET["option"])?$_GET['option']:'new';
-if($option=='new'){
-$title="Toevoegen nieuwe categorie";
-}
-else{
-$title="Bewerk categorie";
-}
-?>
-<title><?php echo $title; ?></title>
-
-
-</head>
-
+<html>
 <body>
 <?php
 //Include files to connect with database
@@ -38,21 +20,25 @@ if(isset($_POST['submit']))
 		//Insert new article
 		$db = connectToDatabase();
 		$sth = $db->prepare ("INSERT INTO category (name, discription, published) 
-		VALUES ('$name','$discription','$published')");
+		VALUES (:name,:discription,:published)");
+		$sth->bindParam(":name", $name);
+		$sth->bindParam(":discription", $discription);
+		$sth->bindParam(":published", $published);
 		$result=$sth->execute();
 	}
 	elseif($option=='edit')
 	{
 		//Edit an article
 		$db = connectToDatabase();
-		$sth = $db->prepare ("UPDATE category SET 
-								name='$name',
-								discription='$discription',
-								published='$published'
-								WHERE cat_id=$id");
+		$sth = $db->prepare ("UPDATE category SET name=:name, discription=:discription, published=:published WHERE cat_id=:id");
+		$sth->bindParam(":name", $name);
+		$sth->bindParam(":discription", $discription);
+		$sth->bindParam(":published", $published);
+		$sth->bindParam(":id", $id);
 		$result=$sth->execute();
 	}
 	
+	//Check if category succesfully saved
 	if($result==1)
 	{
 		$case="succes";
@@ -61,7 +47,9 @@ if(isset($_POST['submit']))
 	{
 		$case="fail";
 	}
-header("Location: index.php?case=".$case);
+	
+	//After saving redirect to 
+	header("Location: index.php?case=".$case);
 
 }
 
@@ -77,18 +65,21 @@ if($option=='new'){
 }
 elseif($option=='edit'){
 	$id= isset($_GET["id"])?$_GET['id']:'';
-	
+	//Get data from database where cat_id=$id
 	$db = connectToDatabase();
-    $sth = $db->prepare ("SELECT * FROM category WHERE cat_id=$id");
+    $sth = $db->prepare ("SELECT * FROM category WHERE cat_id=:id");
+	$sth->bindParam(":id", $id);
     $sth->execute();
     $result = $sth->fetchAll(PDO::FETCH_ASSOC);
 	
+	//Set data from database into variables
 	foreach($result as $row)
 	{
 		$name =$row["name"]; 
 		$discription =$row["discription"];
 		$published = $row["published"];
 	}
+	//Check if category is published
 	if($published==1)
 	{
 		$published=" selected";
@@ -119,10 +110,12 @@ elseif($option=='edit'){
         </td>
     </tr>
     <tr>
-    	<td width="150">
+    	<td colspan="2">
         	Beschrijving:
         </td>
-        <td>
+    </tr>
+	<tr>
+    	<td colspan="2">
         	<input name="discription" type="text" size="80" value="<?php echo $discription; ?>"/>
         </td>
     </tr>
