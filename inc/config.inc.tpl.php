@@ -8,3 +8,5 @@ define('DB_USER', 'root');
 define('DB_PASS', 'usbw');
 define('DB_PORT', '3307');
 define('DB_DATABASE', 'kbs');
+
+define('EMAIL_KLANT', 'maartendeboy@hotmail.com');

@@ -1,61 +1,55 @@
 <?php
-//ini_set("SMTP", "test.smtp.org"); //de SMTP-server die gebruikt moet worden
-ini_set("SMTP","mail.vv-elspeet.nl");
-ini_set("smtp_port","587");
-ini_set("sendmail_from","abc@xyz.com");
-$naam = $_POST['naam'];
-$email = $_POST['email'];
-$onderwerp = $_POST['onderwerp'];
-$vraag = $_POST['vraag'];
+if (isset($_POST["verstuur"])){
+    $naam = $_POST['naam'];
+    $email = $_POST['email'];
+    $onderwerp = $_POST['onderwerp'];
+    $vraag = $_POST['vraag'];
 
-//$to = 'maartendeboy@hotmail.com';
-$to = 'bouncer@test.smtp.org'; //klant's email
-$subject = 'Vraag van bezoeker '.$naam;
+    $to = EMAIL_KLANT;   //Eigenaar's email, dus gerelateerde van Caspar (nu voor testen nog mijn e-mail
+    $subject = 'Vraag van bezoeker '.$naam;
 
-$message = 'Van: '.$naam."\n";
-$message .= 'E-mail: '.$email."\n";
-$message .= 'Onderwerp: '.$onderwerp;
-$message .= 'Vraag: <br>'.$vraag;
+    //Hier de info over de mail en de vraag
+    $message = 'Van: '.$naam."\n";
+    $message .= 'E-mail: '.$email."\n";
+    $message .= 'Onderwerp: '.$onderwerp;
+    $message .= 'Vraag: <br>'.$vraag;
 
+    //$headers = 'From: '.$email."\r\n";
+    $headers = 'From: ' .EMAIL_KLANT. '\r\n';
+    $headers .= 'Reply-To: '.$email."\r\n";
 
-//$headers = 'From: '.$email."\r\n";
-$headers = 'From: maartendeboy@hotmail.com\r\n';
-$headers .= 'Reply-To: '.$email."\r\n";
-
-$mail_status = mail($to, $subject, $message, $headers);
-
-if ($mail_status) { ?>
-	<script language="javascript" type="text/javascript">
-		alert('Thank you for the message. We will contact you shortly.');
-		window.location = 'contact.html';
-	</script>
-<?php
+    $mail_status = mail($to, $subject, $message, $headers);
+    if (!$mail_status) { 
+      print("Helaas, het versturen van de mail is mislukt");   
+    }
+    else {
+     print("Geslaagd, de mail is verstuurd");       
 }
-else { ?>
-	<script language="javascript" type="text/javascript">
-		alert('Bericht versturen mislukt. Probeer opnieuw of stuur een mail naar maartendeboy@hotmail.com');
-		window.location = 'contact.html';
-	</script>
-<?php
 }
 ?>
-
-        <form action="contact.php" method="post">
-            Naam
-            <br>
-            <input type="text" name="naam">
-            <br>
-            E-mailadres
-            <br>
-            <input type="text" name="email">
-            <br>
-            Onderwerp
-            <br>
-            <input type="text" name="onderwerp">
-            <br>
-            Vraag
-            <br>
-            <textarea name="vraag">
-            </textarea>
-            <br>
-            <input type="submit" value="Versturen">
+        
+        <form method="post">
+            <table>
+                <tr>
+                    <td>Naam</td>
+                    <td><input type="text" name="naam"></td>
+                </tr>
+                <tr>
+                    <td>E-mailadres</td>
+                    <td><input type="text" name="email"></td>
+                </tr>
+                <tr>
+                    <td>Onderwerp</td>
+                    <td><input type="text" name="onderwerp"></td>
+                </tr>
+                <tr>
+                    <td>Vraag</td>
+                </tr>
+                <tr>
+                    <td colspan="2"><textarea name="vraag"></textarea></td>
+                </tr>
+                <tr>
+                    <td><input type="submit" name="verstuur" value="Versturen"></td>
+                </tr>
+            </table>
+        </form>
