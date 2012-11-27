@@ -9,7 +9,7 @@ $dbh= connectToDatabase();
 
 <table border="1">
     <tr>    
-        <th> Downloads </th>    
+        <th> Bestanden </th>    
         <th> Grootte </th>
         <th> Download </th>
     </tr>
