@@ -6,48 +6,13 @@
 //Get option
 $option= isset($_GET["option"])?$_GET['option']:'new';
 if($option=='new'){
-$title="Toevoegen nieuw artikel";
+$title="Toevoegen nieuwe categorie";
 }
 else{
-$title="Bewerk artikel";
+$title="Bewerk categorie";
 }
 ?>
 <title><?php echo $title; ?></title>
-<script type="text/javascript" src="../scripts/tiny_mce/tiny_mce.js"></script>
-
-<script type="text/javascript">
-tinyMCE.init({
-		// General options
-		mode : "textareas",
-		theme : "advanced",
-		plugins : "jbimages,autolink,lists,pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template,wordcount,advlist,autosave",
-		language : "en",
- 
-		// Theme options
-		theme_advanced_buttons1 : "save,newdocument,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,styleselect,formatselect,fontselect,fontsizeselect",
-		theme_advanced_buttons2 : "cut,copy,paste,pastetext,pasteword,|,search,replace,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,cleanup,help,code,|,insertdate,inserttime,preview,|,forecolor,backcolor",
-		theme_advanced_buttons3 : "tablecontrols,|,hr,removeformat,visualaid,|,sub,sup,|,charmap,emotions,iespell,media,advhr,|,print,|,ltr,rtl,|,fullscreen",
-		theme_advanced_buttons4 : "insertlayer,moveforward,movebackward,absolute,|,styleprops,|,cite,abbr,acronym,del,ins,attribs,|,visualchars,nonbreaking,template,pagebreak,restoredraft,|,jbimages",
-		theme_advanced_toolbar_location : "top",
-		theme_advanced_toolbar_align : "left",
-		theme_advanced_statusbar_location : "bottom",
-		theme_advanced_resizing : true,
- 
-		// This is required for the image paths to display properly
-		relative_urls : false,
- 
-		// Style formats (OPTIONAL)
-		style_formats : [
-			{title : 'Bold text', inline : 'b'},
-			{title : 'Red text', inline : 'span', styles : {color : '#ff0000'}},
-			{title : 'Red header', block : 'h1', styles : {color : '#ff0000'}},
-			{title : 'Example 1', inline : 'span', classes : 'example1'},
-			{title : 'Example 2', inline : 'span', classes : 'example2'},
-			{title : 'Table styles'},
-			{title : 'Table row 1', selector : 'tr', classes : 'tablerow1'}
-		]
-	});
-</script>
 
 
 </head>
@@ -56,8 +21,6 @@ tinyMCE.init({
 <?php
 //Include files to connect with database
 include DOCROOT . 'inc/mysql.inc.php';
-//include function.php
-include DOCROOT . 'article/function.php';
 
 //Check if form is submitted
 if(isset($_POST['submit']))
@@ -66,36 +29,27 @@ if(isset($_POST['submit']))
     $option = $_POST['option'];
 	$id = $_POST['id'];
 	
-	$title = $_POST['title'];	
-	$category = $_POST['category'];
-    $date_added = $_POST['date_added'];
-    $date_edited = $_POST['date_edited'];
-    $text = $_POST['text'];
+	$name = $_POST['name'];	
+	$discription = $_POST['discription'];
 	$published = $_POST['published'];
-	
-	$date_added = date('Y-m-d H:i:s', strtotime($date_added));
-    $date_edited = date('Y-m-d H:i:s', strtotime($date_edited));
 	
 	if($option=='new')
 	{
 		//Insert new article
 		$db = connectToDatabase();
-		$sth = $db->prepare ("INSERT INTO article (cat_id, date_added, date_edited, title, text, published) 
-		VALUES ('$category','$date_added','$date_edited','$title', '$text','$published')");
+		$sth = $db->prepare ("INSERT INTO category (name, discription, published) 
+		VALUES ('$name','$discription','$published')");
 		$result=$sth->execute();
 	}
 	elseif($option=='edit')
 	{
 		//Edit an article
 		$db = connectToDatabase();
-		$sth = $db->prepare ("UPDATE article SET 
-								cat_id='$category',
-								date_added='$date_added',
-								date_edited='$date_edited',
-								title='$title',
-								text='$text',
+		$sth = $db->prepare ("UPDATE category SET 
+								name='$name',
+								discription='$discription',
 								published='$published'
-								WHERE ID=$id");
+								WHERE cat_id=$id");
 		$result=$sth->execute();
 	}
 	
@@ -116,25 +70,23 @@ $option= isset($_GET["option"])?$_GET['option']:'new';
 
 //Check which option is to be used.
 if($option=='new'){
-	$date_added=date('d-m-Y H:i:s');
-	$date_edited=date('d-m-Y H:i:s');
-	$title =''; 
-	$category ='';
-	$text = '';
+	$name =''; 
+	$discription ='';
 	$published =" selected";
 	$unpublished ='';
 }
 elseif($option=='edit'){
 	$id= isset($_GET["id"])?$_GET['id']:'';
-	$content = get_content($id);
-	foreach($content as $row)
+	
+	$db = connectToDatabase();
+    $sth = $db->prepare ("SELECT * FROM category WHERE cat_id=$id");
+    $sth->execute();
+    $result = $sth->fetchAll(PDO::FETCH_ASSOC);
+	
+	foreach($result as $row)
 	{
-		$title =$row["title"]; 
-		$category =$row["cat_id"];
-		$date_added =$row["date_added"];
-		$date_added = date('d-m-Y H:i:s', strtotime($date_added));
-		$date_edited =date('d-m-Y H:i:s');
-		$text = $row["text"];
+		$name =$row["name"]; 
+		$discription =$row["discription"];
 		$published = $row["published"];
 	}
 	if($published==1)
@@ -158,67 +110,22 @@ elseif($option=='edit'){
 <table>
 	<tr>
     	<td colspan="2">
-        	Titel:
+        	Naam:
         </td>
     </tr>
     <tr>
         <td colspan="2">
-        	<input name="title" type="text" size="80" value="<?php echo $title; ?>"/>
+        	<input name="name" type="text" size="80" value="<?php echo $name; ?>"/>
         </td>
     </tr>
     <tr>
     	<td width="150">
-        	Categorie:
+        	Beschrijving:
         </td>
         <td>
-        	<select name="category">
-    		<?php 
-			$cat = getcategory();
-			foreach($cat as $row)
-			{
-				$id = $row["cat_id"];
-				$name = $row["name"];
-				if($id==$category)
-				{
-					$selected=" selected";
-				}
-				else
-				{
-					$selected='';
-				}
-				print("<option value=$id".$selected.">"); 
-				print($name."</option>"); 
-			}
-        	?>
-            </select>
+        	<input name="discription" type="text" size="80" value="<?php echo $discription; ?>"/>
         </td>
     </tr>
-    <tr>
-    	<td>
-        	Aanmaakdatum:
-        </td>
-        <td>
-        	<input name="date_added" type="text" value="<?php echo $date_added; ?>"/>
-        </td>
-    </tr>
-    <tr>
-    	<td>
-        	Laatst bijgewerkt op:
-        </td>
-        <td>
-        	<input name="date_edited" type="text" value="<?php echo $date_edited; ?>"/>
-        </td>
-    </tr>
-    <tr>
-    	<td colspan="2">
-        	Text:
-       	</td>
-    </tr>
-    <tr>
-        <td colspan="2">
-        	<textarea name="text" rows="20" cols="70"><?php echo $text; ?></textarea>
-        </td>
-    <tr />
     <tr>
     	<td>
         	Status:

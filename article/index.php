@@ -37,6 +37,10 @@ $res = $sth->fetchAll(PDO::FETCH_ASSOC);
             <input type="hidden" name="option" value="new"> 
             <input type="submit" name="" value="Nieuw artikel">
         </form>
+		<form action="../category/category.php" method="get">
+            <input type="hidden" name="option" value="new"> 
+            <input type="submit" name="" value="Nieuwe Categorie">
+        </form>
         <br/>
         <table border="1">
             <tr>
