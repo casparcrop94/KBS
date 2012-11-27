@@ -33,11 +33,16 @@ $res = $sth->fetchAll(PDO::FETCH_ASSOC);
         <?php
         echo($statusText."<br/>");
         ?>
+<<<<<<< HEAD
 		<form action="article.php" method="get">
             <input type="hidden" name="option" value="new"> 
             <input type="submit" name="" value="Nieuwe Categorie">
         </form>
         <br/>
+=======
+		<a id="button" href="category.php?option=new">Nieuwe categorie</a>
+		<br/>
+>>>>>>> dca3e76
         <table border="1">
             <tr>
                 <td>Naam</td> 
