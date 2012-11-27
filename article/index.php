@@ -33,7 +33,8 @@ $res = $sth->fetchAll(PDO::FETCH_ASSOC);
         <?php
         echo($statusText."<br/>");
         ?>
-        <a id="button" href="article.php?option=new">Nieuw artikel</a>
+        <a id="button" href="../category/category.php?option=new">Nieuwe categorie</a>
+		<a id="button" href="article.php?option=new">Nieuw artikel</a>
         <br/>
         <table border="1">
             <tr>
@@ -60,4 +61,3 @@ $res = $sth->fetchAll(PDO::FETCH_ASSOC);
             ?>
         </table>
     </body>
-</html>

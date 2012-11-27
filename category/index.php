@@ -6,7 +6,7 @@ $statusText = "";
 
 if(isset($_GET['option'])) {
     if($_GET['option'] == "delete") {
-        $sth = $dbh->prepare("DELETE FROM category WHERE ID=:id");
+        $sth = $dbh->prepare("DELETE FROM category WHERE cat_id=:id");
         $sth->bindParam(":id", $_GET['id']);
         $sth->execute();
         
@@ -22,7 +22,7 @@ if(isset($_GET["case"])) {
     }
 }
 
-$sth = $dbh->query("SELECT * FROM category ORDER BY ID"); // Haal alle categorien uit de database
+$sth = $dbh->query("SELECT * FROM category ORDER BY cat_id"); // Haal alle categorien uit de database
 $sth->execute();
 
 $res = $sth->fetchAll(PDO::FETCH_ASSOC);
@@ -33,6 +33,8 @@ $res = $sth->fetchAll(PDO::FETCH_ASSOC);
         <?php
         echo($statusText."<br/>");
         ?>
+		<a id="button" href="category.php?option=new">Nieuwe categorie</a>
+		<br/>
         <table border="1">
             <tr>
                 <td>Naam</td> 
@@ -47,8 +49,8 @@ $res = $sth->fetchAll(PDO::FETCH_ASSOC);
                     echo("<td>".$row['name']."</td>");                                 // Print de titel
                     echo("<td>".$row['discription']."</td>");                          // Print de beschrijving
                     echo("<td>".($row['published'] == 1 ? "Ja" : "Nee")."</td>");      // Print de publicatiestatus
-                    echo("<td><a href='category.php?option=edit&id=".$row['ID']."'>Bewerk</a></td>");      // Print de bewerk knop
-                    echo("<td><a href='".$_SERVER['PHP_SELF']."?option=delete&id=".$row['ID']."'>Verwijder</a></td>"); // Print de verwijder knop
+                    echo("<td><a href='category.php?option=edit&id=".$row['cat_id']."'>Bewerk</a></td>");      // Print de bewerk knop
+                    echo("<td><a href='".$_SERVER['PHP_SELF']."?option=delete&id=".$row['cat_id']."'>Verwijder</a></td>"); // Print de verwijder knop
                     echo("</tr>");
                 } 
             ?>
