@@ -27,18 +27,7 @@ $dbh= connectToDatabase();
     </tr>    
         
  <?php } ?>       
-     </table>
-<?php
-$url= $row["file"];
-
-function encode_full_url(&$url)
-{
-    $url = urlencode($url);
-    // space
-    $url = str_replace(" ", "$20", $url);
-    return $decodedurl;
-}
-?>    
+     </table> 
     
 
 </body>
