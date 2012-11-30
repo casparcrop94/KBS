@@ -1,6 +1,4 @@
 <?php
-include DOCROOT . 'inc/mysql.inc.php';
-$dbh=  connectToDatabase();
 function selectratequery($sql,$dbh){
     $sth=$dbh->prepare($sql);
     $sth->execute();
