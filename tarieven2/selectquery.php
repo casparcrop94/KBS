@@ -1,7 +1,8 @@
 <?php
 include 'mysql.inc.php';
-function selectquery($sql,$db){
-    $sth=$db->prepare($sql);
+$dbh=  connectToDatabase();
+function selectratequery($sql,$dbh){
+    $sth=$dbh->prepare($sql);
     $sth->execute();
     $result= $sth->fetchAll(PDO::FETCH_ASSOC);
     return $result;

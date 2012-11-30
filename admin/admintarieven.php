@@ -1,5 +1,7 @@
 <?php
-include 'mysql.inc.php';
+include DOCROOT . 'inc/mysql.inc.php';
+include DOCROOT . 'tarieven2/selectquery.php';
+$dbh=  connectToDatabase();
 ?>
         <div>
             <?php
@@ -9,7 +11,7 @@ include 'mysql.inc.php';
                     //sql statement
                 $sql= (" SELECT service_id, servicename, pph, avgcost FROM `services` ");
                     //executing the statement and retrieving results
-                $result=selectquery($sql,$db);
+                $result=selectratequery($sql,$dbh);
             ?>
             <!--Displaying the table-->
             <table border="1">

@@ -1,7 +1,7 @@
 <?php
-
-include 'mysql.inc.php';
-include 'selectquery.php';
+include DOCROOT . 'inc/mysql.inc.php';
+include DOCROOT . 'tarieven2/selectquery.php';
+$dbh=  connectToDatabase();
 ?>
         <!-- Explaination of rates -->
         <div id="rates">
@@ -14,7 +14,7 @@ include 'selectquery.php';
                     //query   
                     $sql= (" SELECT servicename, pph, avgcost FROM `services` WHERE pph IS NOT NULL ");
                     //execution and result
-                    $result=selectquery($sql,$dbh);
+                    $result=selectratequery($sql,$dbh);
                 ?>
                 <!--Tabel-->
                 <table border="1">

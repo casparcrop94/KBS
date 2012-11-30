@@ -1,5 +1,5 @@
 <?php
-include 'mysql.inc.php';
+include DOCROOT . 'inc/mysql.inc.php';
 //checking if form is filled in and submitted
 if(isset($_POST['Verander!'])){
     if(isset($_POST['pph']) AND isset($_POST['avgcost'])){
@@ -18,7 +18,6 @@ if(isset($_POST['Verander!'])){
 }
 else{
 
-        include 'dbconnect.php';
         //retrieving rates from service
             //retrieving ID
             $id=$_GET['id'];
