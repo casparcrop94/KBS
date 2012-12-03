@@ -9,4 +9,5 @@ RewriteCond %{SCRIPT_FILENAME} !-f
 RewriteCond %{SCRIPT_FILENAME} !-d
 
 RewriteRule ^login$ /admin/login.php [NC]
+RewriteRule ^logout$ /admin/login.php?action=logout [NC]
 RewriteRule ^([a-zA-Z]+)$ /admin/index.php?p=$1 [NC]

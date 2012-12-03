@@ -11,6 +11,13 @@ html {
 body {
 	width: 100%;
 	height: 100%;
+	background-color: #f5f5f5;
+	color: #343434;
+}
+
+a {
+	color: #486398;
+	text-decoration: none;
 }
 
 input[type="text"],
@@ -25,6 +32,13 @@ input[type="password"]:focus,
 textarea:focus {
 	outline: 2px solid #7a8bac;
 	border: none;
+}
+
+input[type="submit"],
+input[type="button"] {
+	border: 2px solid #456196;
+	background-color: #7a8bac;
+	color: #fff;
 }
 
 #login-form {
@@ -47,9 +61,53 @@ textarea:focus {
 	width: 100%;
 }
 
-input[type="submit"],
-input[type="button"] {
-	border: 2px solid #456196;
-	background-color: #7a8bac;
+#wrapper {
+	width: 100%;
+	position: relative;
+}
+
+#header {
+	width: 100%;
+	height: 50px;
+	background-color: #768093;
+	position: relative;
+	border-bottom: 1px solid #333;
+}
+
+#menu {
+	width: 100%;
+	height: 50px;
+	background-color: #768093;
+	position: relative;
+}
+
+#menu ul {
+	list-style:none;
+	height: 50px;
+	position: relative;
+	width: 100%;
+}
+
+#menu ul li {
+	float: left;
+	font-size: 20px;
 	color: #fff;
+	padding: 0 15px;
+	margin-top: 14px;
+}
+
+#menu ul li a {
+	color: #fff;
+}
+
+#menu ul li a:hover {
+	text-decoration: underline;
+}
+
+#menu ul li.login_menu_item {
+	float: right;
+}
+
+#content {
+	padding: 5px 10px;
 }

@@ -11,7 +11,7 @@ if(!isset($_SESSION['admin']) && $_SESSION['admin'] != true)
 	header('location:/admin/login');
 }
 
-$page = isset($_GET['p']) ? $_GET['p']:'home';
+$page = isset($_GET['p']) ? str_replace('/', '',$_GET['p']):'home';
 
 if(!file_exists(DOCROOT . 'admin/templates/' . $page . '.php'))
 {
@@ -29,10 +29,19 @@ if(!file_exists(DOCROOT . 'admin/templates/' . $page . '.php'))
 	</head>
 	<body>
 		<div id="wrapper">
-			<div id="content">
-				<div id="content">
-					<?php include DOCROOT . 'admin/templates/' . $page . '.php';?>
+			<div id="header">
+				<div id="menu">
+					<ul>
+						<li><a href="/admin/home">Home</a></li>
+						<li><a href="/admin/agenda">Agenda</a></li>
+						<li class="login_menu_item">
+							<a href="/admin/logout">Uitloggen</a>
+						</li>
+					</ul>
 				</div>
+			</div>
+			<div id="content">
+				<?php include DOCROOT . 'admin/templates/' . $page . '.php';?>
 			</div>
 			<div id="footer"></div>
 		</div>

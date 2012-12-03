@@ -27,20 +27,13 @@ $sth->execute();
 
 $res = $sth->fetchAll(PDO::FETCH_ASSOC);
 ?>
-<!DOCTYPE html>
 <html>
     <body>
         <?php
         echo($statusText."<br/>");
         ?>
-        <form action="article.php" method="get">
-            <input type="hidden" name="option" value="new"> 
-            <input type="submit" name="" value="Nieuw artikel">
-        </form>
-		<form action="../category/category.php" method="get">
-            <input type="hidden" name="option" value="new"> 
-            <input type="submit" name="" value="Nieuwe Categorie">
-        </form>
+        <a id="button" href="../category/category.php?option=new">Nieuwe categorie</a>
+		<a id="button" href="article.php?option=new">Nieuw artikel</a>
         <br/>
         <table border="1">
             <tr>
@@ -68,3 +61,4 @@ $res = $sth->fetchAll(PDO::FETCH_ASSOC);
         </table>
     </body>
 </html>
+
