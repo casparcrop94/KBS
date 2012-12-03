@@ -34,7 +34,8 @@ if(!file_exists(DOCROOT . 'admin/templates/' . $page . '.php'))
 					<ul>
 						<li><a href="/admin/home">Home</a></li>
 						<li><a href="/admin/agenda">Agenda</a></li>
-						<li class="login_menu_item">
+                                                <li><a href="/admin/bewerkdownloads">Downloads</a></li>
+                                                <li class="login_menu_item">
 							<a href="/admin/logout">Uitloggen</a>
 						</li>
 					</ul>
