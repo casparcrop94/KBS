@@ -16,11 +16,11 @@ $dbh= connectToDatabase();
        <?php foreach($result as $row) {
 ?>
     <tr>
-        <?php // Laat het bestand naam zien.?>
+        <!-- Laat de bestand naam zien.-->
         <td> <?php echo ($row["file"]); ?> </td>
-        <?php // Laat de size van het bestand zien in kb.?>
+        <!-- Laat de size van het bestand zien in kb.-->
         <td> <?php echo ($row["size"]); ?> kb </td>
-        <?php // Met deze functie kan je bestanden downloaden die geupload zijn.?>
+        <!--  Met deze functie kan je bestanden downloaden die geupload zijn. -->
         <td> <a href=http://kbs.nl/uploads/<?php echo rawurlencode($row["file"]) ?> >Download</a> </td>
     </tr>    
         
