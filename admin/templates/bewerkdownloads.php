@@ -81,17 +81,17 @@ if(isset($_POST['submit']))
        <?php foreach($result as $row) {
 ?>
     <tr>
-        <?php // Laat het bestand naam zien.?>
+        <!-- Laat het bestand naam zien. -->
         <td> <?php echo ($row["file"]); ?> </td>
-        <?php // Laat de size van het bestand zien in kb.?>
+        <!-- Laat de size van het bestand zien in kb. -->
         <td> <?php echo ($row["size"]); ?> kb </td>
-        <?php // Verwijder functie, verwijdert uit de map en de database.?>
+        <!-- Verwijder functie, verwijdert uit de map en de database. -->
         <td> <a href="<?php echo $_SERVER['PHP_SELF']."?action=delete&ID=".$row["ID"] . "&file=".$row["file"]?>">Verwijder</a></td>
     </tr>    
         
  <?php } ?>       
      </table>
-<?php // Het formulier van documenten uploaden. ?>    
+<!-- Het formulier van documenten uploaden. -->    
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post"
 enctype="multipart/form-data">
 <label for="file">Bestand uploaden:</label>
