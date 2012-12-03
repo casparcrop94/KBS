@@ -14,7 +14,11 @@ $dbh=  connectToDatabase();
                     //query   
                     $sql= (" SELECT servicename, pph, avgcost FROM `services` WHERE pph IS NOT NULL ");
                     //execution and result
+<<<<<<< HEAD
                     $result=selectratequery($sql,$dbh);
+=======
+                    $result=selectratequery($sql,$db);
+>>>>>>> tarieven aangepast alweer
                 ?>
                 <!--Tabel-->
                 <table>
@@ -40,4 +44,3 @@ $dbh=  connectToDatabase();
                     </tbody>
                 </table>
             </div>
-        </div>
