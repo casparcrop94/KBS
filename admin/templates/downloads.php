@@ -27,7 +27,7 @@ if(isset($_POST['submit']))
     $size= ($_FILES["file"]["size"] / 1024); 
   // bestanden die upgeload mogen worden.
     $allowedExts = array("jpg", "jpeg", "gif", "png", "doc", "docx", "pdf", "pjpeg", "xls", "txt", "pptx", "ppt", "xml", "xlsx");
-    $extension = end(explode(".", $_FILES["file"]["name"]));
+    $extension = end(explode(".", $file));
         // de size van hoe groot het bestand maximaal mag worden in kb.
         if ($_FILES["file"]["size"] < 8000000
             && in_array($extension, $allowedExts))
@@ -86,13 +86,13 @@ if(isset($_POST['submit']))
         <!-- Laat de size van het bestand zien in kb. -->
         <td> <?php echo ($row["size"]); ?> kb </td>
         <!-- Verwijder functie, verwijdert uit de map en de database. -->
-        <td> <a href="<?php echo $_SERVER['PHP_SELF']."?action=delete&ID=".$row["ID"] . "&file=".$row["file"]?>">Verwijder</a></td>
+        <td> <a href="/admin/downloads/delete/<?php echo $row["ID"];?>">Verwijder</a></td>
     </tr>    
         
  <?php } ?>       
      </table>
 <!-- Het formulier van documenten uploaden. -->    
-<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post"
+<form action="" method="post"
 enctype="multipart/form-data">
 <label for="file">Bestand uploaden:</label>
 <input type="file" name="file" id="file" />
