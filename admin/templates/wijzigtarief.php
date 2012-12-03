@@ -1,5 +1,6 @@
 <?php
 include DOCROOT . 'inc/mysql.inc.php';
+$dbh=  connectToDatabase();
 //checking if form is filled in and submitted
 if(isset($_POST['Verander!'])){
     if(isset($_POST['pph']) AND isset($_POST['avgcost'])){
