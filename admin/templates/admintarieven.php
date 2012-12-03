@@ -16,14 +16,14 @@ $dbh=  connectToDatabase();
             <!--Displaying the table-->
             <table border="1">
                 <!--Displaying the tablehead-->
-                <thead>
-                    <tr>
-                        <th>Dienst</th>
-                        <th>Uurtarief</th>
-                        <th>Geschatte prijs</th>
-                        <th>Wijzig tarieven</th>
-                    </tr>
-                </thead>
+                    <thead>
+                        <tr>
+                            <th>Dienst</th>
+                            <th>Uurtarief</th>
+                            <th>Geschatte prijs</th>
+                            <th>Wijzig tarieven</th>
+                        </tr>
+                    </thead>
                 <!--Displaying the tablebody-->
                 <tbody>
                     <?php
