@@ -99,3 +99,41 @@ a:hover {
 	background-color: #768093;
 	border-top: 2px solid #57585a;
 }
+#rates{
+    position: absolute;
+    height:800px;
+    width: 960px;
+
+}
+
+#ratewarning{
+    margin-bottom: 25px;
+    height:40px;
+    width:525px;
+    color: red;
+    border-right-style: solid;
+    border-left-style: solid;
+    border-bottom-style: solid;
+    border-top-style: solid;
+    border-right-width: 1px;
+    border-left-width: 1px;
+    border-bottom-width: 1px;
+    border-top-width: 1px;
+    
+}
+
+#ratetable{
+    width:800px;
+    border-color: #7a8bac;
+    border-right-style: inset;
+    border-left-style: inset;
+    border-bottom-style: inset;
+    border-top-style: inset;
+    border-right-width: 1px;
+    border-left-width: 1px;
+    border-bottom-width: 1px;
+    border-top-width: 1px;
+}
+ratetablecollumn{
+    
+}

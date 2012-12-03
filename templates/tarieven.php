@@ -17,7 +17,7 @@ $dbh=  connectToDatabase();
                     $result=selectratequery($sql,$dbh);
                 ?>
                 <!--Tabel-->
-                <table border="1">
+                <table>
                     <!--Tablehead-->
                     <thead>
                         <tr>
@@ -31,7 +31,7 @@ $dbh=  connectToDatabase();
                         <?php
                             //displaying all the values
                             foreach ($result as $row) {
-                                echo('<tr>');
+                                echo('<tr id="ratetablecollumn">');
                                 echo('<td>'.$row["servicename"].'</td>');
                                 echo('<td>'.$row["pph"].'</td>');
                                 echo('<td>'.$row["avgcost"].'</td>');
