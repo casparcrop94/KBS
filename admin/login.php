@@ -2,9 +2,18 @@
 session_start();
 include_once(DOCROOT . 'inc/mysql.inc.php'); // bevat functie om verbinding te maken met een database
 
+if(isset($_GET['action']) && $_GET['action'] == 'logout')
+{
+	unset($_SESSION['admin']);
+	session_destroy();
+	header('location:/admin/login');
+	exit;
+}
+
 if(isset($_SESSION['admin']) && $_SESSION['admin'] == true)
 {
 	header('location:/admin/home');
+	exit;
 }
 
 if(isset($_POST['submit']))
@@ -29,6 +38,7 @@ if(isset($_POST['submit']))
             	$_SESSION['admin'] = true;
             	
             	header('location:/admin/home');
+            	exit;
             }
             else {
             	echo 'combinatie gebruikersnaam/wachtwoord onjuist.';

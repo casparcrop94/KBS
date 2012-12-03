@@ -23,12 +23,11 @@ $dbh= connectToDatabase();
         <?php // Laat de size van het bestand zien in kb.?>
         <td> <?php echo ($row["size"]); ?> kb </td>
         <?php // Met deze functie kan je bestanden downloaden die geupload zijn.?>
-        <td> <a href=http://kbs.nl/uploads/<?php echo ($row["file"]); ?> >Download</a> </td>
+        <td> <a href=http://kbs.nl/uploads/<?php echo rawurlencode($row["file"]) ?> >Download</a> </td>
     </tr>    
-        
+            
  <?php } ?>       
      </table> 
-    
 
 </body>
 </html>

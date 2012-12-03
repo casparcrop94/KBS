@@ -38,7 +38,7 @@ if(!file_exists(DOCROOT . 'templates/' . $page . '.php'))
 						<li><a href="/artikelen">Artikelen</a></li>
 						<li><a href="/downloads">Downloads</a></li>
 						<li><a href="/contact">Contact</a></li>
-                                                <li><a href="/tarieven">Tarieven</a></li>
+                        <li><a href="/tarieven">Tarieven</a></li>
 					</ul>
 				</div>
 			</div>
@@ -52,5 +52,5 @@ if(!file_exists(DOCROOT . 'templates/' . $page . '.php'))
 		</div>
 	</body>
 </html>
-<?php 
+<?php
 ob_end_flush();
