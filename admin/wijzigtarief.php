@@ -13,7 +13,7 @@ if(isset($_POST['Verander!'])){
                 //executing the statement
             $sth=$dbh->prepare($sql);
             $sth->execute();
-        header('Location: admintarieven.php');   
+        header('Location: '.DOCROOT.'admin/templates/admintarieven.php');   
     }
 }
 else{

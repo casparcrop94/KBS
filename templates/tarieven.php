@@ -3,6 +3,7 @@ include DOCROOT . 'inc/mysql.inc.php';
 include DOCROOT . 'tarieven2/selectquery.php';
 $dbh=  connectToDatabase();
 ?>
+<link rel="stylesheet" type="text/css" href=<?php echo(DOCROOT . "/styles/rates.css")?>/>
         <!-- Explaination of rates -->
         <div id="rates">
             <div id="ratewarning">

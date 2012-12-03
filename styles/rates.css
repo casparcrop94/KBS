@@ -1,0 +1,27 @@
+/* 
+    Document   : rates
+    Created on : 30-nov-2012, 14:20:08
+    Author     : Caspar Crop
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+rates{
+    width:600px;
+}
+
+ratewarning{
+    float: left;
+    border: 2px;
+    border-color: #456196;
+    
+}
+
+ratetable{
+    border: 1px;
+    border-color:#990000;
+}
