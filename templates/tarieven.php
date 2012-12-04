@@ -40,3 +40,4 @@ $dbh=  connectToDatabase();
                     </tbody>
                 </table>
             </div>
+        </div>
