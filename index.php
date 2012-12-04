@@ -10,7 +10,8 @@ $page = isset($_GET['p']) ? str_replace('/', '', $_GET['p']):'home';
 
 if(!file_exists(DOCROOT . 'templates/' . $page . '.php'))
 {
-	$page = 'home';
+	header('HTTP/1.0 404 Not Found');
+	$page = '404';
 }
 ?>
 <html>
@@ -38,7 +39,7 @@ if(!file_exists(DOCROOT . 'templates/' . $page . '.php'))
 						<li><a href="/artikelen">Artikelen</a></li>
 						<li><a href="/downloads">Downloads</a></li>
 						<li><a href="/contact">Contact</a></li>
-                                                <li><a href="/tarieven">Tarieven</a></li>
+						<li><a href="/tarieven">Tarieven</a></li>
 					</ul>
 				</div>
 			</div>
