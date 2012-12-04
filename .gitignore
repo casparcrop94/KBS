@@ -3,10 +3,10 @@
 #################
 inc/config.inc.php
 .htaccess
-uploads
+
 nbproject/
 eriktest
-
+uploads
 
 
 
