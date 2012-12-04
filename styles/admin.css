@@ -111,3 +111,38 @@ input[type="button"] {
 #content {
 	padding: 5px 10px;
 }
+
+#rates{
+    position: absolute;
+    height:800px;
+    width: 960px;
+
+}
+
+#ratewarning{
+    margin-bottom: 25px;
+    height:40px;
+    width:525px;
+}
+
+#ratetable{
+    width:750px;
+    border-color: #7a8bac;
+    border-right-style: inset;
+    border-left-style: inset;
+    border-bottom-style: inset;
+    border-top-style: inset;
+    border-right-width: 3px;
+    border-left-width: 3px;
+    border-bottom-width: 3px;
+    border-top-width: 3px;
+}
+.ratetablecollumn{
+    padding-right: 25px;
+}
+
+.thrate{
+    color: #7a8bac;
+    padding-right: 25px;
+    border-bottom: #7a8bac solid thin;
+}
