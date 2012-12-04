@@ -27,7 +27,7 @@ if(isset($_POST['submit']))
     $size= ($_FILES["file"]["size"] / 1024); 
   // bestanden die upgeload mogen worden.
     $allowedExts = array("jpg", "jpeg", "gif", "png", "doc", "docx", "pdf", "pjpeg", "xls", "txt", "pptx", "ppt", "xml", "xlsx");
-    $extension = end(explode(".", $file));
+    $extension = end(explode(".", $_FILES["file"]["name"]));
         // de size van hoe groot het bestand maximaal mag worden in kb.
         if ($_FILES["file"]["size"] < 8000000
             && in_array($extension, $allowedExts))
