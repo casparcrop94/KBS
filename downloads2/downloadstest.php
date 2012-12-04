@@ -31,7 +31,8 @@ $result = $sth->fetchAll(PDO::FETCH_ASSOC);
     	<td> <a href=http://kbs.nl/uploads/<?php echo rawurlencode($row["file"]) ?> >Download</a> </td>
         </tr>    
 
-    <?php } ?>       
+    <?php } ?> 
+</table>
     <?php
     $total_records = $row[0];
     $total_pages = ceil($total_records / 20);
@@ -39,6 +40,3 @@ $result = $sth->fetchAll(PDO::FETCH_ASSOC);
 	echo "<a href='downloadstest.php?page=" . $i . "'>" . $i . "</a> ";
     };
     ?>
-
-
-</table>
