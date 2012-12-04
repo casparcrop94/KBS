@@ -1,23 +1,55 @@
+<script>
+$(document).ready(function() {  
+    // if user clicks on checkbox with id="checkall" - all checkboxes are selected  
+    // and table row background is highlighted  
+    $("#checkall").on('click',function(event){  
+        $('input:checkbox:not(#checkall)').prop('checked',this.checked);  
+        if ($(this).is(':checked') == true) {  
+            $("#tblDisplay").find('tr:not(#chkrow)');  
+        } else  {  
+            $("#tblDisplay").find('tr:not(#chkrow)');  
+        }  
+    });      
+    // if user clicks on checkbox, diffrent than checkbox with id="checkall" ,   
+    // then checkbox is checked/unchecked  
+    $('input:checkbox:not(#checkall)').on('click',function(event) {  
+        if($("#checkall").is(':checked') == true && this.checked == false) {  
+            $("#checkall").prop('checked',false);  
+            $(this).closest('tr');  
+        }  
+        if(this.checked == true) {  
+            $(this).closest('tr');  
+            // function to check/uncheck checkbox with id="checkbox"  
+            CheckSelectAll();   
+        }  
+        if(this.checked == false)  {  
+            $(this).closest('tr');  
+        }  
+    });  
+        // if checkbox is checked on page load, highlight table background  
+    $('#tblDisplay tbody tr').filter(':has(:checkbox:checked)').end();      
+  
+function CheckSelectAll() {  
+    var flag = true;  
+    $('input:checkbox:not(#checkall)').each(function() {  
+        if(this.checked == false)  
+        flag = false;  
+    });  
+    $("#checkall").attr('checked',flag);  
+    }  
+});
+</script>
 <?php
 //include file to connect with databse
 include(DOCROOT."/inc/mysql.inc.php");
 // Set connection with database into variable
 $dbh = connectToDatabase();  
 
+
+
 //define $statustext
 $statusText = "";
 
-//Check if option is defined
-if(isset($_GET['option'])) {
-	//If option is deleted then delete category where id=$id
-    if($_GET['option'] == "delete") {
-        $sth = $dbh->prepare("DELETE FROM category WHERE cat_id=:id");
-        $sth->bindParam(":id", $_GET['id']);
-        $sth->execute();
-        
-        $statusText = "Categorie succesvol verwijderd.";
-    }
-}
 //Check if case is defined
 if(isset($_GET["case"])) { 
     if($_GET["case"] == "succes") { 
@@ -26,6 +58,49 @@ if(isset($_GET["case"])) {
         $statusText = "Categorie niet succesvol opgeslagen.";
     }
 }
+
+//Check if option is defined
+if(isset($_POST['option'])) {
+	$statusText="";
+	
+	
+	if($_POST['option'] == "Nieuw") 
+	{
+        header("Location: /admin/categorie/nieuw");
+	exit;
+	}
+	
+	if(isset($_POST['id'])) 
+	{
+		//Get id from form in array
+		$id=$_POST['id'];
+		//convert array to comma sepparated string
+		$id = implode(", ", $id);
+		//escape characters which are not allowed.
+		//normally PDO does this, but it is not possible to get an array into BindParam.
+		$id=mysql_real_escape_string($id);
+		
+		if($_POST['option'] == "Publiceer") {
+        	$sth = $dbh->prepare("UPDATE category SET published=1 WHERE cat_id IN($id)");
+        	$sth->execute();
+        
+        	$statusText = "Categorie succesvol gepubliceerd.";
+    	}
+		if($_POST['option'] == "Depubliceer") {
+        	$sth = $dbh->prepare("UPDATE category SET published=0 WHERE cat_id IN($id)");
+        	$sth->execute();
+        
+        	$statusText = "Categorie succesvol gedepubliceerd.";
+    	}
+		if($_POST['option'] == "Verwijderen") {
+        	$sth = $dbh->prepare("DELETE FROM category WHERE cat_id IN($id)");
+        	$sth->execute();
+        
+        	$statusText = "Categorie succesvol verwijderd.";
+    	}
+	}	
+}
+
 // Get all categorys from database
 $sth = $dbh->query("SELECT * FROM category ORDER BY cat_id"); 
 $sth->execute();
@@ -37,28 +112,30 @@ $res = $sth->fetchAll(PDO::FETCH_ASSOC);
         <?php
         echo($statusText."<br/>");
         ?>
-		<a id="button" href="/admin/categorie/nieuw">Nieuwe categorie</a>
-		<br/>
+		<form action="" method="post">
+        <input name="option" type="submit" value="Nieuw">
+        <input name="option" type="submit" value="Publiceer">
+		<input name="option" type="submit" value="Depubliceer">
+		<input name="option" type="submit" value="Verwijderen">
         <table border="1">
             <tr>
-                <td>Naam</td> 
-                <td>Beschrijving</td>
-				<td>Gepubliceerd</td>
-				<td>Bewerk</td>
-				<td>Verwijder</td>                
+				<th width="50" align="center"><input name="checkall" type="checkbox" value="check" id="checkall"></th>
+                <th width="300">Naam</th> 
+                <th width="500">Beschrijving</th>
+				<th width="100">Gepubliceerd</th>
             </tr>
             <?php 
 				//Print the categorys
-                foreach($res as $row) {                                                
+				foreach($res as $row) { 
                     echo("<tr>");
-                    echo("<td>".$row['name']."</td>");                                 
+					echo("<td align=center><input name=id[] type=checkbox value=".$row['cat_id']."></td>");
+                    echo("<td><a href='/admin/categorie/bewerk/".$row['cat_id']."'>".$row['name']."</a></td>");                                 
                     echo("<td>".$row['discription']."</td>");                          
                     echo("<td>".($row['published'] == 1 ? "Ja" : "Nee")."</td>");      
-                    echo("<td><a href='/admin/categorie/bewerk/".$row['cat_id']."'>Bewerk</a></td>");      
-                    echo("<td><a href='/admin/categorie/verwijder/".$row['cat_id']."'>Verwijder</a></td>");
                     echo("</tr>");
-                } 
+				} 
             ?>
         </table>
+        </form>
     </body>
 </html>
