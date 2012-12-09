@@ -1,19 +1,12 @@
-<!-- Erik de Vries -->
 <?php
 include DOCROOT . 'inc/mysql.inc.php';
-if (isset($_GET["page"])) {
-    $page = $_GET["page"];
-} else {
-    $page = 1;
-};
-$start_from = ($page - 1) * 10;
-// db
-$dbh = connectToDatabase();
-$sth = $dbh->prepare("SELECT * FROM downloads LIMIT $start_from, 10");
-$sth->execute();
+$connection= connectToDatabase();
+if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };
+$start_from = ($page-1) * 10;
+$sth = $connection->prepare("SELECT * FROM downloads LIMIT $start_from, 10");
+$sth->execute($sth,$connection);
 $result = $sth->fetchAll(PDO::FETCH_ASSOC);
-?>  
-
+?>
 <table border="1">
     <tr>    
         <th> Bestanden </th>    
@@ -33,10 +26,15 @@ $result = $sth->fetchAll(PDO::FETCH_ASSOC);
 
     <?php } ?> 
 </table>
-    <?php
-    $total_records = $row["0"];
-    $total_pages = ceil($total_records / 20);
-    for ($i = 1; $i <= $total_pages; $i++) {
-	echo "<a href='downloadstest.php?page=" . $i . "'>" . $i . "</a> ";
-    };
-    ?>
+<?php
+$sth = $connection->prepare("SELECT COUNT(*) FROM downloads");
+$sth->execute($sth,$connection);
+$result = $sth->fetchall(PDO::FETCH_ASSOC);
+$row = mysql_fetch_row($result);
+$total_records = $row[0];
+$total_pages = ceil($total_records / 20);
+  
+for ($i=1; $i<=$total_pages; $i++) {
+            echo "<a href='downloadstest.php?page=".$i."'>".$i."</a> ";
+};
+?>
