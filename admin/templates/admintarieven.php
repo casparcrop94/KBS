@@ -1,45 +1,47 @@
 <?php
+//include the database locations
 include DOCROOT . 'inc/mysql.inc.php';
+//connecting to the database
+$dbh = connectToDatabase();
+//include the SQL query execution
 include DOCROOT . 'tarieven2/selectquery.php';
-$dbh=  connectToDatabase();
+//the sql statement
+$sql = (" SELECT service_id, servicename, pph, avgcost FROM `services` ");
+//retrieving the query results
+$result = selectratequery($sql, $dbh);
 ?>
-        <div>
-            <?php
-                //query and its execution
-                    //connection
-                
-                    //sql statement
-                $sql= (" SELECT service_id, servicename, pph, avgcost FROM `services` ");
-                    //executing the statement and retrieving results
-                $result=selectratequery($sql,$dbh);
-            ?>
-            <!--Displaying the table-->
-            <table border="1">
-                <!--Displaying the tablehead-->
-                    <thead>
-                        <tr>
-                            <th>Dienst</th>
-                            <th>Uurtarief</th>
-                            <th>Geschatte prijs</th>
-                            <th>Wijzig tarieven</th>
-                        </tr>
-                    </thead>
-                <!--Displaying the tablebody-->
-                <tbody>
-                    <?php
-                        //displaying all the values
-                        foreach ($result as $row) {
-                            echo('<tr>');
-                            //displays the service name
-                            echo('<td>'.$row["servicename"].'</td>');
-                            //displays the price per hour
-                            echo('<td>'.$row["pph"].'</td>');
-                            //displays the average cost
-                            echo('<td>'.$row["avgcost"].'</td>');
-                            //displays the link to change the rates
-                            echo('<td><a href="wijzigtarief.php?id='.$row['service_id'].'">Wijzig</a></td>');
-                            echo('</tr>');
-                    } ?>
-                </tbody>
-            </table>
-        </div>
+<div id="rates">
+    <!--Displaying the table-->
+    <table id="ratetable">
+
+	<!--Displaying the tablehead-->
+        <thead>
+            <tr>
+                <th class="thrate">Dienst</th>
+                <th class="thrate">Uurtarief</th>
+                <th class="thrate">Geschatte prijs</th>
+                <th class="thrate">Wijzig tarieven</th>
+            </tr>
+        </thead>
+
+        <!--Displaying the tablebody-->
+        <tbody>
+	    <?php
+	    //displaying all the values
+	    foreach ($result as $row) {
+		?>
+    	    <tr>
+    		<!--displays the service name-->
+    		<td class="ratetablecollumn"><?php echo($row["servicename"]) ?></td>
+    		<!--displays the price per hour-->
+    		<td class="ratetablecollumn"><?php echo($row["pph"]) ?></td>
+    		<!--displays the average cost-->
+    		<td class="ratetablecollumn"><?php echo($row["avgcost"]) ?></td>
+    		<!--displays the link to change the rates-->
+    		<td class="ratetablecollumn"><a href="<?php echo '/admin/wijzigtarief/' . $row['service_id'] ?>">Wijzig</a></td>
+    	    </tr>
+<?php } ?>
+        </tbody>
+
+    </table>
+</div>
