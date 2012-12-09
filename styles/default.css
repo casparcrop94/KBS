@@ -124,11 +124,11 @@ a:hover {
     border-bottom-width: 3px;
     border-top-width: 3px;
 }
-#ratetablecollumn{
+.ratetablecollumn{
     padding-right: 25px;
 }
 
-#rateth{
+.thrate{
     color: #7a8bac;
     padding-right: 25px;
     border-bottom: #7a8bac solid thin;

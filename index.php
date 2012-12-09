@@ -36,7 +36,7 @@ if(!file_exists(DOCROOT . 'templates/' . $page . '.php'))
 						<li><a href="/home">Home</a></li>
 						<li><a href="/bedrijven">Bedrijven</a></li>
 						<li><a href="/particulier">Particulier</a></li>
-						<li><a href="/artikelen">Artikelen</a></li>
+						<li><a href="/artikelen">Diensten</a></li>
 						<li><a href="/downloads">Downloads</a></li>
 						<li><a href="/contact">Contact</a></li>
 						<li><a href="/tarieven">Tarieven</a></li>
