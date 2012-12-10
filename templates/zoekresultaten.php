@@ -18,17 +18,26 @@ $sth->execute();
 $result = $sth->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
-
     <!-- De foreach() om de zoekresultaten te laten zien voor het $zoekwoord -->
-    <?php foreach ($result as $row) { ?>
-        
-    <div class="zoekresultaat">
-	<h3><?php echo $row["title"]; ?></h3>
-	<p><?php echo strip_tags($row["text"]); ?></p>
-	<a href="/article/<?php echo $row["ID"]; ?>">Lees meer</a>
-    </div>
-        
-    <?php } ?>
+    <?php 
+    if(count($result) > 0)
+    {
+	foreach ($result as $row) { ?>
+
+	<div class="zoekresultaat">
+	    <h3><?php echo $row["title"]; ?></h3>
+	    <p><?php echo strip_tags($row["text"]); ?></p>
+	    <a href="/article/<?php echo $row["ID"]; ?>">Lees meer</a>
+	</div>
+
+	<?php 
+
+	}
+    }
+    else {
+	echo 'Geen zoekresultaten gevonden, probeer iets anders.';
+    }
+?>
 
 
 
