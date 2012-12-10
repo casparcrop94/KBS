@@ -3,10 +3,9 @@ Auteur: Maarten Engels
 -->
 
 <?php
-$zoekwoord = $_POST["zoekwoord123"];
+$zoekwoord = $_GET["zoekwoord123"];
 //geeft "Undefined index: zoekwoord..." aan als pagina niet gestart vanaf zoekresultatentestpagina.php
 //Include files to connect with database
-include DOCROOT . 'inc/mysql.inc.php';
 if (isset($_GET["page"])) {
     $page = $_GET["page"];
 } else {
