@@ -1,6 +1,5 @@
 <?php
-
-include('/inc/mysql.inc.php');
+include '/inc/mysql.inc.php';
 
 $dbh = connectToDatabase();
 
