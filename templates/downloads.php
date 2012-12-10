@@ -1,6 +1,4 @@
-<<<<<<< HEAD
 <?php
-include DOCROOT . 'inc/mysql.inc.php';
 if (isset($_GET["page"])) {
     $page = $_GET["page"];
 } else {
@@ -12,7 +10,7 @@ $sth = $dbh->prepare("SELECT * FROM downloads LIMIT $start_from, 10");
 $sth->execute();
 $result = $sth->fetchAll(PDO::FETCH_ASSOC);
 ?>
-<table border="1">
+<table>
     <tr>    
         <th> Bestanden </th>    
         <th> Grootte </th>

@@ -1,6 +1,4 @@
 <?php
-//include the database locations
-include DOCROOT . 'inc/mysql.inc.php';
 //connecting to the database
 $dbh = connectToDatabase();
 

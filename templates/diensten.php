@@ -1,6 +1,4 @@
 <?php
-include '/inc/mysql.inc.php';
-
 $dbh = connectToDatabase();
 
 $sth = $dbh->query("SELECT * FROM services"); // Haal alle diensten uit de database

@@ -1,6 +1,4 @@
 <?php
-//Include files to connect with database
-include DOCROOT . 'inc/mysql.inc.php';
 
 //Check if form is submitted
 if(isset($_POST['submit']))

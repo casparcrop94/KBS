@@ -55,6 +55,9 @@ $total_records = count($result);
 $total_pages = ceil($total_records / 4);
 
 for ($i = 1; $i <= $total_pages; $i++) {
-    echo "<a href='/zoekresultaten/" . $i . "'>" . $i . "</a> ";
+    echo "<a href='testbestandjevanerikenmaarten.php?page=" . $i . "'>" . $i . "</a> ";
 };
 ?>
+
+
+
