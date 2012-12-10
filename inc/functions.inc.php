@@ -64,8 +64,5 @@ function isAjax()
 
 function getNextMonth()
 {
-	if(isAjax())
-	{
-		
-	}
+	
 }
