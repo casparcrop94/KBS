@@ -8,7 +8,7 @@ $sth->execute();
 $result = $sth->fetchAll(PDO::FETCH_ASSOC);
 ?>  
 
-<table border="1">
+<table>
     <tr>    
         <th> Bestanden </th>    
         <th> Grootte </th>

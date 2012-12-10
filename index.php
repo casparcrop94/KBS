@@ -44,10 +44,15 @@ if(!file_exists(DOCROOT . 'templates/' . $page . '.php'))
 				</div>
 			</div>
 			<div id="content">
-				<div id="left-content">
+				<div id="left-content" class="<?php echo $page;?>">
 					<?php include '/templates/' . $page . '.php';?>
 				</div>
-				<div id="right-content"></div>
+				<div id="right-content">
+					<form id="search-form">
+						<input type="text" name="" placeholder="Zoeken" />
+						<input type="image" src="/images/searcher.png" value="" />
+					</form>
+				</div>
 			</div>
 			<div id="footer"></div>
 		</div>

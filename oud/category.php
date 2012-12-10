@@ -1,3 +1,5 @@
+<html>
+<body>
 <?php
 //Include files to connect with database
 include DOCROOT . 'inc/mysql.inc.php';
@@ -46,9 +48,8 @@ if(isset($_POST['submit']))
 		$case="fail";
 	}
 	
-	//After saving redirect to overview page
-	header("Location: /admin/categorie/".$case);
-	exit;
+	//After saving redirect to 
+	header("Location: index.php?case=".$case);
 
 }
 
@@ -94,7 +95,7 @@ elseif($option=='edit'){
 
 ?>
 
-<form action="" method="post">
+<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 <input name="option" type="hidden" value="<?php echo $option; ?>" />
 <input name="id" type="hidden" value="<?php echo $id; ?>" />	
 <table>
@@ -132,9 +133,13 @@ elseif($option=='edit'){
     <tr>
     	<td colspan="2">
         	<input type="submit" value="Opslaan" name="submit" />
-            <input type="button" name="Cancel" value="Annuleren" onclick="window.location = '/admin/categorie' " />
+            <input type="button" name="Cancel" value="Annuleren" onclick="window.location = 'index.php' " />
         </td>
     </tr>
 </table> 
 	
 </form>
+
+
+</body>
+</html>

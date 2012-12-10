@@ -1,6 +1,6 @@
 <?php
 include DOCROOT . 'inc/mysql.inc.php';
-include DOCROOT . 'tarieven2/selectquery.php';
+include DOCROOT . 'inc/functions.inc.php';
 $dbh = connectToDatabase();
 //query   
 $sql = (" SELECT servicename, pph, avgcost FROM `services` WHERE pph IS NOT NULL ");
@@ -8,12 +8,11 @@ $sql = (" SELECT servicename, pph, avgcost FROM `services` WHERE pph IS NOT NULL
 $result = selectratequery($sql, $dbh);
 ?>
 <!-- Explaination of rates -->
-<div id="rates">
+
     <div id="ratewarning">
         <p>De prijzen die hier staan zijn geschatte prijzen voor gesprekken of diensten.
             <br/>Ook het uurtarief wordt hierbij weergeven</p>
     </div>
-    <div id="ratetable">
         <!--Table-->
         <table>
             <!--Tablehead-->
@@ -41,5 +40,3 @@ $result = selectratequery($sql, $dbh);
 		<?php } ?>
             </tbody>
         </table>
-    </div>
-</div>
