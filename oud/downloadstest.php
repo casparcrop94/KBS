@@ -20,8 +20,8 @@ $result = $sth->fetchAll(PDO::FETCH_ASSOC);
         <th> Grootte </th>
         <th> Download </th>
     </tr>
-<?php foreach ($result as $row) {
-    ?>
+    <?php foreach ($result as $row) {
+	?>
         <tr>
     	<!-- Laat het bestand naam zien. -->
     	<td> <?php echo ($row["file"]); ?> </td>
@@ -33,10 +33,10 @@ $result = $sth->fetchAll(PDO::FETCH_ASSOC);
 
     <?php } ?> 
 </table>
-    <?php
-    $total_records = $row[0];
-    $total_pages = ceil($total_records / 20);
-    for ($i = 1; $i <= $total_pages; $i++) {
-	echo "<a href='downloadstest.php?page=" . $i . "'>" . $i . "</a> ";
-    };
-    ?>
+<?php
+$total_records = $row["0"];
+$total_pages = ceil($total_records / 20);
+for ($i = 1; $i <= $total_pages; $i++) {
+    echo "<a href='downloadstest.php?page=" . $i . "'>" . $i . "</a> ";
+};
+?>
