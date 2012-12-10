@@ -2,6 +2,8 @@
 session_start();
 ob_start();
 
+include('inc/functions.inc.php');
+
 //Set error rporting
 error_reporting(E_ALL | E_STRICT);
 ini_set('display_errors', 1);
@@ -52,6 +54,8 @@ if(!file_exists(DOCROOT . 'templates/' . $page . '.php'))
 						<input type="text" name="" placeholder="Zoeken" />
 						<input type="image" src="/images/searcher.png" value="" />
 					</form>
+					
+					
 				</div>
 			</div>
 			<div id="footer"></div>
