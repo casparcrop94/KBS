@@ -1,8 +1,6 @@
 <?php
 //Author: Richard van den Hoorn
 
-//include file to connect with databse
-include(DOCROOT."/inc/mysql.inc.php");
 // Set connection with database into variable
 $dbh = connectToDatabase();  
 

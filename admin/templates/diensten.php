@@ -1,6 +1,4 @@
 <?php
-//include the database locations
-include DOCROOT . 'inc/mysql.inc.php';
 //connecting to the database
 $dbh = connectToDatabase();
 
@@ -23,7 +21,7 @@ if(isset($_POST['option'])) {
 
 	if($_POST['option'] == "Nieuw")
 	{
-		header("Location: /admin/categorie/nieuw");
+		header("Location: /admin/diensten/nieuw");
 		exit;
 	}
 
