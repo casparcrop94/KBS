@@ -16,7 +16,7 @@ function sortArticles($dbh) {
 	$dbh = connectToDatabase();
     }
     
-    $sth = $dbh->query("SELECT ID,title,date_added FROM article WHERE published='1' ORDER BY date_added LIMIT 0,10");
+    $sth = $dbh->query("SELECT ID,title,date_added FROM article WHERE published='1' ORDER BY date_added");
     $sth->execute();
 
     $res = $sth->fetchAll(PDO::FETCH_ASSOC);

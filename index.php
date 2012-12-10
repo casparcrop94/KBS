@@ -54,7 +54,9 @@ if(!file_exists(DOCROOT . 'templates/' . $page . '.php'))
 						<input type="text" name="" placeholder="Zoeken" />
 						<input type="image" src="/images/searcher.png" value="" />
 					</form>
-					
+					<?php
+					  
+					?>
 					
 				</div>
 			</div>
