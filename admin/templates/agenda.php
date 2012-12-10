@@ -1,3 +1,4 @@
+<script type="text/javascript" src="/scripts/agenda.js"></script>
 <?php 
 date_default_timezone_set('Europe/Amsterdam');
 //$day = date('d');
