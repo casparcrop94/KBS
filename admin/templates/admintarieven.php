@@ -1,10 +1,6 @@
 <?php
-//include the database locations
-include DOCROOT . 'inc/mysql.inc.php';
 //connecting to the database
 $dbh = connectToDatabase();
-//include the SQL query execution
-include DOCROOT . 'inc/functions.inc.php';
 //the sql statement
 $sql = (" SELECT service_id, servicename, pph, avgcost FROM `services` ");
 //retrieving the query results
