@@ -1,4 +1,8 @@
+<!--
+Auteur: Maarten Engels
+-->
 <?php
+//Het zelfafhandelende gedeelte, waarbij het formulier wordt getoond als nog niet op de verstuur-knop is gedrukt
 if (isset($_POST["verstuur"])){
     $naam = $_POST['naam'];
     $email = $_POST['email'];

@@ -1,10 +1,14 @@
 <?php
 include DOCROOT . 'inc/mysql.inc.php';
-$connection= connectToDatabase();
-if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };
-$start_from = ($page-1) * 10;
+if (isset($_GET["page"])) {
+    $page = $_GET["page"];
+} else {
+    $page = 1;
+};
+$start_from = ($page - 1) * 10;
+$connection = connectToDatabase();
 $sth = $connection->prepare("SELECT * FROM downloads LIMIT $start_from, 10");
-$sth->execute($sth,$connection);
+$sth->execute();
 $result = $sth->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <table border="1">
@@ -24,17 +28,18 @@ $result = $sth->fetchAll(PDO::FETCH_ASSOC);
     	<td> <a href=http://kbs.nl/uploads/<?php echo rawurlencode($row["file"]) ?> >Download</a> </td>
         </tr>    
 
-    <?php } ?> 
+<?php } ?> 
 </table>
 <?php
 $sth = $connection->prepare("SELECT COUNT(*) FROM downloads");
-$sth->execute($sth,$connection);
+$sth->execute();
 $result = $sth->fetchall(PDO::FETCH_ASSOC);
-$row = mysql_fetch_row($result);
 $total_records = $row[0];
 $total_pages = ceil($total_records / 20);
-  
-for ($i=1; $i<=$total_pages; $i++) {
-            echo "<a href='downloadstest.php?page=".$i."'>".$i."</a> ";
+
+for ($i = 1; $i <= $total_pages; $i++) {
+    echo "<a href='downloadstest.php?page=" . $i . "'>" . $i . "</a> ";
 };
 ?>
+
+http://www.phpjabbers.com/php--mysql-select-data-and-split-on-pages-php25.html
