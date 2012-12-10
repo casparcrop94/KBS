@@ -197,6 +197,23 @@ table input[type="text"] {
 	border: 0px;
 }
 
+#rateth{
+    color: #7a8bac;
+    padding-right: 25px;
+    border-bottom: #7a8bac solid thin;
+}
+
+.zoekresultaat{
+    padding: 5px;
+    border-bottom: 1px solid #333;
+    margin-bottom: 7 px;
+}
+
+.zoekresultaat a{
+    margin-left: 30px;
+    
+}
+
 .diensten {
 	width: auto;
 	padding: 15px;
