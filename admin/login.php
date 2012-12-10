@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once(DOCROOT . 'inc/mysql.inc.php'); // bevat functie om verbinding te maken met een database
+include_once(DOCROOT . 'inc/functions.inc.php'); // bevat functie om verbinding te maken met een database
 
 if(isset($_GET['action']) && $_GET['action'] == 'logout')
 {
