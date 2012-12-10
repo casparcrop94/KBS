@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?php
 include DOCROOT . 'inc/mysql.inc.php';
 if (isset($_GET["page"])) {
