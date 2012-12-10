@@ -133,3 +133,10 @@ a:hover {
     padding-right: 25px;
     border-bottom: #7a8bac solid thin;
 }
+
+.diensten {
+	width: auto;
+	padding: 15px;
+	border: 1px solid black;
+
+}
