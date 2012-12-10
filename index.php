@@ -6,6 +6,8 @@ ob_start();
 error_reporting(E_ALL | E_STRICT);
 ini_set('display_errors', 1);
 
+include DOCROOT . 'inc/functions.inc.php';
+
 $page = isset($_GET['p']) ? str_replace('/', '', $_GET['p']) : 'home';
 
 if (!file_exists(DOCROOT . 'templates/' . $page . '.php')) {
