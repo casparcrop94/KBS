@@ -70,6 +70,7 @@ if($option=='new'){
 	$image='';
 	$published =" selected";
 	$unpublished ='';
+	$service_id='';
 }
 elseif($option=='edit'){
 	//Get the ID from the URL
@@ -165,12 +166,15 @@ function haalartikelenop(){
         	$articles= haalartikelenop();
         	foreach($articles as $row){
         		
-        		if($row['ID']==$article_id){
-        			$selected='selected';
-          		}
-          		else{
-          			$selected='';
-          		}
+        		if($option!='new'){
+        			if($row['ID']==$article_id){
+        				$selected='selected';
+        			}
+        			else{
+        				$selected='';
+        			}
+        		}
+        		
         		print("<option value='".$row['ID']."'".$selected.">".$row['title']."</option>");
         	}
         	?>
