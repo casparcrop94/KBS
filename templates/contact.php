@@ -10,7 +10,7 @@ if (isset($_POST["verstuur"])) {
     $onderwerp = $_POST['onderwerp'];
     $vraag = $_POST['vraag'];
     
-    //Eigenaar's email, dus gerelateerde van Caspar (nu voor testen nog mijn e-mail
+    //Eigenaar's email, dus gerelateerde van Caspar (nu voor testen nog mijn e-mail)
     $to = EMAIL_KLANT;   
     $subject = 'Vraag van bezoeker ' . $naam;
 
