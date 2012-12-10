@@ -19,11 +19,11 @@ $dbh=  connectToDatabase();
                 <!--Tabel-->
                 <table>
                     <!--Tablehead-->
-                    <thead>
+                    <thead  id="ratethead">
                         <tr>
-                            <th>Dienst</th>
-                            <th>Uurtarief</th>
-                            <th>Geschatte prijs</th>
+                            <th id="rateth">Dienst</th>
+                            <th id="rateth">Uurtarief</th>
+                            <th id="rateth">Geschatte prijs</th>
                         </tr>
                     </thead>
                     <!--Tablebody-->
@@ -31,10 +31,10 @@ $dbh=  connectToDatabase();
                         <?php
                             //displaying all the values
                             foreach ($result as $row) {
-                                echo('<tr id="ratetablecollumn">');
-                                echo('<td>'.$row["servicename"].'</td>');
-                                echo('<td>'.$row["pph"].'</td>');
-                                echo('<td>'.$row["avgcost"].'</td>');
+                                echo('<tr>');
+                                echo('<td id="ratetablecollumn">'.$row["servicename"].'</td>');
+                                echo('<td id="ratetablecollumn">'.$row["pph"].'</td>');
+                                echo('<td id="ratetablecollumn">'.$row["avgcost"].'</td>');
                                 echo('</tr>');
                         } ?>
                     </tbody>

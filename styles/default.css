@@ -110,30 +110,37 @@ a:hover {
     margin-bottom: 25px;
     height:40px;
     width:525px;
-    color: red;
-    border-right-style: solid;
-    border-left-style: solid;
-    border-bottom-style: solid;
-    border-top-style: solid;
-    border-right-width: 1px;
-    border-left-width: 1px;
-    border-bottom-width: 1px;
-    border-top-width: 1px;
-    
 }
 
 #ratetable{
-    width:800px;
+    width:750px;
     border-color: #7a8bac;
     border-right-style: inset;
     border-left-style: inset;
     border-bottom-style: inset;
     border-top-style: inset;
-    border-right-width: 1px;
-    border-left-width: 1px;
-    border-bottom-width: 1px;
-    border-top-width: 1px;
+    border-right-width: 3px;
+    border-left-width: 3px;
+    border-bottom-width: 3px;
+    border-top-width: 3px;
 }
-ratetablecollumn{
+#ratetablecollumn{
+    padding-right: 25px;
+}
+
+#rateth{
+    color: #7a8bac;
+    padding-right: 25px;
+    border-bottom: #7a8bac solid thin;
+}
+
+.zoekresultaat{
+    padding: 5px;
+    border-bottom: 1px solid #333;
+    margin-bottom: 7 px;
+}
+
+.zoekresultaat a{
+    margin-left: 30px;
     
 }

@@ -2,7 +2,7 @@
 
 ?>
 <html>
-<form action="zoekresultaten.php" method="POST">
+<form action="/zoekresultaten" method="GET">
     <input type="text" name="zoekwoord">
     <input type="submit" value="Zoeken">
     

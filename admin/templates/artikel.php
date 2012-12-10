@@ -27,28 +27,13 @@ $sth->execute();
 
 $res = $sth->fetchAll(PDO::FETCH_ASSOC);
 ?>
-<<<<<<< HEAD
-=======
-<!DOCTYPE html>
->>>>>>> tarieven aangepast alweer
 <html>
     <body>
         <?php
         echo($statusText."<br/>");
         ?>
-<<<<<<< HEAD
-        <a id="button" href="../category/category.php?option=new">Nieuwe categorie</a>
-		<a id="button" href="article.php?option=new">Nieuw artikel</a>
-=======
-        <form action="article.php" method="get">
-            <input type="hidden" name="option" value="new"> 
-            <input type="submit" name="" value="Nieuw artikel">
-        </form>
-		<form action="../category/category.php" method="get">
-            <input type="hidden" name="option" value="new"> 
-            <input type="submit" name="" value="Nieuwe Categorie">
-        </form>
->>>>>>> tarieven aangepast alweer
+        <a id="button" href="../categorie/nieuw">Nieuwe categorie</a>
+		<a id="button" href="/admin/artikel/nieuw">Nieuw artikel</a>
         <br/>
         <table border="1">
             <tr>
@@ -68,16 +53,12 @@ $res = $sth->fetchAll(PDO::FETCH_ASSOC);
                     echo("<td>".$row['date_added']."</td>");                            // Print de datum
                     echo("<td>".$row['date_edited']."</td>");                   
                     echo("<td>".($row['published'] == 1 ? "Ja" : "Nee")."</td>");        // Print de publicatiestatus
-                    echo("<td><a href='article.php?option=edit&id=".$row['ID']."'>Bewerk</a></td>");      // Print de bewerk knop
-                    echo("<td><a href='".$_SERVER['PHP_SELF']."?option=delete&id=".$row['ID']."'>Verwijder</a></td>"); // Print de verwijder knop
+                    echo("<td><a href='/admin/artikel/bewerk/".$row['ID']."'>Bewerk</a></td>");      // Print de bewerk knop
+                    echo("<td><a href='/admin/artikel/verwijder/".$row['ID']."'>Verwijder</a></td>"); // Print de verwijder knop
                     echo("</tr>");
                 } 
             ?>
         </table>
     </body>
-<<<<<<< HEAD
 </html>
 
-=======
-</html>
->>>>>>> tarieven aangepast alweer
