@@ -21,7 +21,7 @@ if(isset($_POST['option'])) {
 
 	if($_POST['option'] == "Nieuw")
 	{
-		header("Location: /admin/categorie/nieuw");
+		header("Location: /admin/diensten/nieuw");
 		exit;
 	}
 
