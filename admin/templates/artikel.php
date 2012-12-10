@@ -1,3 +1,4 @@
+
 <?php
 include(DOCROOT."/inc/mysql.inc.php");
 
@@ -27,27 +28,33 @@ $sth->execute();
 
 $res = $sth->fetchAll(PDO::FETCH_ASSOC);
 ?>
+<!DOCTYPE html>
 <html>
+    <head>
+	<link rel="stylesheet" href="/styles/admin.css" type="text/css">
+    </head>
     <body>
         <?php
-        echo($statusText."<br/>");
+        echo($statusText."<br/>\n");
         ?>
-        <a id="button" href="../categorie/nieuw">Nieuwe categorie</a>
-		<a id="button" href="/admin/artikel/nieuw">Nieuw artikel</a>
+        <input type="button" onclick="window.location = '/admin/bewerkcategorie?option=new'" value="Nieuwe categorie"/>
+	<input type="button" onclick="window.location = '/admin/bewerkartikel'" value="Nieuw artikel"/>
         <br/>
         <table border="1">
             <tr>
-                <td>Titel</td> 
-                <td>Categorie</td>
-                <td>Datum aangemaakt</td>
-                <td>Laatst gewijzigd</td> 
-                <td>Gepubliceerd</td>
-                <td>Bewerk</td>
-                <td>Verwijder</td>
+		<th>	</th>
+                <th>Titel</th> 
+                <th>Categorie</th>
+                <th>Datum aangemaakt</th>
+                <th>Laatst gewijzigd</th> 
+                <th>Gepubliceerd</th>
+                <th>Bewerk</th>
+                <th>Verwijder</th>
             </tr>
             <?php 
                 foreach($res as $row) {                                                 // Loop door SQL-resultaten
                     echo("<tr>");
+		    echo("<td><input type=\"checkbox\" value=".$row['ID']."/></td>");
                     echo("<td>".$row['title']."</td>");                                 // Print de titel
                     echo("<td>".$row['catname']."</td>");                               // Print de categorie
                     echo("<td>".$row['date_added']."</td>");                            // Print de datum
