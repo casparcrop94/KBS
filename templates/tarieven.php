@@ -1,6 +1,4 @@
 <?php
-include DOCROOT . 'inc/mysql.inc.php';
-include DOCROOT . 'inc/functions.inc.php';
 $dbh = connectToDatabase();
 //query   
 $sql = (" SELECT servicename, pph, avgcost FROM `services` WHERE pph IS NOT NULL ");

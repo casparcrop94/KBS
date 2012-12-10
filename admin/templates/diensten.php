@@ -114,7 +114,7 @@ function haalartikelop($id){
     	    	echo("<td align=center><input name=id[] type=checkbox value=".$row['service_id']."></td>");
     	    	?>
     			<!--displays the service name-->
-    			<td><a href="/admin/diensten/bewerk/<?php echo($row["servicename"]) ?>"><?php echo($row["servicename"]) ?></a> </td>
+    			<td><a href="/admin/diensten/bewerk/<?php echo($row["service_id"]) ?>"><?php echo($row["servicename"]) ?></a> </td>
     			<!--displays the discription-->
     			<td><?php echo($row["servicetext"]) ?></td>
     			<td><?php echo($row['published'] == 1 ? "Ja" : "Nee")?></td>
