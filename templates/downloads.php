@@ -1,5 +1,4 @@
 <?php
-include DOCROOT . 'inc/mysql.inc.php';
 //haalt de page op voor de url
 if (isset($_GET["page"])) {
     $page = $_GET["page"];
