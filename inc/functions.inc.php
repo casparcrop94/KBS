@@ -5,3 +5,7 @@ function selectratequery($sql, $db) {
 	$result = $sth->fetchAll(PDO::FETCH_ASSOC);
 	return $result;
 }
+
+function selectarchive(){
+    
+}
