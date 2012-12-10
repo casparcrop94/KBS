@@ -20,10 +20,10 @@ if (isset($_POST["verstuur"])){
 
     $mail_status = mail($to, $subject, $message, $headers);
     if (!$mail_status) { 
-      print("Helaas, het versturen van de mail is mislukt");   
+      echo '<div class="message_error"><p>Helaas, het versturen van de mail is mislukt</p></div>';   
     }
     else {
-     print("Geslaagd, de mail is verstuurd");       
+     echo '<div class="message_success"><p>Geslaagd, de mail is verstuurd</p></div>';       
 }
 }
 ?>
@@ -44,12 +44,14 @@ if (isset($_POST["verstuur"])){
                 </tr>
                 <tr>
                     <td>Vraag</td>
+                    <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td colspan="2"><textarea name="vraag"></textarea></td>
                 </tr>
                 <tr>
-                    <td><input type="submit" name="verstuur" value="Versturen"></td>
+                	<td>&nbsp;</td>
+                    <td align="right" ><input type="submit" name="verstuur" value="Versturen"></td>
                 </tr>
             </table>
         </form>
