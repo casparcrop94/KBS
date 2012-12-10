@@ -1,151 +1,3 @@
-<<<<<<< HEAD
-* {
-	margin: 0;
-	padding: 0;
-	outline: none;
-}
-
-html {
-	font-family: Arial, Helvetica;
-}
-
-img {
-	border: none;
-}
-
-input[type="text"],
-input[type="password"],
-textarea {
-	outline: 1px solid #ccc;
-	border: none;
-}
-
-input[type="text"]:focus,
-input[type="password"]:focus,
-textarea:focus {
-	outline: 2px solid #7a8bac;
-	border: none;
-}
-
-a {
-	color: #486398;
-	text-decoration: none;
-}
-
-a:hover {
-	text-decoration: underline;
-}
-
-#wrapper {
-	width: 960px;
-	margin: 0 auto;
-	
-	border-top: none;
-	position: relative;
-
-	-webkit-box-shadow: 0px 0px 5px #333;
-	-moz-box-shadow:    0px 0px 5px #333;
-	box-shadow:         0px 0px 5px #333;
-}
-
-#header {
-	width: 100%;
-	height: 200px;
-	position: relative;
-}
-
-#header-image {
-	width: 100%;
-	height: 150px;
-	position: relative;
-}
-
-#menu {
-	width: 100%;
-	height: 50px;
-	background-color: #768093;
-	position: relative;
-}
-
-#menu ul {
-	list-style:none;
-}
-
-#menu ul li {
-	float: left;
-	font-size: 20px;
-	color: #fff;
-	padding: 0 15px;
-	margin-top: 14px;
-}
-
-#menu ul li a {
-	color: #fff;
-}
-
-#menu ul li a:hover {
-	text-decoration: underline;
-}
-
-#content {
-	min-height: 200px;
-	position: relative;
-	padding: 5px;
-}
-
-#footer {
-	height: 50px;
-	width: 100%;
-	position: relative;
-	background-color: #768093;
-	border-top: 2px solid #57585a;
-}
-#rates{
-    position: absolute;
-    height:800px;
-    width: 960px;
-
-}
-
-#ratewarning{
-    margin-bottom: 25px;
-    height:40px;
-    width:525px;
-}
-
-#ratetable{
-    width:750px;
-    border-color: #7a8bac;
-    border-right-style: inset;
-    border-left-style: inset;
-    border-bottom-style: inset;
-    border-top-style: inset;
-    border-right-width: 3px;
-    border-left-width: 3px;
-    border-bottom-width: 3px;
-    border-top-width: 3px;
-}
-#ratetablecollumn{
-    padding-right: 25px;
-}
-
-#rateth{
-    color: #7a8bac;
-    padding-right: 25px;
-    border-bottom: #7a8bac solid thin;
-}
-
-.zoekresultaat{
-    padding: 5px;
-    border-bottom: 1px solid #333;
-    margin-bottom: 7 px;
-}
-
-.zoekresultaat a{
-    margin-left: 30px;
-    
-}
-=======
 * {
 	margin: 0;
 	padding: 0;
@@ -344,4 +196,26 @@ table input[type="text"] {
 .contact table {
 	border: 0px;
 }
->>>>>>> 32ad56b634ec67bea4b6bb3b5c884691bc75a258
+
+#rateth{
+    color: #7a8bac;
+    padding-right: 25px;
+    border-bottom: #7a8bac solid thin;
+}
+
+.zoekresultaat{
+    padding: 5px;
+    border-bottom: 1px solid #333;
+    margin-bottom: 7 px;
+}
+
+.zoekresultaat a{
+    margin-left: 30px;
+    
+}
+
+.diensten {
+	width: auto;
+	padding: 15px;
+	border: 1px solid black;
+}
