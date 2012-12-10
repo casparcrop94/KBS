@@ -38,17 +38,17 @@ $res = $sth->fetchAll(PDO::FETCH_ASSOC);
         ?>
         <input type="button" onclick="window.location = '/admin/bewerkcategorie?option=new'" value="Nieuwe categorie"/>
 	<input type="button" onclick="window.location = '/admin/bewerkartikel'" value="Nieuw artikel"/>
+	<input type="button" onclick="window.location = '/admin/bewerkartikel/remove'" value="Verwijder geselecteerde"/>
         <br/>
         <table border="1">
             <tr>
-		<th>	</th>
+		<th><input type="checkbox" id="checkall" value=""/></th>
                 <th>Titel</th> 
                 <th>Categorie</th>
                 <th>Datum aangemaakt</th>
                 <th>Laatst gewijzigd</th> 
                 <th>Gepubliceerd</th>
                 <th>Bewerk</th>
-                <th>Verwijder</th>
             </tr>
             <?php 
                 foreach($res as $row) {                                                 // Loop door SQL-resultaten
@@ -59,8 +59,7 @@ $res = $sth->fetchAll(PDO::FETCH_ASSOC);
                     echo("<td>".$row['date_added']."</td>");                            // Print de datum
                     echo("<td>".$row['date_edited']."</td>");                   
                     echo("<td>".($row['published'] == 1 ? "Ja" : "Nee")."</td>");        // Print de publicatiestatus
-                    echo("<td><a href='/admin/artikel/bewerk/".$row['ID']."'>Bewerk</a></td>");      // Print de bewerk knop
-                    echo("<td><a href='/admin/artikel/verwijder/".$row['ID']."'>Verwijder</a></td>"); // Print de verwijder knop
+                    echo("<td><a href='/admin/bewerkartikel/".$row['ID']."'>Bewerk</a></td>");      // Print de bewerk knop
                     echo("</tr>");
                 } 
             ?>
