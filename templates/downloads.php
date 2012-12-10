@@ -31,13 +31,13 @@ $result = $sth->fetchAll(PDO::FETCH_ASSOC);
     <?php } ?> 
 </table>
 <?php
-$sth = $dbh->prepare("SELECT COUNT(*) FROM downloads");
+$sth = $dbh->prepare("SELECT * FROM downloads");
 $sth->execute();
 $result = $sth->fetchall(PDO::FETCH_ASSOC);
-$total_records = $row["ID"];
-$total_pages = ceil($total_records / 20);
+$total_records = count($result);
+$total_pages = ceil($total_records / 10);
 
 for ($i = 1; $i <= $total_pages; $i++) {
-    echo "<a href='downloads.php?page=" . $i . "'>" . $i . "</a> ";
+    echo "<a href='/downloads/" . $i . "'>" . $i . "</a> ";
 };
 ?>
