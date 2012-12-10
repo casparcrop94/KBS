@@ -10,7 +10,8 @@ $page = isset($_GET['p']) ? str_replace('/', '', $_GET['p']):'home';
 
 if(!file_exists(DOCROOT . 'templates/' . $page . '.php'))
 {
-	$page = 'home';
+	header('HTTP/1.0 404 Not Found');
+	$page = '404';
 }
 ?>
 <html>
@@ -35,18 +36,23 @@ if(!file_exists(DOCROOT . 'templates/' . $page . '.php'))
 						<li><a href="/home">Home</a></li>
 						<li><a href="/bedrijven">Bedrijven</a></li>
 						<li><a href="/particulier">Particulier</a></li>
-						<li><a href="/artikelen">Artikelen</a></li>
+						<li><a href="/artikelen">Diensten</a></li>
 						<li><a href="/downloads">Downloads</a></li>
 						<li><a href="/contact">Contact</a></li>
-                                                <li><a href="/tarieven">Tarieven</a></li>
+						<li><a href="/tarieven">Tarieven</a></li>
 					</ul>
 				</div>
 			</div>
 			<div id="content">
-				<div id="left-content">
+				<div id="left-content" class="<?php echo $page;?>">
 					<?php include '/templates/' . $page . '.php';?>
 				</div>
-				<div id="right-content"></div>
+				<div id="right-content">
+					<form id="search-form">
+						<input type="text" name="" placeholder="Zoeken" />
+						<input type="image" src="/images/searcher.png" value="" />
+					</form>
+				</div>
 			</div>
 			<div id="footer"></div>
 		</div>

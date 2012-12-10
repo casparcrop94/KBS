@@ -4,32 +4,30 @@ include('/inc/mysql.inc.php');
 
 $dbh = connectToDatabase();
 
-$sth = $dbh->query("SELECT A.ID,title,C.name AS catname,date_added,date_edited FROM article A JOIN category C ON A.cat_id = C.cat_id WHERE A.published = '1' ORDER BY ID"); // Haal alle artikelen uit de database
+$sth = $dbh->query("SELECT * FROM services"); // Haal alle artikelen uit de database
 $sth->execute();
-
 $res = $sth->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
-<!DOCTYPE html>
-<html>
-    <body>
-        <table border="1">
-            <tr>
-                <td>Titel</td> 
-                <td>Categorie</td>
-                <td>Datum aangemaakt</td>
-                <td>Laatst gewijzigd</td> 
-            </tr>
+        <table width="700">
             <?php 
-                foreach($res as $row) {                                                 // Loop door SQL-resultaten
-                    echo("<tr>");
-                    echo("<td>".$row['title']."</td>");                                 // Print de titel
-                    echo("<td>".$row['catname']."</td>");                               // Print de categorie
-                    echo("<td>".$row['date_added']."</td>");                            // Print de datum
-                    echo("<td>".$row['date_edited']."</td>");                   
-                    echo("</tr>");
+            	$i=0;
+                foreach($res as $row) {  // Loop door SQL-resultaten
+                	if($i==0){
+                		echo("<tr>");
+                	}
+                    echo("<td width=50% onclick=window.location='".$row['article_id']."'; style='cursor: pointer';>");
+                    echo("<div class=title>".$row['servicename']."</div>");
+                    echo("<br /><div class=discription>".$row['servicetext']."</div>");
+                    echo("<br /><div class=image><img src=".$row['image']."/></div>");
+                    echo("</td>");
+                    if($i==1){
+                    	echo("</tr>");
+                    }
+                    $i++;
+                    if($i==2){
+                    	$i=0;
+                    }
                 } 
             ?>
         </table>
-    </body>
-</html>

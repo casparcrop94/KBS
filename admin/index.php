@@ -23,8 +23,10 @@ if(!file_exists(DOCROOT . 'admin/templates/' . $page . '.php'))
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<title>Juridische hulp - Admin</title>
 		<link rel="stylesheet" type="text/css" href="/styles/admin.css" />
+		<link rel="stylesheet" type="text/css" href="/styles/jqueryui/jquery-ui-1.9.2.custom.min.css" />
 		
 		<script type="text/javascript" src="/scripts/jquery.1.8.3.js"></script>
+		<script type="text/javascript" src="/scripts/jquery_ui.1.9.2.js"></script>
 		<script type="text/javascript" src="/scripts/admin.js"></script>
 	</head>
 	<body>
@@ -36,8 +38,10 @@ if(!file_exists(DOCROOT . 'admin/templates/' . $page . '.php'))
 						<li><a href="/admin/agenda">Agenda</a></li>
 						<li><a href="/admin/categorie">Categorie</a></li>
 						<li><a href="/admin/artikel">Artikelen</a></li>
-                                                <li><a href="/admin/downloads">Downloads</a></li>
-                                                <li class="login_menu_item">
+						<li><a href="/admin/admintarieven">Tarieven</a></li>
+						<li><a href="/admin/downloads">Downloads</a></li>
+						<li><a href="/admin/agenda">Agenda</a></li>
+						<li class="login_menu_item">
 							<a href="/admin/logout">Uitloggen</a>
 						</li>
 					</ul>

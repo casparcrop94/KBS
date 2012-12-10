@@ -7,7 +7,7 @@ $db = connectToDatabase();
 //Check if form is submitted
 if(isset($_POST['submit']))
 {
-	//Get data from form and set data into variable.
+    //Get data from form and set data into variable.
     $option = $_POST['option'];
 	$id = $_POST['id'];
 	$title = $_POST['title'];	
@@ -40,7 +40,7 @@ if(isset($_POST['submit']))
 	{
 		//Edit an article
 		$db = connectToDatabase();
-		$sth = $db->prepare ("UPDATE article SET cat_id=:category,date_added=:date_added,date_edited=:date_edited,
+		$sth = $db->prepare ("UPDATE article SET cat_id=:category,date_added=:date_added,date_edited=:date_edited:,
 		title=:title,text=:text,published=:published WHERE ID=:id");
 		$sth->bindParam(":category", $category);
 		$sth->bindParam(":date_added", $date_added);
@@ -62,8 +62,7 @@ if(isset($_POST['submit']))
 	}
 	
 	//After saving redirect to overview page
-	header("Location: /admin/artikel/".$case);
-	exit;
+	header("Location: index.php?case=".$case);
 }
 
 //Get option
@@ -118,7 +117,14 @@ $sth->execute();
 $categorys = $sth->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
-<form action="" method="post">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<script type="text/javascript" src="<?php echo DOCROOT . 'scripts/tiny_mce/tiny_mce.js';?>"></script>
+	<script type="text/javascript" src="<?php echo DOCROOT . 'scripts/tiny_mce/tiny_mce.init.js';?>"></script>
+</head>
+
+<body>
+<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 <input name="option" type="hidden" value="<?php echo $option; ?>" />
 <input name="id" type="hidden" value="<?php echo $id; ?>" />	
 <table>
@@ -200,12 +206,13 @@ $categorys = $sth->fetchAll(PDO::FETCH_ASSOC);
     <tr>
     	<td colspan="2">
         	<input type="submit" value="Opslaan" name="submit" />
-            <input type="button" name="Cancel" value="Annuleren" onclick="window.location = '/admin/artikel' " />
+            <input type="button" name="Cancel" value="Annuleren" onclick="window.location = 'index.php' " />
         </td>
     </tr>
 </table> 
 	
 </form>
 
-<script type="text/javascript" src="<?php echo DOCROOT . 'scripts/tiny_mce/tiny_mce.js';?>"></script>
-<script type="text/javascript" src="<?php echo DOCROOT . 'scripts/tiny_mce/tiny_mce.init.js';?>"></script>
+
+</body>
+</html>
