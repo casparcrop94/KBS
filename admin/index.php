@@ -6,6 +6,9 @@ ob_start();
 error_reporting(E_ALL | E_STRICT);
 ini_set('display_errors', 1);
 
+include DOCROOT . 'inc/functions.inc.php';
+
+
 if(!isset($_SESSION['admin']) && $_SESSION['admin'] != true)
 {
 	header('location:/admin/login');

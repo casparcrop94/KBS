@@ -1,10 +1,6 @@
 <?php
-//include the database locations
-include DOCROOT . 'inc/mysql.inc.php';
 //connecting to the database
 $dbh = connectToDatabase();
-//include the SQL query execution
-include DOCROOT . 'tarieven2/selectquery.php';
 //the sql statement
 $sql = (" SELECT service_id, servicename, pph, avgcost FROM `services` ");
 //retrieving the query results
@@ -38,7 +34,7 @@ $result = selectratequery($sql, $dbh);
     		<!--displays the average cost-->
     		<td class="ratetablecollumn"><?php echo($row["avgcost"]) ?></td>
     		<!--displays the link to change the rates-->
-    		<td class="ratetablecollumn"><a href="<?php echo '/admin/wijzigtarief/' . $row['service_id'] ?>">Wijzig</a></td>
+    		<td class="ratetablecollumn"><a href="<?php echo '/admin/wijzigtarief/'.$row['service_id'] ?>">Wijzig</a></td>
     	    </tr>
 <?php } ?>
         </tbody>

@@ -9,3 +9,4 @@ define('DB_PORT', '3307');
 define('DB_DATABASE', 'kbs');
 
 define('EMAIL_KLANT', 'maartendeboy@hotmail.com');
+date_default_timezone_set('Europe/Amsterdam');

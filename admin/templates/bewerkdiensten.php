@@ -1,6 +1,4 @@
 <?php
-//Include files to connect with database
-include DOCROOT . 'inc/mysql.inc.php';
 //Sla verbinding op in $db
 $db = connectToDatabase();
 

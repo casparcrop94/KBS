@@ -1,6 +1,5 @@
 <!-- Erik de Vries -->
 <?php
-include DOCROOT . 'inc/mysql.inc.php';
 // db
 $dbh = connectToDatabase();
 if (isset($_GET['action'])) {
