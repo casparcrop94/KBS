@@ -1,6 +1,6 @@
 <?php
-function upload($_FILES)
-{
+
+function upload($_FILES) {
     $file = $_FILES["file"]["name"];
     $size = ($_FILES["file"]["size"] / 1024);
     // bestanden die upgeload mogen worden.
@@ -29,8 +29,7 @@ function upload($_FILES)
 		}
 	    }
 	}
-	
-    }else {
+    } else {
 	echo "Invalid file";
     }
 }
