@@ -1,3 +1,4 @@
+<!-- AUTEUR: RICHARD VAN DEN HOORN -->
 <?php
 //connecting to the database
 $dbh = connectToDatabase();
