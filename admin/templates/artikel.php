@@ -1,5 +1,4 @@
 <?php
-include(DOCROOT . "/inc/functions.inc.php");
 
 $dbh = connectToDatabase();  // Maak verbinding met de database
 $statusText = "";

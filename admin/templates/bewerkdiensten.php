@@ -165,13 +165,10 @@ function haalartikelenop(){
         	<?php 
         	$articles= haalartikelenop();
         	foreach($articles as $row){
-        		
+        		$selected='';
         		if($option!='new'){
         			if($row['ID']==$article_id){
         				$selected='selected';
-        			}
-        			else{
-        				$selected='';
         			}
         		}
         		

@@ -14,6 +14,7 @@ if (!file_exists(DOCROOT . 'templates/' . $page . '.php')) {
     header('HTTP/1.0 404 Not Found');
     $page = '404';
 }
+
 ?>
 <html>
     <head>
@@ -49,10 +50,14 @@ if (!file_exists(DOCROOT . 'templates/' . $page . '.php')) {
 		    <?php include '/templates/' . $page . '.php'; ?>
 		</div>
 		<div id="right-content">
-		    <form id="search-form" action="zoekresultaten" method="get">
+		    <form id="search-form" action="zoekresultaten" method="post">
 			<input type="text" name="zoekwoord123" placeholder="Zoeken" />
 			<input type="image" src="/images/searcher.png" value="" />
 		    </form>
+		    
+		    <?php
+		       sortArticles(connectToDatabase());
+		    ?>
 		</div>
 	    </div>
 	    <div id="footer"></div>
