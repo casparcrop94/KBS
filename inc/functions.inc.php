@@ -1,6 +1,6 @@
 <?php
 
-function selectratequery($sql, $db) {
+function selectquery($sql, $db) {
     $sth = $db->prepare($sql);
     $sth->execute();
     $result = $sth->fetchAll(PDO::FETCH_ASSOC);
