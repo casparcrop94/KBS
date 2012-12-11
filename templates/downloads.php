@@ -1,3 +1,4 @@
+<!-- Erik de Vries -->
 <?php
 //haalt de page op voor de url
 if (isset($_GET["page"])) {
@@ -44,4 +45,3 @@ for ($i = 1; $i <= $total_pages; $i++) {
 //$1 (de pagina nummer) komt achter de url de staan en wordt weergegeven als $1 onder de tabel
     echo "<a href='/downloads/" . $i . "'>" . $i . "</a> ";
 };
-?>
