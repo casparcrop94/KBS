@@ -6,7 +6,7 @@ $sth = $dbh->query("SELECT * FROM services WHERE Published=1"); // Haal alle die
 $sth->execute();
 $res = $sth->fetchAll(PDO::FETCH_ASSOC);
 ?>
-
+<div>
 <table>
     <?php
     $i = 0;
@@ -29,3 +29,4 @@ $res = $sth->fetchAll(PDO::FETCH_ASSOC);
     }
     ?>
 </table>
+</div>
