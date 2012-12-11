@@ -36,26 +36,24 @@ function sortArticles($dbh) {
     for ($i = 1; $i <= count($tbl); $i++) {
 	$revTbl[$tbl[$i]] = $i;
     }
-    
+
     $str = "";
 
     $years = Array();
-    
-	foreach ($res as $row) {
+
+    foreach ($res as $row) {
 	$date = new DateTime($row['date_added']);
 	$year = $date->format("Y");
 	$month = $date->format("L");
-	
-	
+
+
 	$months = Array();
-	
-	if(!isset($years[$year])) {
+
+	if (!isset($years[$year])) {
 	    $years[$year] = 1;
-	    
-	    echo("<a rel=\"".$year."\" id=\"fold-year\" href=\"#\"> >".$year." </a>");
-	    
+
+	    echo("<a rel=\"" . $year . "\" id=\"fold-year\" href=\"#\"> >" . $year . " </a>");
 	}
-	
     }
 
 
@@ -68,24 +66,20 @@ function connectToDatabase() {
     return $db;
 }
 
-function isAjax()
-{
-	if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') 
-	{
-		return true;
-	}
-	else {
-		return false;
-	}
+function isAjax() {
+    if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+	return true;
+    } else {
+	return false;
+    }
 }
 
-function getNextMonth()
-{
+function getNextMonth() {
+    
 }
 
-function upload($_FILES)
-{
-    $dbh= connectToDatabase();
+function upload($_FILES) {
+    $dbh = connectToDatabase();
     $file = $_FILES["file"]["name"];
     $size = ($_FILES["file"]["size"] / 1024);
     // bestanden die upgeload mogen worden.
@@ -114,8 +108,9 @@ function upload($_FILES)
 		}
 	    }
 	}
-	
-    }else {
+    } else {
 	echo "Invalid file";
     }
 }
+
+?>
