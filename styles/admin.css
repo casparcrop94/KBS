@@ -166,9 +166,16 @@ input[type="button"] {
 	
 }
 
-.downloads table
-{
-    height:80%;
+#downloads{
+    height: 560px;
+}
+
+#head{
+    height:15px;
+}
+
+#row{
+    height:15px;
 }
 
 table {

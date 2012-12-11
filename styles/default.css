@@ -219,6 +219,14 @@ table input[type="text"] {
 	padding: 15px;
 	border: 1px solid black;
 }
-.downloads table {
-	height:40%;
-	}
+#downloads{
+    height: 300px;
+}
+
+#head{
+    height:15px;
+}
+
+#row{
+    height:15px;
+}
