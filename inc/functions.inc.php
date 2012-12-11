@@ -1,6 +1,10 @@
 <?php
 
+<<<<<<< HEAD
 function selectratequery($sql, $db) {
+=======
+function selectquery($sql, $db) {
+>>>>>>> 20d3ecc2c7f13a0a3317fe1163dcab4e3a1e02cf
     $sth = $db->prepare($sql);
     $sth->execute();
     $result = $sth->fetchAll(PDO::FETCH_ASSOC);
@@ -41,7 +45,11 @@ function sortArticles($dbh) {
 
     $years = Array();
     
+<<<<<<< HEAD
     foreach ($res as $row) {
+=======
+	foreach ($res as $row) {
+>>>>>>> 20d3ecc2c7f13a0a3317fe1163dcab4e3a1e02cf
 	$date = new DateTime($row['date_added']);
 	$year = $date->format("Y");
 	$month = $date->format("L");
