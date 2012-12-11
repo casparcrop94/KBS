@@ -1,5 +1,4 @@
 <?php
-
 function selectquery($sql, $db) {
     $sth = $db->prepare($sql);
     $sth->execute();
@@ -9,7 +8,7 @@ function selectquery($sql, $db) {
 
 function sortArticles($dbh) {
     if (!$dbh) {
-	$dbh = connectToDatabase();
+		$dbh = connectToDatabase();
     }
 
     $sth = $dbh->query("SELECT ID,title,date_added FROM article WHERE published='1' ORDER BY date_added");
@@ -19,33 +18,33 @@ function sortArticles($dbh) {
 
     $years = Array();
     
-    foreach($res as $row) { 
-	$date = new DateTime($row['date_added']);
-	$year = $date->format("Y");
-	$month = $date->format("F");
-	$smonth = $date->format("m");
-	
-	if(!isset($years[$year])) {
-	    $years[$year] = Array();
-	    
-	    if(!isset($years[$year][$month])) {
-		$years[$year][$month] = Array();
-	    }
-	}
-	
-	$years[$year][$month][$row['ID']] = $row['title']; 
+    foreach($res as $row) {
+		$date = new DateTime($row['date_added']);
+		$year = $date->format("Y");
+		$month = $date->format("F");
+		$smonth = $date->format("m");
+		
+		if(!isset($years[$year])) {
+		    $years[$year] = Array();
+		    
+		    if(!isset($years[$year][$month])) {
+			$years[$year][$month] = Array();
+		    }
+		}
+		
+		$years[$year][$month][$row['ID']] = $row['title']; 
     }
     
     foreach($years as $key=>$val) { 
-	echo("<a rel=\"".$year."\" id=\"fold-year\" class=\"no-underline zipper\" href=\"#\"> >".$year." </a>");
-	echo("<ul id=".$year."><li>");
-	
-	foreach($val as $month=>$articles) {
-	    echo("<a rel=\"".$year."-".$smonth."\" id=\"fold-month\" href=\"#\" class=\"no-underline zipper\"> ></a> ");
-	    foreach($articles as $art=>$title) {
-		echo("<a href=\"/artikel/".$art."\">".$title."</a>");
-	    }
-	}
+		echo("<a rel=\"".$year."\" id=\"fold-year\" class=\"no-underline zipper\" href=\"#\"> >".$year." </a>");
+		echo("<ul id=".$year."><li>");
+		
+		foreach($val as $month=>$articles) {
+		    echo("<a rel=\"".$year."-".$smonth."\" id=\"fold-month\" href=\"#\" class=\"no-underline zipper\"> ></a> ");
+		    foreach($articles as $art=>$title) {
+				echo("<a href=\"/artikel/".$art."\">".$title."</a>");
+		    }
+		}
     }
 	    
 	   // echo("<a rel=\"".$year."-".$smonth."\" id=\"fold-month\" href=\"#\" class=\"no-underline zipper\"> ></a> ");
@@ -60,14 +59,74 @@ function connectToDatabase() {
 
 function isAjax() {
     if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
-	return true;
+		return true;
     } else {
-	return false;
+		return false;
     }
 }
 
 function getNextMonth() {
     
+}
+
+function getAgendaMonth($month = false, $year = false)
+{
+	if(!$month)
+	{
+		$month = date('m');
+	}
+	if(!$year)
+	{
+		$year = date('Y');
+	}
+
+	$total_days = cal_days_in_month(CAL_GREGORIAN, $month, $year);
+	$total_weeks = ceil($total_days / 7);
+
+	$first_day = date("N", mktime(0, 0, 0, $month, 1, $year));
+	$cal = array();
+	$curr_day = 1;
+	$continue = false;
+
+	for($week = 0; $week <= $total_weeks; $week++)
+	{
+		$cal[$week] = array();
+		for($day = 1; $day <= 7; $day++)
+		{
+			$cal[$week][$day] = '';
+			if($day == $first_day && $week == 0)
+			{
+				$cal[$week][$day] = 1;
+				$continue = true;
+				$curr_day++;
+			}
+			else if($continue && $curr_day <= $total_days)
+			{
+				$cal[$week][$day] = $curr_day;
+				$curr_day++;
+			}
+		}
+	}
+
+	$data = '';
+	foreach($cal as $week){
+		$data .= '<tr>';
+		foreach($week as $date => $day)
+		{
+			$data .= '<td>' . $day . '</td>';
+		}
+		$data .= '</tr>';
+	}
+	
+	$result = array(
+			'data' => $data,
+			'month' => $month,
+			'month_name' => ucFirst(strftime('%B',mktime(0,0,0, $month, 1, $year))),
+			'year' => $year
+	);
+
+	return $result;
+
 }
 
 function upload($files) {
@@ -104,5 +163,3 @@ function upload($files) {
 	echo "Invalid file";
     }
 }
-
-?>
