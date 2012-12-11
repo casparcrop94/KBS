@@ -14,8 +14,8 @@ $sth = $dbh->prepare("SELECT * FROM downloads LIMIT $start_from, 10");
 $sth->execute();
 $result = $sth->fetchAll(PDO::FETCH_ASSOC);
 ?>
-<div>
-    <table border="1">
+<div class="table">
+    <table>
 	<tr>    
 	    <th> Bestanden </th>    
 	    <th> Grootte </th>
@@ -44,13 +44,9 @@ $result = $sth->fetchall(PDO::FETCH_ASSOC);
 $total_records = count($result);
 //het aantal pages, aantal pages wordt berekend door het aantal records delen door 10
 $total_pages = ceil($total_records / 10);
-?>
-<div>
-    <?php
 //$1 staat voor de pagina nummer, begint op 1
     for ($i = 1; $i <= $total_pages; $i++) {
 //$1 (de pagina nummer) komt achter de url de staan en wordt weergegeven als $1 onder de tabel
 	echo "<a href='/downloads/" . $i . "'>" . $i . "</a> ";
     };
     ?>
-</div>
