@@ -1,9 +1,12 @@
 <!--
 Auteur: Maarten Engels
+	s1058387
+	ICTM1E
 -->
 <?php
 //Het zelfafhandelende gedeelte, waarbij het formulier wordt getoond als nog niet op de verstuur-knop is gedrukt
 if (isset($_POST["verstuur"])){
+    //De attributen die worden opgeslagen vanuit het contactformulier, zodat in de e-mail die gestuurd wordt staat van wie het afkomstig is, wat het onderwerp is en wat de vraag is
     $naam = $_POST['naam'];
     $email = $_POST['email'];
     $onderwerp = $_POST['onderwerp'];
@@ -21,7 +24,8 @@ if (isset($_POST["verstuur"])){
     //$headers = 'From: '.$email."\r\n";
     $headers = 'From: ' .EMAIL_KLANT. '\r\n';
     $headers .= 'Reply-To: '.$email."\r\n";
-
+    
+    //De functie waarbij de mail verstuurd wordt, of niet verstuurd als de gegevens niet ingevuld zijn of niet correct ingevuld
     $mail_status = mail($to, $subject, $message, $headers);
     if (!$mail_status) { 
       echo '<div class="message_error"><p>Helaas, het versturen van de mail is mislukt</p></div>';   
@@ -31,7 +35,7 @@ if (isset($_POST["verstuur"])){
 }
 }
 ?>
-        
+        <!-- Het contactformulier waarbij je de Naam, het E-mailadres, het Onderwerp en de Vraag in kan vullen en op Versturen kan drukken. -->
         <form method="post">
             <table>
                 <tr>

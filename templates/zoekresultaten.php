@@ -1,18 +1,22 @@
 <!--
 Auteur: Maarten Engels
+	s1058387
+	ICTM1E
 -->
 
 <?php
+//Het woord dat ingevuld wordt in de zoekbalk wordt opgehaald en gebruikt als attribuut.
 $zoekwoord = $_GET["zoekwoord123"];
-//geeft "Undefined index: zoekwoord..." aan als pagina niet gestart vanaf zoekresultatentestpagina.php
-//Include files to connect with database
+
+//Zelfafhandelend formulier waarbij er naar resultatenpagina 1 gaat als er nog geen paginanummer is opgegeven
 if (isset($_GET["page"])) {
     $page = $_GET["page"];
 } else {
     $page = 1;
 };
 $start_from = ($page - 1) * 4;
-//Sla verbinding op in $db
+
+//Het verbinden met de database wordt in dit stuk tekst gedaan, tevens wordt de SQL-querie hier uitgevoerd voor de resultaten.
 $dbh = connectToDatabase();
 $sth = $dbh->prepare(" SELECT * 
                             FROM article 
@@ -24,8 +28,9 @@ $sth->execute();
 $result = $sth->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
-<!-- De foreach() om de zoekresultaten te laten zien voor het $zoekwoord -->
 <?php
+//De functie( foreach() ) om de zoekresultaten te laten zien voor het attribuut $zoekwoord, als het aantal resultaten groter is dan 0 wordt er geen foutmelding weergegeven
+echo 'U heeft gezocht op "$zoekwoord"';
 if (count($result) > 0) {
     foreach ($result as $row) {
 	?>
@@ -38,11 +43,11 @@ if (count($result) > 0) {
 
 	<?php
     }
+    //Als er geen overeenkomende zoekresultaten gevonden zijn, komt deze foutmelding er te staan
 } else {
     echo 'Geen zoekresultaten gevonden, probeer iets anders.';
 }
 ?>
-
 <?php
 $sth = $dbh->prepare("SELECT * 
                             FROM article 
