@@ -52,7 +52,7 @@ if(!file_exists(DOCROOT . 'admin/templates/' . $page . '.php'))
 					</ul>
 				</div>
 			</div>
-			<div id="content">
+			<div id="content" class="page">
 				<?php include DOCROOT . 'admin/templates/' . $page . '.php';?>
 			</div>
 			<div id="footer"></div>

@@ -30,7 +30,7 @@ $result = $sth->fetchAll(PDO::FETCH_ASSOC);
 
 <?php
 //De functie( foreach() ) om de zoekresultaten te laten zien voor het attribuut $zoekwoord, als het aantal resultaten groter is dan 0 wordt er geen foutmelding weergegeven
-echo 'U heeft gezocht op "$zoekwoord"';
+echo "U heeft gezocht op $zoekwoord ";
 if (count($result) > 0) {
     foreach ($result as $row) {
 	?>
