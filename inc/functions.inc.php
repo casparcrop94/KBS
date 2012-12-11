@@ -17,47 +17,39 @@ function sortArticles($dbh) {
 
     $res = $sth->fetchAll(PDO::FETCH_ASSOC);
 
-    $tbl = Array(
-	1 => "Januari",
-	2 => "Februari",
-	3 => "Maart",
-	4 => "April",
-	5 => "Mei",
-	6 => "Juni",
-	7 => "Juli",
-	8 => "Augustus",
-	9 => "September",
-	10 => "Oktober",
-	11 => "November",
-	12 => "December"
-    );
-    $revTbl = Array();
-
-    for ($i = 1; $i <= count($tbl); $i++) {
-	$revTbl[$tbl[$i]] = $i;
-    }
-
-    $str = "";
-
     $years = Array();
-
-    foreach ($res as $row) {
+    
+    foreach($res as $row) { 
 	$date = new DateTime($row['date_added']);
 	$year = $date->format("Y");
-	$month = $date->format("L");
-
-
-	$months = Array();
-
-	if (!isset($years[$year])) {
-	    $years[$year] = 1;
-
-	    echo("<a rel=\"" . $year . "\" id=\"fold-year\" href=\"#\"> >" . $year . " </a>");
+	$month = $date->format("F");
+	$smonth = $date->format("m");
+	
+	if(!isset($years[$year])) {
+	    $years[$year] = Array();
+	    
+	    if(!isset($years[$year][$month])) {
+		$years[$year][$month] = Array();
+	    }
+	}
+	
+	$years[$year][$month][$row['ID']] = $row['title']; 
+    }
+    
+    foreach($years as $key=>$val) { 
+	echo("<a rel=\"".$year."\" id=\"fold-year\" class=\"no-underline zipper\" href=\"#\"> >".$year." </a>");
+	echo("<ul id=".$year."><li>");
+	
+	foreach($val as $month=>$articles) {
+	    echo("<a rel=\"".$year."-".$smonth."\" id=\"fold-month\" href=\"#\" class=\"no-underline zipper\"> ></a> ");
+	    foreach($articles as $art=>$title) {
+		echo("<a href=\"/artikel/".$art."\">".$title."</a>");
+	    }
 	}
     }
-
-
-    return $str;
+	    
+	   // echo("<a rel=\"".$year."-".$smonth."\" id=\"fold-month\" href=\"#\" class=\"no-underline zipper\"> ></a> ");
+	   // echo("<a href=\"/artikel/".$row2['ID']."\"");
 }
 
 function connectToDatabase() {

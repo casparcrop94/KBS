@@ -1,3 +1,4 @@
+<!-- AUTEUR: RICHARD VAN DEN HOORN -->
 <?php
 //Sla verbinding op in $db
 $db = connectToDatabase();
@@ -45,7 +46,7 @@ if(isset($_POST['submit']))
 		$result=$sth->execute();
 	}
 	
-	//If service is saved succesfully, user get a message
+	//If service is saved succesfully or not, user get a message
 	if($result==1){
 		$case="succes";
 	}
@@ -92,7 +93,7 @@ elseif($option=='edit'){
 		$servicetext = $row["servicetext"];		
 		$published = $row["published"];
 	}
-	//Check if article is published
+	//Check if service is published
 	if($published==1)
 	{
 		$published=" selected";
@@ -180,7 +181,7 @@ function haalartikelenop(){
     </tr>
     <tr>
     	<td colspan="2">
-        	Text:
+        	<br />Introtekst:
        	</td>
     </tr>
     <tr>
@@ -209,5 +210,3 @@ function haalartikelenop(){
 	
 </form>
 
-<script type="text/javascript" src="<?php echo DOCROOT . 'scripts/tiny_mce/tiny_mce.js';?>"></script>
-<script type="text/javascript" src="<?php echo DOCROOT . 'scripts/tiny_mce/tiny_mce.init.js';?>"></script>
