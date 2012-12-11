@@ -5,7 +5,7 @@ Auteur: Maarten Engels
 -->
 
 <?php
-//Het woord dat ingevuld wordt in de zoekbalk wordt opgehaald en gebruikt als attribuut.
+//Het woord dat ingevuld wordt in de zoekbalk wordt opgehaald en gebruikt als attribuut voor de SQL-querie.
 $zoekwoord = $_POST["zoekwoord123"];
 
 //Zelfafhandelend formulier waarbij er naar resultatenpagina 1 gaat als er nog geen paginanummer is opgegeven
