@@ -1,3 +1,4 @@
+<!-- AUTEUR: RICHARD VAN DEN HOORN -->
 <?php
 
 //Check if form is submitted
