@@ -1,3 +1,4 @@
+<!-- Erik de Vries -->
 <?php
 //haalt de page op voor de url
 if (isset($_GET["page"])) {
