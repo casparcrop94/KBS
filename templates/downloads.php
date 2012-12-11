@@ -22,14 +22,14 @@ $result1 = selectquery($sql1, $dbh)
 	</tr>
 	<?php foreach ($result1 as $row) {
 	    ?>
-            <tr>
+    	<tr>
     	    <!-- Laat het bestand naam zien. -->
     	    <td> <?php echo ($row["file"]); ?> </td>
     	    <!-- Laat de size van het bestand zien in kb. -->
     	    <td> <?php echo ($row["size"]); ?> kb </td>
     	    <!-- Met deze functie kan je bestanden downloaden die geupload zijn. -->
     	    <td> <a href=http://kbs.nl/uploads/<?php echo rawurlencode($row["file"]) ?> >Download</a> </td>
-            </tr>    
+    	</tr>    
 
 	<?php } ?> 
     </table>
