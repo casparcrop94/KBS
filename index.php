@@ -42,10 +42,8 @@ if (!file_exists(DOCROOT . 'templates/' . $page . '.php')) {
 			<li><a href="/downloads">Downloads</a></li>
 			<li><a href="/contact">Contact</a></li>
 			<li><a href="/tarieven">Tarieven</a></li>
-<<<<<<< HEAD
-=======
 			<li><a href="/archief">Archief</a></li>
->>>>>>> 20d3ecc2c7f13a0a3317fe1163dcab4e3a1e02cf
+
 		    </ul>
 		</div>
 	    </div>
