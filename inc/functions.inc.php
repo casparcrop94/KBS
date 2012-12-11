@@ -36,22 +36,30 @@ function sortArticles($dbh) {
     for ($i = 1; $i <= count($tbl); $i++) {
 	$revTbl[$tbl[$i]] = $i;
     }
+    
+    $str = "";
 
     $years = Array();
     
-    foreach ($res as $row) {
+	foreach ($res as $row) {
 	$date = new DateTime($row['date_added']);
-	$month = $date->format("F");
 	$year = $date->format("Y");
+	$month = $date->format("L");
+	
+	
+	$months = Array();
 	
 	if(!isset($years[$year])) {
-	    $years[$year] = Array();
+	    $years[$year] = 1;
+	    
+	    echo("<a rel=\"".$year."\" id=\"fold-year\" href=\"#\"> >".$year." </a>");
+	    
 	}
 	
     }
 
 
-    return $tbl;
+    return $str;
 }
 
 function connectToDatabase() {
