@@ -5,9 +5,9 @@
 ?>
 
 <div id="Archives">
-    
+    <h1>Archief</h1>
     <div id="Archivetitle">
-	<h1>Archief</h1>
+	<h2>Archief</h2>
     </div>
     
     <div id="Archive">
