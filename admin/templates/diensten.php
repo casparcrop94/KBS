@@ -1,3 +1,4 @@
+<!-- AUTEUR: RICHARD VAN DEN HOORN -->
 <?php
 //connecting to the database
 $dbh = connectToDatabase();
@@ -8,9 +9,9 @@ $statusText = "";
 //Check if case is defined
 if(isset($_GET["case"])) {
 	if($_GET["case"] == "succes") {
-		$statusText = "Categorie succesvol opgeslagen.";
+		$statusText = "Dienst succesvol opgeslagen.";
 	} else {
-		$statusText = "Categorie niet succesvol opgeslagen.";
+		$statusText = "Dienst niet succesvol opgeslagen.";
 	}
 }
 
@@ -39,19 +40,19 @@ if(isset($_POST['option'])) {
 			$sth = $dbh->prepare("UPDATE services SET published=1 WHERE service_id IN($id)");
 			$sth->execute();
 
-			$statusText = "Categorie succesvol gepubliceerd.";
+			$statusText = "Dienst succesvol gepubliceerd.";
 		}
 		if($_POST['option'] == "Depubliceer") {
 			$sth = $dbh->prepare("UPDATE services SET published=0 WHERE service_id IN($id)");
 			$sth->execute();
 
-			$statusText = "Categorie succesvol gedepubliceerd.";
+			$statusText = "Dienst succesvol gedepubliceerd.";
 		}
 		if($_POST['option'] == "Verwijderen") {
 			$sth = $dbh->prepare("DELETE FROM services WHERE service_id IN($id)");
 			$sth->execute();
 
-			$statusText = "Categorie succesvol verwijderd.";
+			$statusText = "Dienst succesvol verwijderd.";
 		}
 	}
 }

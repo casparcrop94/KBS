@@ -1,3 +1,4 @@
+<!-- AUTEUR: RICHARD VAN DEN HOORN -->
 <?php
 //Sla verbinding op in $db
 $db = connectToDatabase();
@@ -205,5 +206,3 @@ $categorys = $sth->fetchAll(PDO::FETCH_ASSOC);
 	
 </form>
 
-<script type="text/javascript" src="<?php echo DOCROOT . 'scripts/tiny_mce/tiny_mce.js';?>"></script>
-<script type="text/javascript" src="<?php echo DOCROOT . 'scripts/tiny_mce/tiny_mce.init.js';?>"></script>

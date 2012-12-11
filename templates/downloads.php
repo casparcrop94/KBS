@@ -1,3 +1,4 @@
+<!-- Erik de Vries -->
 <?php
 //haalt de page op voor de url
 if (isset($_GET["page"])) {
@@ -9,36 +10,36 @@ if (isset($_GET["page"])) {
 $start_from = ($page - 1) * 10;
 //db
 $dbh = connectToDatabase();
-$sth = $dbh->prepare("SELECT * FROM downloads LIMIT $start_from, 10");
-$sth->execute();
-$result = $sth->fetchAll(PDO::FETCH_ASSOC);
+$sql1 = "SELECT * FROM downloads LIMIT $start_from, 10";
+$result1 = selectquery($sql1, $dbh)
 ?>
-<table border="1">
-    <tr>    
-        <th> Bestanden </th>    
-        <th> Grootte </th>
-        <th> Download </th>
-    </tr>
-    <?php foreach ($result as $row) {
-	?>
-        <tr>
-    	<!-- Laat het bestand naam zien. -->
-    	<td> <?php echo ($row["file"]); ?> </td>
-    	<!-- Laat de size van het bestand zien in kb. -->
-    	<td> <?php echo ($row["size"]); ?> kb </td>
-    	<!-- Met deze functie kan je bestanden downloaden die geupload zijn. -->
-    	<td> <a href=http://kbs.nl/uploads/<?php echo rawurlencode($row["file"]) ?> >Download</a> </td>
-        </tr>    
+<div class="table">
+    <table>
+	<tr>    
+	    <th> Bestanden </th>    
+	    <th> Grootte </th>
+	    <th> Download </th>
+	</tr>
+	<?php foreach ($result1 as $row) {
+	    ?>
+            <tr>
+    	    <!-- Laat het bestand naam zien. -->
+    	    <td> <?php echo ($row["file"]); ?> </td>
+    	    <!-- Laat de size van het bestand zien in kb. -->
+    	    <td> <?php echo ($row["size"]); ?> kb </td>
+    	    <!-- Met deze functie kan je bestanden downloaden die geupload zijn. -->
+    	    <td> <a href=http://kbs.nl/uploads/<?php echo rawurlencode($row["file"]) ?> >Download</a> </td>
+            </tr>    
 
-    <?php } ?> 
-</table>
+	<?php } ?> 
+    </table>
+</div>
 <?php
 //db
-$sth = $dbh->prepare("SELECT * FROM downloads");
-$sth->execute();
-$result = $sth->fetchall(PDO::FETCH_ASSOC);
+$sql2 = "SELECT * FROM downloads";
+$result2 = selectquery($sql2, $dbh);
 //het aantal records, aantal word berekent door $result bij elkaar optetellen
-$total_records = count($result);
+$total_records = count($result2);
 //het aantal pages, aantal pages wordt berekend door het aantal records delen door 10
 $total_pages = ceil($total_records / 10);
 //$1 staat voor de pagina nummer, begint op 1
