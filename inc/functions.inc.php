@@ -1,10 +1,6 @@
 <?php
 
-<<<<<<< HEAD
-function selectratequery($sql, $db) {
-=======
 function selectquery($sql, $db) {
->>>>>>> 20d3ecc2c7f13a0a3317fe1163dcab4e3a1e02cf
     $sth = $db->prepare($sql);
     $sth->execute();
     $result = $sth->fetchAll(PDO::FETCH_ASSOC);
@@ -40,30 +36,25 @@ function sortArticles($dbh) {
     for ($i = 1; $i <= count($tbl); $i++) {
 	$revTbl[$tbl[$i]] = $i;
     }
-    
+
     $str = "";
 
     $years = Array();
-    
-<<<<<<< HEAD
+
+
     foreach ($res as $row) {
-=======
-	foreach ($res as $row) {
->>>>>>> 20d3ecc2c7f13a0a3317fe1163dcab4e3a1e02cf
 	$date = new DateTime($row['date_added']);
 	$year = $date->format("Y");
 	$month = $date->format("L");
-	
-	
+
+
 	$months = Array();
-	
-	if(!isset($years[$year])) {
+
+	if (!isset($years[$year])) {
 	    $years[$year] = 1;
-	    
-	    echo("<a rel=\"".$year."\" id=\"fold-year\" href=\"#\"> >".$year." </a>");
-	    
+
+	    echo("<a rel=\"" . $year . "\" id=\"fold-year\" href=\"#\"> >" . $year . " </a>");
 	}
-	
     }
 
 
@@ -76,17 +67,14 @@ function connectToDatabase() {
     return $db;
 }
 
-function isAjax()
-{
-	if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') 
-	{
-		return true;
-	}
-	else {
-		return false;
-	}
+function isAjax() {
+    if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+	return true;
+    } else {
+	return false;
+    }
 }
 
-function getNextMonth()
-{
+function getNextMonth() {
+    
 }
