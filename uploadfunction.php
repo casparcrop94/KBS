@@ -1,24 +1,6 @@
 <?php
-$dbh = connectToDatabase();
-if (isset($_GET['action'])) {
-
-    if ($_GET['action'] == 'delete') {
-	$id = $_GET['ID'];
-	$sth = $dbh->prepare("SELECT file FROM downloads WHERE ID=:id");
-	$sth->bindParam(":id", $id, PDO::PARAM_STR);
-	$sth->execute();
-	$result = $sth->fetch(PDO::FETCH_ASSOC);
-
-	if (unlink(DOCROOT . 'uploads/' . $result["file"])) {
-	    $sth = $dbh->prepare("DELETE FROM downloads Where ID=:id");
-	    $sth->bindParam(":id", $id, PDO::PARAM_STR);
-	    $sth->execute();
-	    header("location: /admin/downloads");
-	    exit;
-	}
-    }
-}
-if (isset($_POST['submit'])) {
+function upload($_FILES)
+{
     $file = $_FILES["file"]["name"];
     $size = ($_FILES["file"]["size"] / 1024);
     // bestanden die upgeload mogen worden.
@@ -47,7 +29,8 @@ if (isset($_POST['submit'])) {
 		}
 	    }
 	}
-    } else {
+	
+    }else {
 	echo "Invalid file";
     }
 }
