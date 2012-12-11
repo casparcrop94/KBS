@@ -1,14 +1,24 @@
 <?php
+$dbh=  connectToDatabase();
+$sql=
+
+
+
+
+
 $datetoday=date("Y");
 $array = array();
 
-for ($i = $datetoday; $i >= 2012; $i--) {
-    $year=$i;
+for ($iy = $datetoday; $iy >= 2012; $iy--) {
+    
+    $year=$iy;
+    
     echo ($year);
+    
     $array[$year] = array();
 
-    for ($i = 12; $i >= 1; $i--) {
-
+    for ($im = 12; $im >= 1; $im--) {
+	$month=$im;
 	$array[$year][$month] = array();
 
 	for ($i = 0; $i <= 2100; $i++) {
