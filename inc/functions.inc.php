@@ -1,6 +1,6 @@
 <?php
 
-function selectratequery($sql, $db) {
+function selectquery($sql, $db) {
     $sth = $db->prepare($sql);
     $sth->execute();
     $result = $sth->fetchAll(PDO::FETCH_ASSOC);
@@ -41,7 +41,7 @@ function sortArticles($dbh) {
 
     $years = Array();
     
-    foreach ($res as $row) {
+	foreach ($res as $row) {
 	$date = new DateTime($row['date_added']);
 	$year = $date->format("Y");
 	$month = $date->format("L");

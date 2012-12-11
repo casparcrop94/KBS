@@ -3,7 +3,7 @@ $dbh = connectToDatabase();
 //query   
 $sql = (" SELECT servicename, pph, avgcost FROM `services` WHERE pph IS NOT NULL ");
 //execution and result
-$result = selectratequery($sql, $dbh);
+$result = selectquery($sql, $dbh);
 ?>
 <!-- Explaination of rates -->
 

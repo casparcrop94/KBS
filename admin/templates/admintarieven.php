@@ -4,7 +4,7 @@ $dbh = connectToDatabase();
 //the sql statement
 $sql = (" SELECT service_id, servicename, pph, avgcost FROM `services` ");
 //retrieving the query results
-$result = selectratequery($sql, $dbh);
+$result = selectquery($sql, $dbh);
 ?>
 <div id="rates">
     <!--Displaying the table-->
