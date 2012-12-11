@@ -39,16 +39,16 @@ $sth = $dbh->prepare("SELECT * FROM downloads");
 $sth->execute();
 $result = $sth->fetchAll(PDO::FETCH_ASSOC);
 ?>
-<div class="table">
+<div id="downloads">
 <table>
-    <tr>    
+    <tr id="head">    
         <th> Downloads </th>    
         <th> Grootte </th>
         <th> Verwijder </th>
     </tr>
     <?php foreach ($result1 as $row) {
 	?>
-        <tr>
+        <tr id="row">
     	<!-- Laat het bestand naam zien. -->
     	<td> <?php echo ($row["file"]); ?> </td>
     	<!-- Laat de size van het bestand zien in kb. -->

@@ -13,16 +13,16 @@ $dbh = connectToDatabase();
 $sql1 = "SELECT * FROM downloads LIMIT $start_from, 10";
 $result1 = selectquery($sql1, $dbh)
 ?>
-<div class="table">
+<div  id="downloads">
     <table>
-	<tr>    
+	<tr id="head">    
 	    <th> Bestanden </th>    
 	    <th> Grootte </th>
 	    <th> Download </th>
 	</tr>
 	<?php foreach ($result1 as $row) {
 	    ?>
-    	<tr>
+    	<tr id="row">
     	    <!-- Laat het bestand naam zien. -->
     	    <td> <?php echo ($row["file"]); ?> </td>
     	    <!-- Laat de size van het bestand zien in kb. -->

@@ -214,11 +214,37 @@ table input[type="text"] {
     
 }
 
+.artikel {
+    padding: 5px;
+    margin-left: 5px;
+    margin-bottom: 2px;
+}
+
+.artikel #title {
+    padding-bottom: 3px;
+}
+
+.artikel #dates {
+    text-decoration: underline;
+}
+
+.artikel #text {
+    
+}
+
 .diensten {
 	width: auto;
 	padding: 15px;
 	border: 1px solid black;
 }
-.downloads table {
-	height:40%;
-	}
+#downloads{
+    height: 300px;
+}
+
+#head{
+    height:15px;
+}
+
+#row{
+    height:15px;
+}
