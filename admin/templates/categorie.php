@@ -1,20 +1,20 @@
+<!-- AUTEUR: RICHARD VAN DEN HOORN -->
 <?php
-//Author: Richard van den Hoorn
-
 // Set connection with database into variable
 $dbh = connectToDatabase();  
 
-
-
 //define $statustext
 $statusText = "";
+$style='';
 
 //Check if case is defined
 if(isset($_GET["case"])) { 
     if($_GET["case"] == "succes") { 
         $statusText = "Categorie succesvol opgeslagen.";
+        $style="message_success";
     } else { 
         $statusText = "Categorie niet succesvol opgeslagen.";
+        $style="message_error";
     }
 }
 
@@ -68,9 +68,9 @@ $res = $sth->fetchAll(PDO::FETCH_ASSOC);
 
 <html>
     <body>
-        <?php
-        echo($statusText."<br/>");
-        ?>
+    	<div class="<?php echo $style; ?>">
+    		<p><?php echo $statusText; ?></p>
+    	</div>
 		<form action="" method="post">
         <input name="option" type="submit" value="Nieuw">
         <input name="option" type="submit" value="Publiceer">

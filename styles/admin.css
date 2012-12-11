@@ -146,3 +146,22 @@ input[type="button"] {
     padding-right: 25px;
     border-bottom: #7a8bac solid thin;
 }
+
+.message_error {
+	background-color: #e36767;
+	border:1px solid red;
+	margin-bottom:5px;
+}
+
+.message_success {
+	background-color: #4e9a3e;
+	border:1px solid green;
+	margin-bottom:5px;
+}
+
+.message_error p,
+.message_success p {
+	color: #fff;
+	padding: 5px;
+	
+}
