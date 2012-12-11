@@ -1,17 +1,30 @@
 <?php
+$array = array();
 
+for ($i = 0; $i <= 2100; $i++) {
 
+    $array[$year] = array();
 
+    for ($i = 0; $i <= 2100; $i++) {
+
+	$array[$year][$month] = array();
+
+	for ($i = 0; $i <= 2100; $i++) {
+
+	    $array[$year][$month][] = $rowArtikel;
+	}
+    }
+}
 ?>
 
 <div id="Archives">
-    <h1>Archief</h1>
+
     <div id="Archivetitle">
-	<h2>Archief</h2>
+	<h1>Archief</h1>
     </div>
-    
+
     <div id="Archive">
-	
+
     </div>
-    
+
 </div>
