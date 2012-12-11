@@ -1,4 +1,5 @@
 <?php
+
 $dbh = connectToDatabase();  // Maak verbinding met de database
 $statusText = "";
 
