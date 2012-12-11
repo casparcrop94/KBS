@@ -13,6 +13,7 @@ $dbh = connectToDatabase();
 $sql1="SELECT * FROM downloads LIMIT $start_from, 10";
 $result1 = selectquery($sql1, $dbh)
 ?>
+<div>
 <table border="1">
     <tr>    
         <th> Bestanden </th>    
@@ -31,7 +32,8 @@ $result1 = selectquery($sql1, $dbh)
         </tr>    
 
     <?php } ?> 
-</table>
+	</table>
+</div>
 <?php
 //db
 $sql2="SELECT * FROM downloads";
@@ -40,8 +42,13 @@ $result2=selectquery($sql2, $dbh);
 $total_records = count($result2);
 //het aantal pages, aantal pages wordt berekend door het aantal records delen door 10
 $total_pages = ceil($total_records / 10);
+?>
+<div>
+    <?php
 //$1 staat voor de pagina nummer, begint op 1
-for ($i = 1; $i <= $total_pages; $i++) {
+    for ($i = 1; $i <= $total_pages; $i++) {
 //$1 (de pagina nummer) komt achter de url de staan en wordt weergegeven als $1 onder de tabel
-    echo "<a href='/downloads/" . $i . "'>" . $i . "</a> ";
-};
+	echo "<a href='/downloads/" . $i . "'>" . $i . "</a> ";
+    };
+    ?>
+</div>
