@@ -1,12 +1,16 @@
 <?php
 $array = array();
 
-for(){
+for($i=0;$i<= 2100;$i++){
     
     $array[$year] = array();
-    for($array[$year]){
+    
+    for($i=0;$i<= 2100;$i++){
+	
 	$array[$year][$month] = array();
-	for(){
+	
+	for($i=0;$i<= 2100;$i++){
+	    
 	    $array[$year][$month][] = $rowArtikel;
 	}
     }
