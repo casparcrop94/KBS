@@ -31,6 +31,8 @@ if(!file_exists(DOCROOT . 'admin/templates/' . $page . '.php'))
 		<script type="text/javascript" src="/scripts/jquery.1.8.3.js"></script>
 		<script type="text/javascript" src="/scripts/jquery_ui.1.9.2.js"></script>
 		<script type="text/javascript" src="/scripts/admin.js"></script>
+		<script type="text/javascript" src="/scripts/tiny_mce/tiny_mce.js"></script>
+		<script type="text/javascript" src="/scripts/tiny_mce/tiny_mce.init.js"></script>
 	</head>
 	<body>
 		<div id="wrapper">
@@ -50,7 +52,7 @@ if(!file_exists(DOCROOT . 'admin/templates/' . $page . '.php'))
 					</ul>
 				</div>
 			</div>
-			<div id="content">
+			<div id="content" class="<?php echo $page;?>">
 				<?php include DOCROOT . 'admin/templates/' . $page . '.php';?>
 			</div>
 			<div id="footer"></div>

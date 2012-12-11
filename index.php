@@ -43,7 +43,6 @@ if (!file_exists(DOCROOT . 'templates/' . $page . '.php')) {
 			<li><a href="/contact">Contact</a></li>
 			<li><a href="/tarieven">Tarieven</a></li>
 			<li><a href="/archief">Archief</a></li>
-
 		    </ul>
 		</div>
 	    </div>
