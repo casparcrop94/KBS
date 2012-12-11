@@ -39,7 +39,7 @@ $sth = $dbh->prepare("SELECT * FROM downloads");
 $sth->execute();
 $result = $sth->fetchAll(PDO::FETCH_ASSOC);
 ?>
-
+<div class="table">
 <table>
     <tr>    
         <th> Downloads </th>    
@@ -59,6 +59,7 @@ $result = $sth->fetchAll(PDO::FETCH_ASSOC);
 
     <?php } ?>       
 </table>
+</div>
 <!-- Het formulier van documenten uploaden. -->    
 <form action="" method="post"
       enctype="multipart/form-data">
