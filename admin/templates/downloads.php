@@ -40,7 +40,7 @@ $sth->execute();
 $result = $sth->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <div id="downloads">
-<table>
+<table class="hover">
     <tr id="head">    
         <th> Downloads </th>    
         <th> Grootte </th>

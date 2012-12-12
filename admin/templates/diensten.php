@@ -77,7 +77,7 @@ function haalartikelop($id){
 }
 
 ?>
-<div id="rates">
+<div>
 <?php
         echo($statusText."<br/>");
         ?>
@@ -88,13 +88,13 @@ function haalartikelop($id){
 	<input name="option" type="submit" value="Verwijderen">
 	
     <!--Displaying the table-->
-    <table border="1">
+    <table class="hover">
 
 	<!--Displaying the tablehead-->
         <thead>
         
             <tr>
-            	<th width="50" align="center"><input name="checkall" type="checkbox" value="check" id="checkall"></th>
+            	<th width="50" class="center"><input name="checkall" type="checkbox" value="check" id="checkall"></th>
                 <th>Dienst</th>
                 <th>Omschrijving</th>
                 <th>Gepubliceerd</th>
@@ -110,7 +110,7 @@ function haalartikelop($id){
 		?>
     	    <tr>
     	    	<?php
-    	    	echo("<td align=center><input name=id[] type=checkbox value=".$row['service_id']."></td>");
+    	    	echo("<td class='center'><input name=id[] type=checkbox value=".$row['service_id']."></td>");
     	    	?>
     			<!--displays the service name-->
     			<td><a href="/admin/diensten/bewerk/<?php echo($row["service_id"]) ?>"><?php echo($row["servicename"]) ?></a> </td>
