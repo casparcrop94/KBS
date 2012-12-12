@@ -4,7 +4,7 @@ $datetoday=date("Y");
 $array = array();
 
 function retreivearchive($dyear,$dmonth,$dbh){
-    $sql="";
+    $sql="SELECT";
 }
 
 for ($iy = $datetoday; $iy >= 2012; $iy--) {
