@@ -66,8 +66,6 @@ $sth->execute();
 $res = $sth->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
-<html>
-    <body>
     	<div class="<?php echo $style; ?>">
     		<p><?php echo $statusText; ?></p>
     	</div>
@@ -96,5 +94,4 @@ $res = $sth->fetchAll(PDO::FETCH_ASSOC);
             ?>
         </table>
         </form>
-    </body>
-</html>
+ 
