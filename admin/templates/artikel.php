@@ -51,7 +51,7 @@ echo($statusText . "<br/>\n");
     <input type="submit" name="option" value="Verwijder"/>
     <input type="submit" name="option" value="Publiceer"/>
     <input type="submit" name="option" value="Depubliceer"/>
-    <br/>
+
     <table class="hover">
 	<tr>
 	    <th class="center"><input type="checkbox" id="checkall" value=""/></th>

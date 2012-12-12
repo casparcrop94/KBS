@@ -26,6 +26,12 @@ $result = getAgendaMonth();
 <input type="hidden" value="<?php echo $result['month']?>" id="current_month" />
 <input type="hidden" value="<?php echo $result['year']?>" id="current_year" />
 <div id="bubble-main">
+	<div>
+		<form>
+			<h3>Afspraak</h3>
+			Wanneer
+		</form>
+	</div>
 	<div class="bottom-prong">
 		<div class="prong-dk"></div>
 		<div class="prong-lt"></div>

@@ -232,11 +232,6 @@ table input[type="text"] {
     
 }
 
-.diensten {
-	width: auto;
-	padding: 15px;
-	border: 1px solid black;
-}
 #downloads{
     height: 300px;
 }
@@ -248,3 +243,18 @@ table input[type="text"] {
 #row{
     height:15px;
 }
+
+.diensten {
+	width: auto;
+}
+
+.cell {
+	width: 50%;
+	padding: 10px;
+	border: 1px solid;
+}
+
+.downloads .table {
+	height:40%;
+	}
+>>>>>>> 734bbdf989c1f38e7d4bf4ec6c88ed9ee101cbc6
