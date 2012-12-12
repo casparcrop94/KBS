@@ -96,7 +96,7 @@ if ($option == 'new') {
 
 function haalartikelenop() {
 	$db = connectToDatabase ();
-	$sth = $db->prepare ( "SELECT * FROM article WHERE cat_id=(SELECT cat_id FROM category WHERE name='Diensten')" );
+	$sth = $db->prepare ( "SELECT * FROM article WHERE cat_id=(SELECT cat_id FROM category WHERE name='Diensten') and published=1" );
 	$sth->execute ();
 	$articles = $sth->fetchAll ( PDO::FETCH_ASSOC );
 	

@@ -14,7 +14,7 @@ $res = $sth->fetchAll(PDO::FETCH_ASSOC);
                 	if($i==0){
                 		echo("<tr>");
                 	}
-                    echo("<td class=cell style='cursor: pointer' onclick=window.location='".$row['article_id']."' >");
+                    echo("<td class=cell style='cursor: pointer' onclick=window.location='artikel/".$row['article_id']."' >");
                     echo("<div class=title><h2>".$row['servicename']."</h2></div>");
                     echo("<br /><div class=discription>".$row['servicetext']."</div>");
                     echo("</td>");
