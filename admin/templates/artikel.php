@@ -42,9 +42,6 @@ $sth->execute();
 $res = $sth->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
-<?php
-echo($statusText . "<br/>\n");
-?>
 <form action="" method="post">
     <input type="button" onclick="window.location = '/admin/categorie/nieuw'" value="Nieuwe categorie"/>
     <input type="button" onclick="window.location = '/admin/artikel/nieuw'" value="Nieuw artikel"/>
