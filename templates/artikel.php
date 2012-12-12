@@ -9,15 +9,18 @@ if(isset($_GET['id'])) {
     $res = $sth->fetchAll(PDO::FETCH_ASSOC);
     
     foreach($res as $row) {
+	$date = date("d-m-Y H:i:s", strtotime($row['date_added']));
+	$datee = date("d-m-Y H:i:s", strtotime($row['date_edited']));
+	
 ?>
 
 <div class="artikel" id="title">
     <h2><?php echo $row['title'] ?></h2>
 </div>
 <div class="artikel" id="dates">
-    <i>Aangemaakt: <?php echo $row['date_added'] ?></i>
-    <?php if($row['date_added'] != $row['date_edited']) {?>
-    <i><br/>Laatst gewijzigd: <?php echo $row['date_edited'] ?></i>
+    <i>Aangemaakt: <?php echo $date ?></i>
+    <?php if($date != $datee) {?>
+    <i><br/>Laatst gewijzigd: <?php echo $datee ?></i>
     <?php } ?>
 </div>
 <div class="artikel" id="text">
