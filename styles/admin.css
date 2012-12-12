@@ -6,6 +6,7 @@
 
 html {
 	font-family: Arial, Helvetica;
+	font-size: 14px;
 }
 
 body {
@@ -265,13 +266,20 @@ table.hover tr:hover > td {
 
 #bubble-main {
 	display: none;
-	width: 290px;
+	width: 350px;
 	height: 150px;
 	position: absolute;
 	background-color: #fff;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
+#bubble-content {
+	padding: 10px;
+}
+
+.agenda #bubble-content table tr:nth-child(even) {
+	background-color: #fff;
+}
 
 .bottom-prong {
 	left: 48%;

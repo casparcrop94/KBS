@@ -2,6 +2,8 @@ $(document).ready(function()
 {
 	$('#next_month').click(function(e)
 	{
+		hideBubble();
+		
 		e.preventDefault();
 		var year = parseInt($('#current_year').val());
 		var month = parseInt($('#current_month').val());
@@ -29,6 +31,8 @@ $(document).ready(function()
 	
 	$('#previous_month').click(function(e)
 	{
+		hideBubble();
+		
 		e.preventDefault();
 		var year = parseInt($('#current_year').val());
 		var month = parseInt($('#current_month').val());
@@ -55,23 +59,25 @@ $(document).ready(function()
 		});
 	});
 	
-	$('.ag-day').click(function(e)
+	$('.ag-day').live('click', function(e)
 	{
 		if($(this).hasClass('active'))
 		{
-			$(this).removeClass('active');
-			$('#bubble-main').hide();
+			hideBubble();
 		}
 		else {
-			$('.active').each(function(){
-				$(this).removeClass('active');
-			})
+			hideBubble();
+			
 			$(this).addClass('active');
 			var clicked_block = $(this);
 			var parent = $(this).parents('.ag-month-row');
 			
 			var top = parent.position().top - 35;
-			var left = clicked_block.position().left;
+			var left = clicked_block.position().left - 30;
+			
+			var date = clicked_block.children('.ag-date').val();
+
+			$('#bubble-main #selected-date').html(date);
 			
 			$('#bubble-main').show();
 			$('#bubble-main').css({
@@ -81,4 +87,13 @@ $(document).ready(function()
 		}
 		
 	});
+	
+	function hideBubble()
+	{
+		$('.active').each(function(){
+			$(this).removeClass('active');
+		});
+
+		$('#bubble-main').hide();
+	}
 });

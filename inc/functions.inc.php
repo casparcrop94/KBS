@@ -174,22 +174,26 @@ function getAgendaMonth($month = false, $year = false)
 			else if($continue && $curr_day == $total_days && !$finished_month)
 			{
 				$cal[$week][$day]['day'] = '<span>' . $curr_day . '</span>';
+				$cal[$week][$day]['date'] = $curr_day;
 				$curr_day = 1;
 				$finished_month = true;
 			}
 			else if ($finished_month)
 			{
 				$cal[$week][$day]['day'] = '<span class="ag-non-month">' . $next_days[$curr_day - 1] . '</span>';
+				$cal[$week][$day]['date'] = $next_days[$curr_day - 1];
 				$curr_day++;
 			}
 			else {
 				$cal[$week][$day]['day'] = '<span class="ag-non-month">' . $previous_days[($day - 1)] . '</span>';
+				$cal[$week][$day]['date'] = $previous_days[($day - 1)];
 			}
 		}
 	}
 
 	$counter = 0; 
 	$data = '';
+	$month_name = ucFirst(strftime('%B',mktime(0,0,0, $month, 1, $year)));
 	
 	foreach($cal as $week)
 	{
@@ -200,12 +204,16 @@ function getAgendaMonth($month = false, $year = false)
 					$data .= '<tr>';
 					foreach($week as $date => $day)
 					{
+						$day_name = ucFirst(strftime('%A',mktime(0,0,0, $month, $day['date'], $year)));
 						$today = '';
 						if (isset($day['date']) && $day['date'] == $day_today && $month == $month_today)
 						{
 							$today = ' day-today';
 						}
-						$data .= '<td class="ag-day' . $today . '">' . $day['day'] . '</td>';
+						$data .= '<td class="ag-day' . $today . '">';
+						$data .= $day['day'];
+						$data .= '<input type="hidden" value="' . $day_name . ', ' . $day['date'] . ' ' . $month_name .'" class="ag-date"/>';
+						$data .= '</td>';
 					}
 					$data .= '</tr>';
 				$data .= '</tbody>';
@@ -217,7 +225,7 @@ function getAgendaMonth($month = false, $year = false)
 	$result = array(
 			'data' => $data,
 			'month' => $month,
-			'month_name' => ucFirst(strftime('%B',mktime(0,0,0, $month, 1, $year))),
+			'month_name' => $month_name,
 			'year' => $year
 	);
 

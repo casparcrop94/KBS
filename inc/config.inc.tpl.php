@@ -10,4 +10,4 @@ define('DB_DATABASE', 'kbs');
 
 define('EMAIL_KLANT', 'maartendeboy@hotmail.com');
 date_default_timezone_set('Europe/Amsterdam');
-setlocale(LC_ALL, array('Dutch_Netherlands', 'Dutch', 'nl_NL', 'nl', 'nl_NL.UTF-8'));
+setlocale(LC_TIME, array('Dutch_Netherlands', 'Dutch', 'nl_NL', 'nl', 'nl_NL.UTF-8'));
