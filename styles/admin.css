@@ -6,6 +6,7 @@
 
 html {
 	font-family: Arial, Helvetica;
+	font-size: 14px;
 }
 
 body {
@@ -39,11 +40,42 @@ input[type="button"] {
 	border: 2px solid #456196;
 	background-color: #7a8bac;
 	color: #fff;
+	margin: 0 0 5px;
 }
+
+table {
+	width: 100%;
+	border: 1px solid #7a8bac;
+	border-collapse: collapse;
+}
+
+table tr th {
+	color: #7a8bac;
+    border-bottom: #7a8bac solid 1px;
+}
+
+table tr th,
+table tr td {
+	padding: 2px 0;
+	text-align: left;
+}
+
+table tr th.center,
+table tr td.center {
+	text-align: center;
+}
+
+table tr:nth-child(even) {
+	background: #fff;
+}
+
+table.hover tr:hover > td {
+	background-color: #fae8cb;
+} 
 
 #login-form {
 	width: 150px;
-	height: 110px;
+	height: 130px;
 	margin: auto;
 	position: relative;
 	top: 25%;
@@ -54,6 +86,8 @@ input[type="button"] {
 #login-form table {
 	width: 100%;
 	text-align: center;
+	border: none;
+	border-collapse: separate;
 }
 
 #login-form table input[type="submit"] {
@@ -112,39 +146,10 @@ input[type="button"] {
 	padding: 5px 10px;
 }
 
-#rates{
-    position: absolute;
-    height:800px;
-    width: 960px;
-
-}
-
 #ratewarning{
     margin-bottom: 25px;
     height:40px;
     width:525px;
-}
-
-#ratetable{
-    width:750px;
-    border-color: #7a8bac;
-    border-right-style: inset;
-    border-left-style: inset;
-    border-bottom-style: inset;
-    border-top-style: inset;
-    border-right-width: 3px;
-    border-left-width: 3px;
-    border-bottom-width: 3px;
-    border-top-width: 3px;
-}
-.ratetablecollumn{
-    padding-right: 25px;
-}
-
-.thrate{
-    color: #7a8bac;
-    padding-right: 25px;
-    border-bottom: #7a8bac solid thin;
 }
 
 .message_error {
@@ -178,17 +183,164 @@ input[type="button"] {
     height:15px;
 }
 
-table {
-	width: 100%;
-	border: 1px solid #7a8bac;
+
+.agenda {
+	height: 93.5%;
+	position: relative;
 }
 
-table tr th {
-	color: #7a8bac;
-    border-bottom: #7a8bac solid thin;
+.agenda table {
+	border: none;
 }
 
-table tr th,
-table tr td {
-	padding: 2px 0;
+.agenda table tr:nth-child(even) {
+	background-color: #f5f5f5;
 }
+
+.agenda #ag-page {
+	position: relative;
+	height: 92.5%;
+}
+
+.agenda #ag-container {
+	bottom: 0;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    top: 25px;
+    width: 100%;
+}
+
+.agenda table.ag-grid {
+	height: 100%;
+	border-right: 1px solid #7a8bac;
+}
+
+.agenda .ag-month-row {
+	left: 0;
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+}
+
+.agenda #ag-days {
+    table-layout: fixed;
+    width: 100%;
+}
+
+.agenda #ag-days tr td {
+	font-size: 12px;
+    font-weight: normal;
+    padding: 0 0 0 10px;
+    text-align: left;
+}
+
+.agenda .ag-day {
+    line-height: 16px;
+    overflow: hidden;
+    padding: 4px 9px 0;
+	width: 10%;
+	vertical-align: top;
+	border-bottom: 1px solid #7A8BAC;
+    border-left: 1px solid #7A8BAC;
+}
+
+.agenda .day-today {
+	background: none repeat scroll 0 0 #EAEAEA;
+}
+
+.agenda #ag-days tr th.ag-day {
+	border-left: none;
+    padding: 4px 9px;
+}
+
+.agenda #agenda_month {
+	height: 100%;
+}
+
+.agenda span.ag-non-month {
+	color: #aaa;
+}
+
+
+
+#bubble-main {
+	display: none;
+	width: 350px;
+	height: 150px;
+	position: absolute;
+	background-color: #fff;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#bubble-content {
+	padding: 10px;
+}
+
+.agenda #bubble-content table tr:nth-child(even) {
+	background-color: #fff;
+}
+
+.bottom-prong {
+	left: 48%;
+    bottom: -9px;
+    height: 9px;
+    overflow: hidden;
+    position: absolute;
+    width: 18px;
+}
+
+.prong-dk, .prong-lt {
+    left: 0;
+    position: absolute;
+    top: 0;
+}
+
+.bottom-prong .prong-dk, .bottom-prong .prong-lt {
+    border-bottom-width: 0;
+}
+
+.prong-dk {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: #CCCCCC transparent;
+    border-image: none;
+    border-style: solid;
+    border-width: 9px;
+}
+
+.bottom-prong .prong-dk, .bottom-prong .prong-lt {
+    border-bottom-width: 0;
+}
+
+.prong-lt {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: #FFFFFF transparent;
+    border-image: none;
+    border-style: solid;
+    border-width: 8px;
+    left: 1px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
