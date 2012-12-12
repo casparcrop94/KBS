@@ -211,14 +211,18 @@ table input[type="text"] {
 
 .zoekresultaat a{
     margin-left: 30px;
-    
 }
 
 .diensten {
 	width: auto;
-	padding: 15px;
-	border: 1px solid black;
 }
+
+.cell {
+	width: 50%;
+	padding: 10px;
+	border: 1px solid;
+}
+
 .downloads .table {
 	height:40%;
 	}
