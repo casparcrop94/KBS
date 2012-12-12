@@ -211,6 +211,37 @@ table input[type="text"] {
 
 .zoekresultaat a{
     margin-left: 30px;
+    
+}
+
+.artikel {
+    padding: 5px;
+    margin-left: 5px;
+    margin-bottom: 2px;
+}
+
+.artikel #title {
+    padding-bottom: 3px;
+}
+
+.artikel #dates {
+    text-decoration: underline;
+}
+
+.artikel #text {
+    
+}
+
+#downloads{
+    height: 300px;
+}
+
+#head{
+    height:15px;
+}
+
+#row{
+    height:15px;
 }
 
 .diensten {
@@ -226,3 +257,4 @@ table input[type="text"] {
 .downloads .table {
 	height:40%;
 	}
+>>>>>>> 734bbdf989c1f38e7d4bf4ec6c88ed9ee101cbc6

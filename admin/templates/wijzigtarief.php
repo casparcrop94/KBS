@@ -28,6 +28,7 @@ if (isset($_POST['Verander!'])) {
     //retrieving resulted data
     $row = $sth->fetch(PDO::FETCH_ASSOC);
     ?>
+<!--Form for input of price per hour and average price-->
     <form action="" method="POST">
         <input type="hidden" name="id" value="<?php echo($id); ?>">
         <table>

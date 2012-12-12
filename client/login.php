@@ -1,10 +1,21 @@
 <?php
 session_start();
-include_once(DOCROOT . 'inc/mysql.inc.php'); // bevat functie om verbinding te maken met een database
+
+include_once(DOCROOT . 'inc/functions.inc.php'); // bevat functie om verbinding te maken met een database
+
+if(isset($_GET['action']) && $_GET['action'] == 'logout')
+{
+	unset($_SESSION['client']);
+	session_destroy();
+	header('location:/client/login');
+	exit;
+}
+
 
 if(isset($_SESSION['client']) && $_SESSION['client'] == true)
 {
 	header('location:/client/home');
+	exit;
 }
 
 if(isset($_POST['submit']))

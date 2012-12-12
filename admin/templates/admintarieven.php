@@ -1,8 +1,16 @@
 <?php
 //connecting to the database
 $dbh = connectToDatabase();
+//checking page number
+if (isset($_GET["page"])) {
+    $page = $_GET["page"];
+} else {
+    $page = 1;
+};
+//display 20 items per page
+$start_from = ($page - 1) * 20; 
 //the sql statement
-$sql = (" SELECT service_id, servicename, pph, avgcost FROM `services` ");
+$sql = (" SELECT service_id, servicename, pph, avgcost FROM `services` LIMIT $start_from, 20");
 //retrieving the query results
 $result = selectquery($sql, $dbh);
 ?>
@@ -40,4 +48,18 @@ $result = selectquery($sql, $dbh);
         </tbody>
 
     </table>
+    <?php
+//sql statement
+$sql2 = "SELECT * FROM services";
+$result2 = selectquery($sql2, $dbh);
+//calculate total records
+$total_records = count($result2);
+//calculate pages by dividing total records by 20
+$total_pages = ceil($total_records / 20);
+//$i stands for the page number and starts at one
+for ($i = 1; $i <= $total_pages; $i++) {
+//$i (page number) implemented in link below table
+    echo "<a href='/admin/admintarieven/" . $i . "'>" . $i . "</a> ";
+};
+?>
 </div>

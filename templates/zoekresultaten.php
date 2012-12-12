@@ -6,7 +6,7 @@ Auteur: Maarten Engels
 
 <?php
 //Het woord dat ingevuld wordt in de zoekbalk wordt opgehaald en gebruikt als attribuut.
-$zoekwoord = $_GET["zoekwoord123"];
+$zoekwoord = $_POST["zoekwoord123"];
 
 //Zelfafhandelend formulier waarbij er naar resultatenpagina 1 gaat als er nog geen paginanummer is opgegeven
 if (isset($_GET["page"])) {
@@ -28,9 +28,9 @@ $sth->execute();
 $result = $sth->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
-<?php
+<?php 
+echo "U heeft gezocht op $zoekwoord ";
 //De functie( foreach() ) om de zoekresultaten te laten zien voor het attribuut $zoekwoord, als het aantal resultaten groter is dan 0 wordt er geen foutmelding weergegeven
-echo 'U heeft gezocht op "$zoekwoord"';
 if (count($result) > 0) {
     foreach ($result as $row) {
 	?>

@@ -6,6 +6,8 @@ ob_start();
 error_reporting(E_ALL | E_STRICT);
 ini_set('display_errors', 1);
 
+include DOCROOT . 'inc/functions.inc.php'; // bevat functie om verbinding te maken met een database
+
 if(!isset($_SESSION['client']) && $_SESSION['client'] != true)
 {
 	header('location:/client/login');
@@ -23,16 +25,29 @@ if(!file_exists(DOCROOT . 'client/templates/' . $page . '.php'))
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<title>Juridische hulp - Cli&euml;nt gedeelte</title>
 		<link rel="stylesheet" type="text/css" href="/styles/client.css" />
+		<link rel="stylesheet" type="text/css" href="/styles/jqueryui/jquery-ui-1.9.2.custom.min.css" />
 		
 		<script type="text/javascript" src="/scripts/jquery.1.8.3.js"></script>
-		<!-- <script type="text/javascript" src="/scripts/client.js"></script> -->
+		<script type="text/javascript" src="/scripts/jquery_ui.1.9.2.js"></script>
+		<script type="text/javascript" src="/scripts/tiny_mce/tiny_mce.js"></script>
+		<script type="text/javascript" src="/scripts/tiny_mce/tiny_mce.init.js"></script>
 	</head>
 	<body>
 		<div id="wrapper">
-			<div id="content">
-				<div id="content">
-					<?php include DOCROOT . 'client/templates/' . $page . '.php';?>
+			<div id="header">
+				<div id="menu">
+					<ul>
+						<li><a href="/client/home">Home</a></li>
+						<li><a href="/client/agenda">Agenda</a></li>
+						<li><a href="/client/messages">Berichten</a></li>
+						<li class="login_menu_item">
+							<a href="/client/logout">Uitloggen</a>
+						</li>
+					</ul>
 				</div>
+			</div>
+			<div id="content">
+				<?php include DOCROOT . 'client/templates/' . $page . '.php';?>
 			</div>
 			<div id="footer"></div>
 		</div>

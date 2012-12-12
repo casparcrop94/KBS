@@ -165,3 +165,30 @@ input[type="button"] {
 	padding: 5px;
 	
 }
+
+#downloads{
+    height: 560px;
+}
+
+#head{
+    height:15px;
+}
+
+#row{
+    height:15px;
+}
+
+table {
+	width: 100%;
+	border: 1px solid #7a8bac;
+}
+
+table tr th {
+	color: #7a8bac;
+    border-bottom: #7a8bac solid thin;
+}
+
+table tr th,
+table tr td {
+	padding: 2px 0;
+}
