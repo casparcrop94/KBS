@@ -78,9 +78,6 @@ function haalartikelop($id){
 
 ?>
 <div>
-<?php
-        echo($statusText."<br/>");
-        ?>
 <form action="" method="post">
 	<input name="option" type="submit" value="Nieuw">
 	<input name="option" type="submit" value="Publiceer">
