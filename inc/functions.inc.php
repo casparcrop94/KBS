@@ -1,4 +1,6 @@
 <?php
+
+//function author: caspar crop
 function selectquery($sql, $db) {
 	$sth = $db->prepare ( $sql );
 	$sth->execute ();
@@ -266,5 +268,42 @@ function upload($files) {
 	}
 }
 
+//function author: caspar crop
+function archivemonths($dmonth){
+    //create archive
+    $month= array();
+    //fill the array with the months
+    $month[1]='Januari';
+    $month[2]='Februari';
+    $month[3]='Maart';
+    $month[4]='April';
+    $month[5]='Mei';
+    $month[6]='Juni';
+    $month[7]='Juli';
+    $month[8]='Augustus';
+    $month[9]='September';
+    $month[10]='Oktober';
+    $month[11]='November';
+    $month[12]='December';
 
+    //make the function return the months name
+    return $month[$dmonth];
+}
+
+//function author: caspar crop
+function retreivearchive($dyear, $dmonth, $dbh) {
+    //sql statement (retreiving the published news and order it by date it was last changed at)
+    $sql = "SELECT ID, date_edited, title, TEXT, published
+	    FROM article
+	    WHERE (cat_id =10 AND published =1)
+		    AND (date_edited LIKE  '%$dyear-$dmonth-%')
+	    ORDER BY date_edited";
+    //executing the query
+    $sth = $dbh->prepare($sql);
+    $sth->execute();
+    //getting results in from the query
+    $result = $sth->fetchAll(PDO::FETCH_ASSOC);
+    //make the function retreive the articles asked for
+    return $result;
+}
 ?>

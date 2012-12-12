@@ -1,3 +1,4 @@
+<!--Author: Caspar Crop-->
 <?php
 $dbh = connectToDatabase();
 //checking if form is filled in and submitted

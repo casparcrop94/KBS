@@ -206,7 +206,7 @@ table input[type="text"] {
 .zoekresultaat{
     padding: 5px;
     border-bottom: 1px solid #333;
-    margin-bottom: 7 px;
+    margin-bottom: 7px;
 }
 
 .zoekresultaat a{
@@ -257,4 +257,28 @@ table input[type="text"] {
 .downloads .table {
 	height:40%;
 	}
->>>>>>> 734bbdf989c1f38e7d4bf4ec6c88ed9ee101cbc6
+	
+#Archives{
+	margin-left:25px;    
+	}
+	
+#Archivetitle{
+	 text-decoration-line: underline;
+	 text-decoration-color: #768093;
+	}
+	
+#Archive{
+	margin-left: 10px;  
+	}
+	
+#archiveyear{
+	margin-left: 5px;
+
+	padding: 5px;
+	}
+	
+#archivemonth{
+	margin-left: 5px;
+
+	padding: 5px
+	}
