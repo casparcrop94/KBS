@@ -281,3 +281,22 @@ table input[type="text"] {
 	list-style: none;
 	padding: 5px;
 	}
+	
+#home-upper{
+	height: 300px;
+	border: 1px #000 solid;
+	}	
+	
+#home-about{
+	width: 400px;
+	border: 1px #000 solid;
+	}	
+	
+#home-links{
+	border: 1px #000 solid;
+	width: 270px;
+	}
+	
+#home-news{
+	border: 1px #000 solid;    
+	}
