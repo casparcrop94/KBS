@@ -107,7 +107,7 @@ function haalartikelenop() {
 <form action="" method="post">
 	<input name="option" type="hidden" value="<?php echo $option; ?>" /> <input
 		name="service_id" type="hidden" value="<?php echo $service_id; ?>" />
-	<table>
+	<table class="simple-table">
 		<tr>
 			<td colspan="2">Titel:</td>
 		</tr>

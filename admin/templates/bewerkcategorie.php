@@ -96,7 +96,7 @@ elseif($option=='edit'){
 <form action="" method="post">
 <input name="option" type="hidden" value="<?php echo $option; ?>" />
 <input name="id" type="hidden" value="<?php echo $id; ?>" />	
-<table>
+<table class="simple-table">
 	<tr>
     	<td colspan="2">
         	Naam:
