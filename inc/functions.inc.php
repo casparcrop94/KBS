@@ -285,4 +285,20 @@ function retreivearchive($dyear, $dmonth, $dbh) {
     return $result;
 }
 
+//function author: caspar crop
+function retreivenewsarticle($dbh) {
+     //sql statement (retreiving the published news and order it by date it was last changed at)
+     $sql = "SELECT title, TEXT
+ 	    FROM article
+ 	    WHERE (cat_id =10 AND published =1)
+ 	    ORDER BY date_added
+ 	    LIMIT 0, 3";
+     //executing the query
+     $sth = $dbh->prepare($sql);
+     $sth->execute();
+     //getting results in from the query
+     $result = $sth->fetchAll(PDO::FETCH_ASSOC);
+     //make the function retreive the articles asked for
+     return $result;
+}
 ?>
