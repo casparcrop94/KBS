@@ -71,7 +71,16 @@ table tr:nth-child(even) {
 
 table.hover tr:hover > td {
 	background-color: #fae8cb;
-} 
+}
+
+table.simple-table {
+	border-collapse: separate;
+	border: none;
+}
+
+table.simple-table tr:nth-child(even) {
+	background: transparent;
+}
 
 #login-form {
 	width: 150px;
