@@ -20,4 +20,12 @@ $("#fold-month").live("click", function(event){
 	event.preventDefault();
 });
 
+	$('#menu li').has('ul').hover(function(){
+		$(this).addClass('current').children('ul').show();
+		//$(this).next().show();
+	}, function(){
+		//$(this).next().hide();
+		$(this).removeClass('current').children('ul').hide();
+	});
+
 });

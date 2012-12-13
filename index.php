@@ -36,8 +36,48 @@ if (!file_exists(DOCROOT . 'templates/' . $page . '.php')) {
 		<div id="menu">
 		    <ul>
 			<li><a href="/home">Home</a></li>
-			<li><a href="/bedrijven">Bedrijven</a></li>
-			<li><a href="/particulier">Particulier</a></li>
+			<li>
+				<span>Bedrijven</span>
+				<ul class="sub-menu">
+					<li>
+						<span>Arbeidsrecht</span>
+						<ul>
+							<li><a href="/bedrijven/arbeidsrecht/werk-en-ontslag">Werk en ontslag</a></li>
+							<li><a href="/bedrijven/arbeidsrecht/uitkering">Uitkering</a></li>
+						</ul>
+					</li>
+					<li>
+						<span>Contractenrecht</span>
+						<ul>
+							<li><a href="/bedrijven/contractrechten/wonen">Wonen</a></li>
+							<li><a href="/bedrijven/contractrechten/reizen">Reizen</a></li>
+							<li><a href="/bedrijven/contractrechten/verkeer">Verkeer</a></li>
+							<li><a href="/bedrijven/contractrechten/internet-energie">Internet/energie</a></li>
+						</ul>	
+					</li>
+				</ul>
+			</li>
+			<li>
+				<span>Particulier</span>
+				<ul class="sub-menu">
+					<li>
+						<span>Arbeidsrecht</span>
+						<ul>
+							<li><a href="/particulier/arbeidsrecht/werk-en-ontslag">Werk en ontslag</a></li>
+							<li><a href="/particulier/arbeidsrecht/uitkering">Uitkering</a></li>
+						</ul>
+					</li>
+					<li>
+						<span>Contractenrecht</span>
+						<ul>
+							<li><a href="/particulier/contractrechten/wonen">Wonen</a></li>
+							<li><a href="/particulier/contractrechten/riezen">Reizen</a></li>
+							<li><a href="/particulier/contractrechten/verkeer">Verkeer</a></li>
+							<li><a href="/particulier/contractrechten/internet-energie">Internet/energie</a></li>
+						</ul>	
+					</li>
+				</ul>
+			</li>
 			<li><a href="/diensten">Diensten</a></li>
 			<li><a href="/downloads">Downloads</a></li>
 			<li><a href="/contact">Contact</a></li>
