@@ -21,7 +21,7 @@ if (isset($_GET['action'])) {
 	$sth->bindParam(":id", $id, PDO::PARAM_STR);
 	$sth->execute();
 	$result = $sth->fetch(PDO::FETCH_ASSOC);
-
+//Delete functie, hier wordt de bestanden uit de map uploads, uit de database en van de site verwijdert.
 	if (unlink(DOCROOT . 'uploads/' . $result["file"])) {
 	    $sth = $dbh->prepare("DELETE FROM downloads Where ID=:id");
 	    $sth->bindParam(":id", $id, PDO::PARAM_STR);
@@ -31,6 +31,7 @@ if (isset($_GET['action'])) {
 	}
     }
 }
+//Upload functie
 if (isset($_POST['submit'])) {
     upload($_FILES);
 }
@@ -40,25 +41,25 @@ $sth->execute();
 $result = $sth->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <div id="downloads">
-<table class="hover">
-    <tr id="head">    
-        <th> Downloads </th>    
-        <th> Grootte </th>
-        <th> Verwijder </th>
-    </tr>
-    <?php foreach ($result1 as $row) {
-	?>
-        <tr id="row">
-    	<!-- Laat het bestand naam zien. -->
-    	<td> <?php echo ($row["file"]); ?> </td>
-    	<!-- Laat de size van het bestand zien in kb. -->
-    	<td> <?php echo ($row["size"]); ?> kb </td>
-    	<!-- Verwijder functie, verwijdert uit de map en de database. -->
-    	<td> <a href="/admin/downloads/delete/<?php echo $row["ID"]; ?>">Verwijder</a></td>
-        </tr>    
+    <table class="hover">
+	<tr id="head">    
+	    <th> Downloads </th>    
+	    <th> Grootte </th>
+	    <th> Verwijder </th>
+	</tr>
+	<?php foreach ($result1 as $row) {
+	    ?>
+    	<tr id="row">
+    	    <!-- Laat het bestand naam zien. -->
+    	    <td> <?php echo ($row["file"]); ?> </td>
+    	    <!-- Laat de size van het bestand zien in kb. -->
+    	    <td> <?php echo ($row["size"]); ?> kb </td>
+    	    <!-- Verwijder functie, verwijdert uit de map en de database. -->
+    	    <td> <a href="/admin/downloads/delete/<?php echo $row["ID"]; ?>">Verwijder</a></td>
+    	</tr>    
 
-    <?php } ?>       
-</table>
+	<?php } ?>       
+    </table>
 </div>
 <?php
 //db
