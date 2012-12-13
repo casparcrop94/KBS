@@ -31,4 +31,3 @@ RewriteRule ^categorie/([a-zA-Z]+)$ /admin/index.php?p=categorie&case=$1 [NC]
 RewriteRule ^diensten/bewerk/([0-9]+)$ /admin/index.php?p=bewerkdiensten&option=edit&id=$1 [NC]
 RewriteRule ^diensten/nieuw$ /admin/index.php?p=bewerkdiensten&option=new [NC]
 RewriteRule ^diensten/([a-zA-Z]+)$ /admin/index.php?p=diensten&case=$1 [NC]
-
