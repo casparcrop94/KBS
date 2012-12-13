@@ -273,12 +273,11 @@ table input[type="text"] {
 	
 #archiveyear{
 	margin-left: 5px;
-
 	padding: 5px;
 	}
 	
 #archivemonth{
 	margin-left: 5px;
-
-	padding: 5px
+	list-style: none;
+	padding: 5px;
 	}
