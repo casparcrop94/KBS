@@ -319,3 +319,29 @@ table input[type="text"] {
 	list-style: none;
 	padding: 5px;
 	}
+	
+#home-upper{
+	height: 300px;
+	border: 1px #000 solid;
+	}	
+	
+#home-about{
+	width: 350px;
+	border: 1px #000 solid;
+	float: left;
+	}	
+	
+#home-links{
+	border: 1px #000 solid;
+	width: 270px;
+	float: right;
+	}
+	
+#home-news{
+	border: 1px #000 solid;    
+	}
+	
+#home-article{
+	margin: 5px;
+	border: 1px #000 solid;
+	}

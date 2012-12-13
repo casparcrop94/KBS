@@ -56,6 +56,7 @@ $option= isset($_GET["option"])?$_GET['option']:'new';
 
 //Check which option is to be used.
 if($option=='new'){
+	$id='';
 	$name =''; 
 	$discription ='';
 	$published =" selected";
