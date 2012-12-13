@@ -206,7 +206,7 @@ table input[type="text"] {
 .zoekresultaat{
     padding: 5px;
     border-bottom: 1px solid #333;
-    margin-bottom: 7 px;
+    margin-bottom: 7px;
 }
 
 .zoekresultaat a{
@@ -214,11 +214,24 @@ table input[type="text"] {
     
 }
 
-.diensten {
-	width: auto;
-	padding: 15px;
-	border: 1px solid black;
+.artikel {
+    padding: 5px;
+    margin-left: 5px;
+    margin-bottom: 2px;
 }
+
+.artikel #title {
+    padding-bottom: 3px;
+}
+
+.artikel #dates {
+    text-decoration: underline;
+}
+
+.artikel #text {
+    
+}
+
 #downloads{
     height: 300px;
 }
@@ -230,3 +243,42 @@ table input[type="text"] {
 #row{
     height:15px;
 }
+
+.diensten {
+	width: auto;
+}
+
+.cell {
+	width: 50%;
+	padding: 10px;
+	border: 1px solid;
+}
+
+.downloads .table {
+	height:40%;
+	}
+	
+#Archives{
+	margin-left:25px;    
+	}
+	
+#Archivetitle{
+	 text-decoration-line: underline;
+	 text-decoration-color: #768093;
+	}
+	
+#Archive{
+	margin-left: 10px;  
+	}
+	
+#archiveyear{
+	margin-left: 5px;
+
+	padding: 5px;
+	}
+	
+#archivemonth{
+	margin-left: 5px;
+
+	padding: 5px
+	}

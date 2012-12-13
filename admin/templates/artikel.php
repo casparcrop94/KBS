@@ -42,19 +42,16 @@ $sth->execute();
 $res = $sth->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
-<?php
-echo($statusText . "<br/>\n");
-?>
 <form action="" method="post">
     <input type="button" onclick="window.location = '/admin/categorie/nieuw'" value="Nieuwe categorie"/>
     <input type="button" onclick="window.location = '/admin/artikel/nieuw'" value="Nieuw artikel"/>
     <input type="submit" name="option" value="Verwijder"/>
     <input type="submit" name="option" value="Publiceer"/>
     <input type="submit" name="option" value="Depubliceer"/>
-    <br/>
-    <table border="1">
+
+    <table class="hover">
 	<tr>
-	    <th><input type="checkbox" id="checkall" value=""/></th>
+	    <th class="center"><input type="checkbox" id="checkall" value=""/></th>
 	    <th>Titel</th> 
 	    <th>Categorie</th>
 	    <th>Datum aangemaakt</th>
@@ -64,7 +61,7 @@ echo($statusText . "<br/>\n");
 <?php
 foreach ($res as $row) {       // Loop door SQL-resultaten
     echo("<tr>");
-    echo("<td><input type=\"checkbox\" value=" . $row['ID'] . " name=id[]/></td>");
+    echo("<td class='center'><input type=\"checkbox\" value=" . $row['ID'] . " name=id[]/></td>");
     echo("<td><a href='/admin/artikel/bewerk/" . $row['ID'] . "'>" . $row['title'] . "</a></td>");     // Print de titel
     echo("<td>" . $row['catname'] . "</td>");   // Print de categorie
     echo("<td>" . $row['date_added'] . "</td>");       // Print de datum

@@ -1,5 +1,3 @@
-php_value auto_prepend_file "inc\config.inc.php"
-
 Options +FollowSymlinks
 RewriteEngine on
 
