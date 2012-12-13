@@ -288,13 +288,15 @@ table input[type="text"] {
 	}	
 	
 #home-about{
-	width: 400px;
+	width: 350px;
 	border: 1px #000 solid;
+	float: left;
 	}	
 	
 #home-links{
 	border: 1px #000 solid;
 	width: 270px;
+	float: right;
 	}
 	
 #home-news{
