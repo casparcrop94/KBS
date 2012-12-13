@@ -26,5 +26,8 @@ RewriteRule ^diensten/bewerk/([0-9]+)$ /admin/index.php?p=bewerkdiensten&option=
 RewriteRule ^diensten/nieuw$ /admin/index.php?p=bewerkdiensten&option=new [NC]
 RewriteRule ^diensten/([a-zA-Z]+)$ /admin/index.php?p=diensten&case=$1 [NC]
 
-RewriteRule ^([a-zA-Z]+)$ /admin/index.php?p=$1 [NC]
 
+RewriteRule ^wijzigtarief/([0-9]+)$ /admin/index.php?p=wijzigtarief&id=$1 [NC]
+RewriteRule ^admintarieven/([0-9]+)$ /admin/index.php?p=admintarieven&page=$1 [NC]
+
+RewriteRule ^([a-zA-Z]+)$ /admin/index.php?p=$1 [NC]
