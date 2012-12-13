@@ -1,3 +1,7 @@
+<!--Author: caspar crop-->
+<?php
+$dbh=  connectToDatabase();
+?>
 <div>
     <div id="home-upper">
 	<div id="home-about">
@@ -9,7 +13,15 @@
     </div>
     
     <div id="home-news">
-	Hier komen de artikelen
+	<?php 
+	$result=  retreivenewsarticle($dbh);
+	foreach($result as $row){
+	    echo'<div id="home-article">';
+	    echo($row['title']);
+	    echo($row['TEXT']);
+	    echo'</div>';
+	}
+	?>
     </div>
     
     

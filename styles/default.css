@@ -302,3 +302,8 @@ table input[type="text"] {
 #home-news{
 	border: 1px #000 solid;    
 	}
+	
+#home-article{
+	margin: 5px;
+	border: 1px #000 solid;
+	}
