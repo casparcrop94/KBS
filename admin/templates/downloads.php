@@ -60,15 +60,6 @@ $result = $sth->fetchAll(PDO::FETCH_ASSOC);
     <?php } ?>       
 </table>
 </div>
-<!-- Het formulier van documenten uploaden. -->    
-<form action="" method="post"
-      enctype="multipart/form-data">
-    <label for="file">Bestand uploaden:</label>
-    <input type="file" name="file" id="file" />
-    <br />
-    <input type="submit" name="submit" value="Upload" />
-</form>
-
 <?php
 //db
 $sql2 = "SELECT * FROM downloads";
@@ -83,3 +74,11 @@ for ($i = 1; $i <= $total_pages; $i++) {
     echo "<a href='/admin/downloads/" . $i . "'>" . $i . "</a> ";
 };
 ?>
+<!-- Het formulier van documenten uploaden. -->    
+<form action="" method="post"
+      enctype="multipart/form-data">
+    <label for="file">Bestand uploaden:</label>
+    <input type="file" name="file" id="file" />
+    <br />
+    <input type="submit" name="submit" value="Upload" />
+</form>
