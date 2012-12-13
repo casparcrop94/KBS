@@ -105,6 +105,7 @@ table input[type="text"] {
 	color: #fff;
 	padding: 0 15px;
 	margin-top: 14px;
+	height: 36px;
 }
 
 #menu ul li a {
@@ -113,6 +114,43 @@ table input[type="text"] {
 
 #menu ul li a:hover {
 	text-decoration: underline;
+}
+
+#menu ul li ul.sub-menu,
+#menu ul li ul.sub-menu li ul {
+	display: none;
+}
+
+#menu ul li span {
+	cursor: pointer;
+}
+
+#menu ul li ul.sub-menu {
+	position: absolute;
+	z-index: 10000;
+	background-color: #768093;
+	width: 170px;
+	border-top:5px solid #fff;
+	top: 50px;
+}
+
+#menu ul li ul.sub-menu li {
+	float: none;
+	padding: 5px 10px 5px;
+	margin: 0;
+	height: 25px;
+	border-bottom: 1px solid #ccc;
+}
+
+#menu ul li ul.sub-menu li ul {
+	display: none;
+	position: relative;
+	background-color: #768093;
+	z-index: 10000;
+	left: 160px;
+	width: 200px;
+	border-left: 5px solid #fff;
+	top: -28px;
 }
 
 #content {
