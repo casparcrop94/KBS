@@ -32,7 +32,7 @@ if (isset($_POST['Verander!'])) {
 <!--Form for input of price per hour and average price-->
     <form action="" method="POST">
         <input type="hidden" name="id" value="<?php echo($id); ?>">
-        <table>
+        <table class="simple-table">
     	<tr>
     	    <td>Prijs per uur:<input type="text" name="pph" value="<?php echo($row['pph']) ?>" /></td>
     	</tr>
