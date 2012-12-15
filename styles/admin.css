@@ -208,7 +208,7 @@ table.simple-table tr:nth-child(even) {
 
 .agenda #ag-page {
 	position: relative;
-	height: 92.5%;
+	height: 90%;
 }
 
 .agenda #ag-container {
@@ -247,7 +247,7 @@ table.simple-table tr:nth-child(even) {
 .agenda .ag-day {
     line-height: 16px;
     overflow: hidden;
-    padding: 4px 9px 0;
+    /*padding: 4px 9px 0;*/
 	width: 10%;
 	vertical-align: top;
 	border-bottom: 1px solid #7A8BAC;
@@ -271,7 +271,16 @@ table.simple-table tr:nth-child(even) {
 	color: #aaa;
 }
 
+.agenda .ag-day-row {
+	clear:both;
+	padding: 2px 9px;
+}
 
+.agenda .ag-day-appointment {
+	background-color: #CAD6EC;
+    border: 1px solid #768093;
+    margin: 0 2px 2px;
+}
 
 #bubble-main {
 	display: none;

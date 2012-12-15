@@ -326,15 +326,16 @@ table input[type="text"] {
 	}	
 	
 #home-about{
-	width: 350px;
+	width: 420px;
 	border: 1px #000 solid;
 	float: left;
 	}	
 	
 #home-links{
 	border: 1px #000 solid;
-	width: 270px;
+	width: 150px;
 	float: right;
+	padding-left: 20px;
 	}
 	
 #home-news{

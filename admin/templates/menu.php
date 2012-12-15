@@ -1,0 +1,89 @@
+<!--
+Auteur: RICHARD VAN DEN HOORN
+-->
+<?php
+
+$dbh = connectToDatabase (); // Maak verbinding met de database
+
+$sth = $dbh->query ( "SELECT * FROM menu_item" );
+$sth->execute ();
+$res = $sth->fetchAll ( PDO::FETCH_ASSOC );
+
+$sth = $dbh->query ( "SELECT * FROM article WHERE cat_id=(SELECT cat_id FROM category WHERE name='Menu-items')" );
+$sth->execute ();
+$articles = $sth->fetchAll ( PDO::FETCH_ASSOC );
+
+function haalartikeltitelop($id) {
+	$dbh = connectToDatabase ();
+	$sth = $dbh->query ( "SELECT title FROM article WHERE id=$id" );
+	// $sth->bindParam ( ":id", $id );
+	$sth->execute ();
+	$articles = $sth->fetchAll ( PDO::FETCH_ASSOC );
+	
+	foreach ( $articles as $row ) {
+		$article = $row ['title'];
+	}
+	
+	return $article;
+}
+
+if (isset ( $_POST ['submit'] )) {
+	$article_id = $_POST ['article_id'];
+	$id = $_POST ['id'];
+	
+	$sth = $dbh->query ( "UPDATE menu_item SET article_id='$article_id' WHERE id=$id" );
+	// $sth->bindParam(":article_id", $article_id);
+	// $sth->bindParam(":parent_item", $parent_item);
+	// $sth->bindParam(":child_item", $child_item);
+	$sth->execute ();
+	header ( "Location: " );
+	exit ();
+}
+
+?>
+
+
+<table class="hover">
+	<tr>
+		<th>Hoofdmenu item</th>
+		<th>Submenu item</th>
+		<th>Gelinkt artikel</th>
+		<th>Wijzig</th>
+	</tr>
+<?php
+foreach ( $res as $row ) { // Loop door SQL-resultaten
+	?>
+    <form action="" method="post">
+		<tr>
+			<td><input type="hidden" name="id" value="<?php echo $row['id']; ?>"><?php echo $row['parent_item']; ?></td>
+			<td><?php echo $row['child_item']; ?></td>
+			<td><?php echo haalartikeltitelop($row['article_id']); ?></td>
+			<td width="200" href="javascript:;"
+				onClick="document.getElementById('<?php echo $row['id'];?>').style.display='block'" style='cursor: pointer'><a>Wijzig</a>
+				<div id="<?php echo $row["id"];?>" style="display: none;">
+					<select name="article_id" onChange="this.form.submit();">
+    					<?php
+	$article = $row ['article_id'];
+	foreach ( $articles as $row ) {
+		$id = $row ["ID"];
+		$title = $row ["title"];
+		// Check which article is to be selected
+		if ($id == $article) {
+			$selected = " selected";
+		} else {
+			$selected = '';
+		}
+		print ("<option value=$id" . $selected . ">") ; // print articles
+		print ($title . "</option>") ;
+	}
+	?>
+						</select> <input type="submit" name="submit" value="Opslaan">
+				</div></td>
+		</tr>
+	</form>
+ 	<?php
+}
+?>
+	
+    </table>
+
