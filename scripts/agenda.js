@@ -75,6 +75,7 @@ $(document).ready(function()
 			var current_day = clicked_block.children('.ag-date-day').val();
 			var selected_date = current_year + '-' + current_month + '-' + current_day;
 			var display_date = clicked_block.children('.ag-date-display').val();
+			clicked_block.css('background-color', '#FFF6F6');
 			
 			$('#bubble-main #selected-date-value').val(selected_date);
 			$('#bubble-main #selected-date').html(display_date);
@@ -125,7 +126,10 @@ $(document).ready(function()
 	{
 		$('.active').each(function(){
 			$(this).removeClass('active');
+			$(this).css('background-color', '');
 		});
+		
+		
 
 		$('#bubble-main').hide();
 		$('#bubble-what').val('');
@@ -205,5 +209,144 @@ $(document).ready(function()
 		);
 	});
 	
+	$('#end-date').datepicker({ 
+		dateFormat: "dd-mm-yy",
+		onSelect: function(dateText, inst) 
+		{
+			var start_date = $('#start-date').datepicker('getDate');
+			start_date = new Date(start_date);
+			
+			var end_date = $(this).datepicker('getDate');
+			end_date = new Date(end_date);
+			
+			// yy mm dd
+			var start = new Date(start_date.getFullYear(), start_date.getMonth(), start_date.getDate());
+			var end = new Date(end_date.getFullYear(), end_date.getMonth(), end_date.getDate());
+
+			if(start > end)
+			{
+				$('#start-date').datepicker('setDate', dateText);
+			}
+		}
+	});
 	
+	$('#start-date').datepicker({
+		dateFormat: "dd-mm-yy",
+		onSelect: function(dateText, inst) 
+		{
+			var end_date = $('#end-date').datepicker('getDate');
+			end_date = new Date(end_date);
+			
+			var start_date = $(this).datepicker('getDate');
+			start_date = new Date(start_date);
+			
+			// yy mm dd
+			var start = new Date(start_date.getFullYear(), start_date.getMonth(), start_date.getDate());
+			var end = new Date(end_date.getFullYear(), end_date.getMonth(), end_date.getDate());
+
+			if(start > end)
+			{
+				$('#end-date').datepicker('setDate', dateText);
+			}
+		}
+	})
+	
+	
+	$('#start-time').click(function(){
+		var position = $(this).position();
+		var top = position.top + 17;
+		var left = position.left;
+		
+		$('#start-time-list').css({
+			'top' : top,
+			'left' : left,
+			'display' : 'block'
+		});
+	});
+	
+	$('#start-time').blur(function()
+	{
+		if ($("#start-time-list div").has(":focus").length == 0) 
+		{
+			$('#start-time-list').css('display', 'none');
+		}
+		
+	});
+	
+	$('#start-time-list div').mousedown(function(e)
+	{
+		$('#start-time').val($(this).html());
+	});
+	
+	$('#whole_day').click(function(){
+		if($(this).is(':checked'))
+		{
+			$('#start-time').hide();
+			$('#end-time').hide();
+		}
+		else {
+			$('#start-time').show();
+			$('#end-time').show();
+		}
+	});
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

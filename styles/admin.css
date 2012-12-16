@@ -258,7 +258,7 @@ table.simple-table tr:nth-child(even) {
 }
 
 .agenda .day-today {
-	background: none repeat scroll 0 0 #EAEAEA;
+	background: none repeat scroll 0 0 #dfeff3;
 }
 
 .agenda #ag-days tr th.ag-day {
@@ -270,8 +270,8 @@ table.simple-table tr:nth-child(even) {
 	height: 100%;
 }
 
-.agenda span.ag-non-month {
-	color: #aaa;
+.agenda .ag-non-month .ag-day-row span {
+	color: #777;
 }
 
 .agenda .ag-day-row {
@@ -283,6 +283,44 @@ table.simple-table tr:nth-child(even) {
 	background-color: #CAD6EC;
     border: 1px solid #768093;
     margin: 0 2px 2px;
+}
+
+.agenda .ag-non-month .ag-day-appointment {
+	background-color: #d9e4f9;
+    border: 1px solid #95a1b8;
+}
+
+.bewerkagendapunt table {
+	width: 600px;
+}
+
+.bewerkagendapunt table #start-time,
+.bewerkagendapunt table #end-time {
+	width: 70px;
+}
+
+.bewerkagendapunt table #start-date,
+.bewerkagendapunt table #end-date {
+	width: 80px;
+}
+
+.bewerkagendapunt #start-time-list {
+	border: 1px solid #95a1b8;
+    height: 112px;
+    overflow: auto;
+    text-align: center;
+    width: 70px;
+	display: none;
+	background: none repeat scroll 0 0 #FFFFFF;
+	position: absolute;
+}
+
+.bewerkagendapunt #start-time-list div {
+	cursor: pointer;
+}
+
+.bewerkagendapunt #start-time-list div:hover {
+	background-color: #CAD6EC;
 }
 
 #bubble-main,
