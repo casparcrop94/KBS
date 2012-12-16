@@ -33,6 +33,9 @@ input[type="password"]:focus,
 textarea:focus {
 	outline: 2px solid #7a8bac;
 	border: none;
+	-moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) inset;
+	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) inset;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) inset;
 }
 
 input[type="submit"],
@@ -282,7 +285,8 @@ table.simple-table tr:nth-child(even) {
     margin: 0 2px 2px;
 }
 
-#bubble-main {
+#bubble-main,
+#bubble-edit-appointment {
 	display: none;
 	width: 350px;
 	height: 150px;
@@ -291,12 +295,30 @@ table.simple-table tr:nth-child(even) {
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-#bubble-content {
-	padding: 10px;
+.bubble-content {
+	padding: 20px;
+	height: 120px;
+	width: 310px;
 }
 
-.agenda #bubble-content table tr:nth-child(even) {
+.bubble-content .appointment-options {
+    border-top: 1px solid #7A8BAC;
+    bottom: 10px;
+    padding-top: 10px;
+    position: absolute;
+    width: 310px;
+}
+
+.agenda .bubble-content table tr:nth-child(even) {
 	background-color: #fff;
+}
+
+.right {
+	float: right;
+}
+
+.left {
+	float: left;
 }
 
 .bottom-prong {

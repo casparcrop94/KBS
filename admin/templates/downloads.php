@@ -10,7 +10,7 @@ if (isset($_GET["page"])) {
 $start_from = ($page - 1) * 20;
 //db
 $dbh = connectToDatabase();
-$sql1 = "SELECT * FROM downloads LIMIT $start_from, 20";
+$sql1 = "SELECT * FROM downloads ORDER BY ID DESC LIMIT $start_from, 20";
 $result1 = selectquery($sql1, $dbh);
 
 if (isset($_GET['action'])) {
