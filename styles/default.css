@@ -330,12 +330,13 @@ table input[type="text"] {
 	
 #home-about{
 	width: 420px;
-	border: 1px #000 solid;
+	
 	float: left;
+	margin-left: 5px;
 	}	
 	
 #home-links{
-	border: 1px #000 solid;
+	
 	width: 150px;
 	float: right;
 	padding-left: 20px;
