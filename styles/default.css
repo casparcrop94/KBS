@@ -322,7 +322,7 @@ table input[type="text"] {
 	
 #home-upper{
 	height: 300px;
-	border: 1px #000 solid;
+	
 	}	
 	
 #home-about{
@@ -339,10 +339,11 @@ table input[type="text"] {
 	}
 	
 #home-news{
-	border: 1px #000 solid;    
+	   
 	}
 	
 #home-article{
 	margin: 5px;
-	border: 1px #000 solid;
+	border: #7a8bac inset medium;
+	padding: 10px;
 	}

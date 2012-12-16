@@ -28,6 +28,7 @@ $dbh=  connectToDatabase();
 	foreach($result as $row){
 	    echo'<div id="home-article">';
 	    echo('<h3>'.$row["title"].'</h3>');
+	    echo'<br/>';
 	    echo($row["TEXT"]);
 	    echo'</div>';
 	}
