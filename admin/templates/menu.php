@@ -23,8 +23,13 @@ function haalartikeltitelop($id) {
 	foreach ( $articles as $row ) {
 		$article = $row ['title'];
 	}
-	
-	return $article;
+	if (isset ( $article )) {
+		return $article;
+	}
+	else{
+		return 'Geen artikel geselecteerd';
+	}
+
 }
 
 if (isset ( $_POST ['submit'] )) {
@@ -59,7 +64,8 @@ foreach ( $res as $row ) { // Loop door SQL-resultaten
 			<td><?php echo $row['child_item']; ?></td>
 			<td><?php echo haalartikeltitelop($row['article_id']); ?></td>
 			<td width="200" href="javascript:;"
-				onClick="document.getElementById('<?php echo $row['id'];?>').style.display='block'" style='cursor: pointer'><a>Wijzig</a>
+				onClick="document.getElementById('<?php echo $row['id'];?>').style.display='block'"
+				style='cursor: pointer'><a>Wijzig</a>
 				<div id="<?php echo $row["id"];?>" style="display: none;">
 					<select name="article_id" onChange="this.form.submit();">
     					<?php
