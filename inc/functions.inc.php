@@ -193,7 +193,7 @@ function getAgendaMonth($month = false, $year = false)
 	$sth = $db->prepare($sql);
 	$sth->execute($parameters);
 	$appointments = $sth->fetchAll(PDO::FETCH_ASSOC);
-	//var_dump($appointments);
+	
 	/*
 	 * Opbouw maand
 	 */
@@ -258,7 +258,7 @@ function getAgendaMonth($month = false, $year = false)
 				if($row['start_datum'] == $date)
 				{
 					
-					$cal[$week][$day]['appointments'][] = $row['naam'];
+					$cal[$week][$day]['appointments'][] = $row;
 					unset($appointments[$key]);
 					
 				}
@@ -298,7 +298,11 @@ function getAgendaMonth($month = false, $year = false)
 			{
 				foreach($day['appointments'] as $key => $value)
 				{
-					$data .= '<div class="ag-day-row ag-day-appointment"><span>' . $value . '</span></div>';
+					$data .= '<div class="ag-day-row ag-day-appointment">';
+					$data .= '<span>' . $value['naam'] . '</span>';
+					$data .= '<input type="hidden" value="' . $value['naam'] . '" class="ag-appointment-name"/>';
+					$data .= '<input type="hidden" value="' . $value['id'] . '" class="ag-appointment-id"/>';
+					$data .= '</div>';
 				}
 			}
 			

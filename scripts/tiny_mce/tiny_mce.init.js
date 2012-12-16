@@ -2,6 +2,7 @@ tinyMCE.init({
 		// General options
 		mode : "textareas",
 		theme : "advanced",
+        editor_deselector : "no-editor",
 		plugins : "jbimages,autolink,lists,pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template,wordcount,advlist,autosave",
 		language : "en",
 		content_css : "/styles/default.css",
@@ -16,5 +17,5 @@ tinyMCE.init({
 		theme_advanced_resizing : true,
  
 		// This is required for the image paths to display properly
-		relative_urls : false 
+		relative_urls : false
 });

@@ -26,8 +26,8 @@ $result = getAgendaMonth();
 <input type="hidden" value="<?php echo $result['month']?>" id="current_month" />
 <input type="hidden" value="<?php echo $result['year']?>" id="current_year" />
 <div id="bubble-main">
-	<div id="bubble-content">
-		<form >
+	<div class="bubble-content">
+		<form action="/admin/agenda/bewerk" method="post">
 			<h3>Afspraak</h3>
 			<table>
 				<tr>
@@ -35,16 +35,16 @@ $result = getAgendaMonth();
 					<td id="selected-date"></td>
 				</tr>
 				<tr>
-					<td>Wat:</td>
-					<td><input type="text" name="wat" id="bubble-what" /> </td>
-				</tr>
-				<tr><td>&nbsp;</td></tr>
-				<tr>
-					<td><input id="make-appointment" type="button" value="Afspraak maken" /></td>
-					<td><input id="edit-appointment" type="button" value="Afspraak Bewerken" /></td>
+					<td>Naam:</td>
+					<td><input type="text" name="agenda-point-name" id="bubble-what" /> </td>
 				</tr>
 			</table>
-			<input type="hidden" name="date" id="selected-date-value" />
+			<div class="appointment-options">
+				<input class="left" id="make-appointment" type="button" value="Afspraak maken" />
+				<input class="right edit-appointment" type="submit" value="Afspraak Bewerken" name="edit-agenda-point" />
+			</div>
+			
+			<input type="hidden" name="agenda-point-date" id="selected-date-value" />
 		</form>
 	</div>
 	<div class="bottom-prong">
@@ -52,3 +52,26 @@ $result = getAgendaMonth();
 		<div class="prong-lt"></div>
 	</div>
 </div>
+
+<div id="bubble-edit-appointment">
+	<div class="bubble-content">
+		<h3 id="appointment-name"></h3>
+		<div id="appointment-date"></div>
+		<div class="appointment-options">
+			<input class="left" type="button" id="delete-appointment" value="Verwijder definitief" />
+			<input class="right edit-appointment" type="button" value="Afspraak bewerken" />
+		</div>
+		<input type="hidden" id="appointment-id" />
+	</div>
+	<div class="bottom-prong">
+		<div class="prong-dk"></div>
+		<div class="prong-lt"></div>
+	</div>
+</div>
+<script>
+$(document).ready(function(){
+	$('#start-date').datepicker();	
+});
+
+//$('#start-date').datepicker({dateFormat: 'dd-mm-yy'});
+</script>
