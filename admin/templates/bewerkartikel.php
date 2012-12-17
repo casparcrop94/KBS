@@ -3,6 +3,7 @@
 // Sla verbinding op in $db
 $db = connectToDatabase ();
 $fouttext = '';
+$option2 = '';
 // Check if form is submitted
 if (isset ( $_POST ['submit'] )) {
 	// Get data from form and set data into variable.
