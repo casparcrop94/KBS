@@ -58,17 +58,17 @@ $res = $sth->fetchAll(PDO::FETCH_ASSOC);
 	    <th>Laatst gewijzigd</th> 
 	    <th>Gepubliceerd</th>
 	</tr>
-<?php
-foreach ($res as $row) {       // Loop door SQL-resultaten
-    echo("<tr>");
-    echo("<td class='center'><input type=\"checkbox\" value=" . $row['ID'] . " name=id[]/></td>");
-    echo("<td><a href='/admin/artikel/bewerk/" . $row['ID'] . "'>" . $row['title'] . "</a></td>");     // Print de titel
-    echo("<td>" . $row['catname'] . "</td>");   // Print de categorie
-    echo("<td>" . $row['date_added'] . "</td>");       // Print de datum
-    echo("<td>" . $row['date_edited'] . "</td>");
-    echo("<td>" . ($row['published'] == 1 ? "Ja" : "Nee") . "</td>"); // Print de publicatiestatus
-    echo("</tr>");
-}
-?>
+	<?php
+	foreach ($res as $row) {       // Loop door SQL-resultaten
+	    echo("<tr>");
+	    echo("<td align=\"center\"><input type=\"checkbox\" value=" . $row['ID'] . " name=id[]/></td>");
+	    echo("<td><a href='/admin/artikel/bewerk/" . $row['ID'] . "'>" . $row['title'] . "</a></td>");     // Print de titel
+	    echo("<td>" . $row['catname'] . "</td>");   // Print de categorie
+	    echo("<td align=\"center\">" . $row['date_added'] . "</td>");       // Print de datum
+	    echo("<td align=\"center\">" . $row['date_edited'] . "</td>");
+	    echo("<td align=\"center\">" . ($row['published'] == 1 ? "Ja" : "Nee") . "</td>"); // Print de publicatiestatus
+	    echo("</tr>");
+	}
+	?>
     </table>
 </form>
