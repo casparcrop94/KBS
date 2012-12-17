@@ -21,6 +21,7 @@ if(isset($_GET['id']))
 	$agenda_point = $sth->fetchAll(PDO::FETCH_ASSOC);
 }
 ?>
+<script type="text/javascript" src="/scripts/agenda.js"></script>
 <form action="post">
 	<table class="simple-table">
 		<tr>
@@ -32,8 +33,10 @@ if(isset($_GET['id']))
 		<tr>
 			<td colspan="2">
 				<input type="text" id="start-date" name="start-date" value="<?php echo isset($start_date)?$start_date:date('d-m-Y');?>" />
+				<input type="text" id="start-time" name="start-time" />
 				tot en met
-				<input type="text" id="end-date" name="end-date" />
+				<input type="text" id="end-time" name="end-time" />
+				<input type="text" id="end-date" name="end-date" value="<?php echo isset($end_date)?$end_date:date('d-m-Y');?>" />
 			</td>
 		</tr>
 		<tr>
@@ -55,3 +58,11 @@ if(isset($_GET['id']))
 		</tr>
 	</table>
 </form>
+<div id="start-time-list">
+	<?php for($i = 0; $i <= 47; $i += 1):?>
+		<?php $half = ($i % 2 != 0)?'30':'00';?>
+		<?php $hour = floor($i / 2);?>
+		<?php $hour = date('H', mktime($hour,0,0, 1, 1, 1970));?>
+		<div><?php echo $hour . ':' . $half; ?></div>
+	<?php endfor;?>
+</div>

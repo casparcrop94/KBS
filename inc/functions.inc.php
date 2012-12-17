@@ -269,6 +269,8 @@ function getAgendaMonth($month = false, $year = false)
 	$counter = 0;
 	$data = '';
 	$current_month_name = ucFirst(strftime('%B', mktime(0, 0, 0, $month, 1, $year)));
+	$is_current_month = false;
+	$is_next_month = false;
 	foreach ($cal as $week)
 	{
 		$top = $counter * 16.6;
@@ -278,9 +280,13 @@ function getAgendaMonth($month = false, $year = false)
 		$data .= '<tr>';
 		foreach ($week as $date => $day)
 		{
+			$is_current_month = ($day['month'] == $month) ? true : false;
+			$is_next_month = ($day['month'] == $next_month) ? true : false;
+			
 			$day_name = ucFirst(strftime('%A', mktime(0, 0, 0, $day['month'], $day['day'], $day['year'])));
 			$month_name = ucFirst(strftime('%B', mktime(0, 0, 0, $day['month'], $day['day'], $day['year'])));
 			$today = '';
+			
 			if ($day['day'] == $day_today && $month == $month_today)
 			{
 				$today = ' day-today';
@@ -289,10 +295,10 @@ function getAgendaMonth($month = false, $year = false)
 			$non_month = '';
 			if($day['month'] != $month)
 			{
-				$non_month = ' class="ag-non-month"';
+				$non_month = ' ag-non-month';
 			}
-			$data .= '<td class="ag-day' . $today . '">';
-			$data .= '<div class="ag-day-row"><span' . $non_month . '>' . $day['day'] . '</span></div>';
+			$data .= '<td class="ag-day' . $today  . $non_month . '">';
+			$data .= '<div class="ag-day-row"><span>' . $day['day'] . '</span></div>';
 			
 			if(isset($day['appointments']))
 			{
