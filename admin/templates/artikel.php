@@ -67,9 +67,9 @@ echo($statusText . "<br/>\n");
 	    echo("<td align=\"center\"><input type=\"checkbox\" value=" . $row['ID'] . " name=id[]/></td>");
 	    echo("<td><a href='/admin/artikel/bewerk/" . $row['ID'] . "'>" . $row['title'] . "</a></td>");     // Print de titel
 	    echo("<td>" . $row['catname'] . "</td>");   // Print de categorie
-	    echo("<td>" . $row['date_added'] . "</td>");       // Print de datum
-	    echo("<td>" . $row['date_edited'] . "</td>");
-	    echo("<td>" . ($row['published'] == 1 ? "Ja" : "Nee") . "</td>"); // Print de publicatiestatus
+	    echo("<td align=\"center\">" . $row['date_added'] . "</td>");       // Print de datum
+	    echo("<td align=\"center\">" . $row['date_edited'] . "</td>");
+	    echo("<td align=\"center\">" . ($row['published'] == 1 ? "Ja" : "Nee") . "</td>"); // Print de publicatiestatus
 	    echo("</tr>");
 	}
 	?>
