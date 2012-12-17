@@ -27,7 +27,7 @@ $datetoday = date("Y");
 
 			foreach ($result as $row) {
 			    ?>
-			    <li> <a href="<?php echo '/actualiteit/'.$row['ID']?>"> <?php echo $row['title']; ?></a> </li>
+			    <li> <a href="<?php echo '/admin/actualiteit/'.$row['ID']?>"> <?php echo $row['title']; ?></a> </li>
 			    <?php
 			}
 			echo '</div>';

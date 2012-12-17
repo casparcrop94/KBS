@@ -66,8 +66,6 @@ $sth->execute();
 $res = $sth->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
-<html>
-    <body>
     	<div class="<?php echo $style; ?>">
     		<p><?php echo $statusText; ?></p>
     	</div>
@@ -76,9 +74,9 @@ $res = $sth->fetchAll(PDO::FETCH_ASSOC);
         <input name="option" type="submit" value="Publiceer">
 		<input name="option" type="submit" value="Depubliceer">
 		<input name="option" type="submit" value="Verwijderen">
-        <table border="1">
+        <table class="hover">
             <tr>
-				<th width="50" align="center"><input name="checkall" type="checkbox" value="check" id="checkall"></th>
+				<th width="50" class="center"><input name="checkall" type="checkbox" value="check" id="checkall"></th>
                 <th width="300">Naam</th> 
                 <th width="500">Beschrijving</th>
 				<th width="100">Gepubliceerd</th>
@@ -87,7 +85,7 @@ $res = $sth->fetchAll(PDO::FETCH_ASSOC);
 				//Print the categorys
 				foreach($res as $row) { 
                     echo("<tr>");
-					echo("<td align=center><input name=id[] type=checkbox value=".$row['cat_id']."></td>");
+					echo("<td class='center'><input name=id[] type=checkbox value=".$row['cat_id']."></td>");
                     echo("<td><a href='/admin/categorie/bewerk/".$row['cat_id']."'>".$row['name']."</a></td>");                                 
                     echo("<td>".$row['discription']."</td>");                          
                     echo("<td>".($row['published'] == 1 ? "Ja" : "Nee")."</td>");      
@@ -96,5 +94,4 @@ $res = $sth->fetchAll(PDO::FETCH_ASSOC);
             ?>
         </table>
         </form>
-    </body>
-</html>
+ 

@@ -65,10 +65,11 @@ $res = $sth->fetchAll(PDO::FETCH_ASSOC);
 function haalartikelop($id){
 	$dbh = connectToDatabase();
 	$sth = $dbh->query("SELECT * FROM article WHERE ID=$id"); // Haal alle diensten uit de database
-	//$sth->bindparam(':id',4);
+	$sth->bindparam(':id',$id);
 	$sth->execute();
 	$res = $sth->fetchAll(PDO::FETCH_ASSOC);
-	
+	$title='';
+
 	foreach($res as $row){
 		$title=$row['title'];
 	}
@@ -77,10 +78,7 @@ function haalartikelop($id){
 }
 
 ?>
-<div id="rates">
-<?php
-        echo($statusText."<br/>");
-        ?>
+<div>
 <form action="" method="post">
 	<input name="option" type="submit" value="Nieuw">
 	<input name="option" type="submit" value="Publiceer">
@@ -88,13 +86,13 @@ function haalartikelop($id){
 	<input name="option" type="submit" value="Verwijderen">
 	
     <!--Displaying the table-->
-    <table border="1">
+    <table class="hover">
 
 	<!--Displaying the tablehead-->
         <thead>
         
             <tr>
-            	<th width="50" align="center"><input name="checkall" type="checkbox" value="check" id="checkall"></th>
+            	<th width="50" class="center"><input name="checkall" type="checkbox" value="check" id="checkall"></th>
                 <th>Dienst</th>
                 <th>Omschrijving</th>
                 <th>Gepubliceerd</th>
@@ -109,15 +107,18 @@ function haalartikelop($id){
 	    foreach ($res as $row) {
 		?>
     	    <tr>
-    	    	<?php
-    	    	echo("<td align=center><input name=id[] type=checkbox value=".$row['service_id']."></td>");
-    	    	?>
-    			<!--displays the service name-->
-    			<td><a href="/admin/diensten/bewerk/<?php echo($row["service_id"]) ?>"><?php echo($row["servicename"]) ?></a> </td>
-    			<!--displays the discription-->
+    	    	<td class="center"><input name="id[]" type=checkbox value="<?php echo $row['service_id']?>"></td>
+    	    	<td><a href="/admin/diensten/bewerk/<?php echo($row["service_id"]) ?>"><?php echo($row["servicename"]) ?></a> </td>
     			<td><?php echo($row["servicetext"]) ?></td>
     			<td><?php echo($row['published'] == 1 ? "Ja" : "Nee")?></td>
-    			<td><a href="/admin/artikel/bewerk/<?php echo $row["article_id"] ?>"><?php echo haalartikelop($row["article_id"]) ?></a> </td>
+    			<td><?php $title=haalartikelop($row["article_id"]);
+    						if($title!=''){ ?>
+    						<a href="/admin/artikel/bewerk/<?php echo $row["article_id"] ?>"><?php echo haalartikelop($row["article_id"]) ?></a>
+    						<?php }
+    						else{ 
+    							print("Geen artikel geselecteerd");
+    						}?> 
+    			</td>
     		</tr>
 <?php } ?>
         </tbody>

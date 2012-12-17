@@ -56,6 +56,7 @@ $option= isset($_GET["option"])?$_GET['option']:'new';
 
 //Check which option is to be used.
 if($option=='new'){
+	$id='';
 	$name =''; 
 	$discription ='';
 	$published =" selected";
@@ -96,7 +97,7 @@ elseif($option=='edit'){
 <form action="" method="post">
 <input name="option" type="hidden" value="<?php echo $option; ?>" />
 <input name="id" type="hidden" value="<?php echo $id; ?>" />	
-<table>
+<table class="simple-table">
 	<tr>
     	<td colspan="2">
         	Naam:

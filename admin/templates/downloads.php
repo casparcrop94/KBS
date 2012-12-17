@@ -10,7 +10,7 @@ if (isset($_GET["page"])) {
 $start_from = ($page - 1) * 20;
 //db
 $dbh = connectToDatabase();
-$sql1 = "SELECT * FROM downloads LIMIT $start_from, 20";
+$sql1 = "SELECT * FROM downloads ORDER BY ID DESC LIMIT $start_from, 20";
 $result1 = selectquery($sql1, $dbh);
 
 if (isset($_GET['action'])) {
@@ -21,7 +21,7 @@ if (isset($_GET['action'])) {
 	$sth->bindParam(":id", $id, PDO::PARAM_STR);
 	$sth->execute();
 	$result = $sth->fetch(PDO::FETCH_ASSOC);
-
+//Delete functie, hier wordt de bestanden uit de map uploads, uit de database en van de site verwijdert.
 	if (unlink(DOCROOT . 'uploads/' . $result["file"])) {
 	    $sth = $dbh->prepare("DELETE FROM downloads Where ID=:id");
 	    $sth->bindParam(":id", $id, PDO::PARAM_STR);
@@ -31,6 +31,7 @@ if (isset($_GET['action'])) {
 	}
     }
 }
+//Upload functie
 if (isset($_POST['submit'])) {
     upload($_FILES);
 }
@@ -39,35 +40,27 @@ $sth = $dbh->prepare("SELECT * FROM downloads");
 $sth->execute();
 $result = $sth->fetchAll(PDO::FETCH_ASSOC);
 ?>
+<div id="downloads">
+    <table class="hover">
+	<tr id="head">    
+	    <th> Downloads </th>    
+	    <th> Grootte </th>
+	    <th> Verwijder </th>
+	</tr>
+	<?php foreach ($result1 as $row) {
+	    ?>
+    	<tr id="row">
+    	    <!-- Laat het bestand naam zien. -->
+    	    <td> <?php echo ($row["file"]); ?> </td>
+    	    <!-- Laat de size van het bestand zien in kb. -->
+    	    <td> <?php echo ($row["size"]); ?> kb </td>
+    	    <!-- Verwijder functie, verwijdert uit de map en de database. -->
+    	    <td> <a href="/admin/downloads/delete/<?php echo $row["ID"]; ?>">Verwijder</a></td>
+    	</tr>    
 
-<table>
-    <tr>    
-        <th> Downloads </th>    
-        <th> Grootte </th>
-        <th> Verwijder </th>
-    </tr>
-    <?php foreach ($result1 as $row) {
-	?>
-        <tr>
-    	<!-- Laat het bestand naam zien. -->
-    	<td> <?php echo ($row["file"]); ?> </td>
-    	<!-- Laat de size van het bestand zien in kb. -->
-    	<td> <?php echo ($row["size"]); ?> kb </td>
-    	<!-- Verwijder functie, verwijdert uit de map en de database. -->
-    	<td> <a href="/admin/downloads/delete/<?php echo $row["ID"]; ?>">Verwijder</a></td>
-        </tr>    
-
-    <?php } ?>       
-</table>
-<!-- Het formulier van documenten uploaden. -->    
-<form action="" method="post"
-      enctype="multipart/form-data">
-    <label for="file">Bestand uploaden:</label>
-    <input type="file" name="file" id="file" />
-    <br />
-    <input type="submit" name="submit" value="Upload" />
-</form>
-
+	<?php } ?>       
+    </table>
+</div>
 <?php
 //db
 $sql2 = "SELECT * FROM downloads";
@@ -82,3 +75,11 @@ for ($i = 1; $i <= $total_pages; $i++) {
     echo "<a href='/admin/downloads/" . $i . "'>" . $i . "</a> ";
 };
 ?>
+<!-- Het formulier van documenten uploaden. -->    
+<form action="" method="post"
+      enctype="multipart/form-data">
+    <label for="file">Bestand uploaden:</label>
+    <input type="file" name="file" id="file" />
+    <br />
+    <input type="submit" name="submit" value="Upload" />
+</form>

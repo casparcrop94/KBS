@@ -10,26 +10,26 @@ if (isset($_GET["page"])) {
 $start_from = ($page - 1) * 10;
 //db
 $dbh = connectToDatabase();
-$sql1 = "SELECT * FROM downloads LIMIT $start_from, 10";
+$sql1 = "SELECT * FROM downloads ORDER BY ID DESC LIMIT $start_from, 10";
 $result1 = selectquery($sql1, $dbh)
 ?>
-<div class="table">
+<div  id="downloads">
     <table>
-	<tr>    
+	<tr id="head">    
 	    <th> Bestanden </th>    
 	    <th> Grootte </th>
 	    <th> Download </th>
 	</tr>
 	<?php foreach ($result1 as $row) {
 	    ?>
-            <tr>
+    	<tr id="row">
     	    <!-- Laat het bestand naam zien. -->
     	    <td> <?php echo ($row["file"]); ?> </td>
     	    <!-- Laat de size van het bestand zien in kb. -->
     	    <td> <?php echo ($row["size"]); ?> kb </td>
     	    <!-- Met deze functie kan je bestanden downloaden die geupload zijn. -->
     	    <td> <a href=http://kbs.nl/uploads/<?php echo rawurlencode($row["file"]) ?> >Download</a> </td>
-            </tr>    
+    	</tr>    
 
 	<?php } ?> 
     </table>
