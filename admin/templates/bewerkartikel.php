@@ -22,6 +22,7 @@ if (isset ( $_POST ['submit'] )) {
 		$originaloption = $option;
 		//set the option to renew, this means that the form is not filled correctly
 		$option = 'renew';
+		$option2 = 'renew';
 	}
 	
 	//if option=renew article cannot be saved into database
@@ -133,9 +134,12 @@ $sth = $db->prepare ( "SELECT * FROM category" );
 $sth->execute ();
 $categorys = $sth->fetchAll ( PDO::FETCH_ASSOC );
 
-echo $fouttext;
+if($option2=='renew'){
 ?>
-
+<div class="message_error">
+	<p><?php echo $fouttext; ?></p>
+</div>
+<?php }?>
 <form action="" method="post">
 	<input name="option" type="hidden" value="<?php echo $option; ?>" /> <input
 		name="id" type="hidden" value="<?php echo $id; ?>" />

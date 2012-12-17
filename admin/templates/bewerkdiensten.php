@@ -3,6 +3,7 @@
 // Sla verbinding op in $db
 $db = connectToDatabase ();
 $fouttext = '';
+$option2 = '';
 
 // Check if form is submitted
 if (isset ( $_POST ['submit'] )) {
@@ -24,6 +25,7 @@ if (isset ( $_POST ['submit'] )) {
 		// set the option to renew, this means that the form is not filled
 		// correctly
 		$option = 'renew';
+		$option2 = 'renew';
 	}
 	
 	if ($option != 'renew') {
@@ -131,9 +133,12 @@ function haalartikelenop() {
 	return $articles;
 }
 
-echo $fouttext;
+if($option2=='renew'){
 ?>
-
+<div class="message_error">
+	<p><?php echo $fouttext; ?></p>
+</div>
+<?php }?>
 <form action="" method="post">
 	<input name="option" type="hidden" value="<?php echo $option; ?>" /> <input
 		name="service_id" type="hidden" value="<?php echo $service_id; ?>" />
