@@ -5,20 +5,17 @@ Auteur: RICHARD VAN DEN HOORN
 
 $dbh = connectToDatabase (); // Maak verbinding met de database
 
-$sth = $dbh->query ( "SELECT * FROM menu_item" );
-$sth->execute ();
-$res = $sth->fetchAll ( PDO::FETCH_ASSOC );
+$sql1="SELECT * FROM menu_item";
+$res = selectquery($sql1, $dbh);
 
-$sth = $dbh->query ( "SELECT * FROM article WHERE cat_id=(SELECT cat_id FROM category WHERE name='Menu-items')" );
-$sth->execute ();
-$articles = $sth->fetchAll ( PDO::FETCH_ASSOC );
+$sql2="SELECT * FROM article WHERE cat_id=(SELECT cat_id FROM category WHERE name='Menu-items')";
+$articles = selectquery($sql2, $dbh);
 
 function haalartikeltitelop($id) {
 	$dbh = connectToDatabase ();
-	$sth = $dbh->query ( "SELECT title FROM article WHERE id=$id" );
+	$sql="SELECT title FROM article WHERE id=$id";
 	// $sth->bindParam ( ":id", $id );
-	$sth->execute ();
-	$articles = $sth->fetchAll ( PDO::FETCH_ASSOC );
+	$articles = selectquery($sql, $dbh);
 	
 	foreach ( $articles as $row ) {
 		$article = $row ['title'];
