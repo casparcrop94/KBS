@@ -40,7 +40,7 @@ if (isset($_POST['Verander!'])) {
     	    <td>Gemiddelde prijs:<input type="text" name="avgcost" value="<?php echo($row['avgcost']) ?>" /></td>
     	</tr>                    
     	<tr>                        
-    	    <td><input type="submit" value="submit" name="Verander!" /></td>
+    	    <td><input type="submit" value="Verander!" name="Verander!" /></td>
     	</tr>
         </table>
     </form>

@@ -31,4 +31,6 @@ RewriteRule ^diensten/bewerk/([0-9]+)$ /admin/index.php?p=bewerkdiensten&option=
 RewriteRule ^diensten/nieuw$ /admin/index.php?p=bewerkdiensten&option=new [NC]
 RewriteRule ^diensten/([a-zA-Z]+)$ /admin/index.php?p=diensten&case=$1 [NC]
 
+RewriteRule ^agenda/bewerk$ /admin/index.php?p=bewerkagendapunt [NC]
+
 RewriteRule ^([a-zA-Z]+)$ /admin/index.php?p=$1 [NC]
