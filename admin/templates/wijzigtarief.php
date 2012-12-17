@@ -1,3 +1,4 @@
+<!--Author: Caspar Crop-->
 <?php
 $dbh = connectToDatabase();
 //checking if form is filled in and submitted
@@ -31,7 +32,7 @@ if (isset($_POST['Verander!'])) {
 <!--Form for input of price per hour and average price-->
     <form action="" method="POST">
         <input type="hidden" name="id" value="<?php echo($id); ?>">
-        <table>
+        <table class="simple-table">
     	<tr>
     	    <td>Prijs per uur:<input type="text" name="pph" value="<?php echo($row['pph']) ?>" /></td>
     	</tr>
@@ -39,7 +40,7 @@ if (isset($_POST['Verander!'])) {
     	    <td>Gemiddelde prijs:<input type="text" name="avgcost" value="<?php echo($row['avgcost']) ?>" /></td>
     	</tr>                    
     	<tr>                        
-    	    <td><input type="submit" value="submit" name="Verander!" /></td>
+    	    <td><input type="submit" value="Verander!" name="Verander!" /></td>
     	</tr>
         </table>
     </form>

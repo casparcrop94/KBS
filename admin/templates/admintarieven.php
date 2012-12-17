@@ -1,3 +1,4 @@
+<!--Author: Caspar Crop-->
 <?php
 //connecting to the database
 $dbh = connectToDatabase();
@@ -14,17 +15,17 @@ $sql = (" SELECT service_id, servicename, pph, avgcost FROM `services` LIMIT $st
 //retrieving the query results
 $result = selectquery($sql, $dbh);
 ?>
-<div id="rates">
+<div>
     <!--Displaying the table-->
-    <table id="ratetable">
+    <table class="hover">
 
 	<!--Displaying the tablehead-->
         <thead>
             <tr>
-                <th class="thrate">Dienst</th>
-                <th class="thrate">Uurtarief</th>
-                <th class="thrate">Geschatte prijs</th>
-                <th class="thrate">Wijzig tarieven</th>
+                <th>Dienst</th>
+                <th>Uurtarief</th>
+                <th>Geschatte prijs</th>
+                <th>Wijzig tarieven</th>
             </tr>
         </thead>
 
@@ -36,13 +37,13 @@ $result = selectquery($sql, $dbh);
 		?>
     	    <tr>
     		<!--displays the service name-->
-    		<td class="ratetablecollumn"><?php echo($row["servicename"]) ?></td>
+    		<td><?php echo($row["servicename"]) ?></td>
     		<!--displays the price per hour-->
-    		<td class="ratetablecollumn"><?php echo($row["pph"]) ?></td>
+    		<td><?php echo($row["pph"]) ?></td>
     		<!--displays the average cost-->
-    		<td class="ratetablecollumn"><?php echo($row["avgcost"]) ?></td>
+    		<td><?php echo($row["avgcost"]) ?></td>
     		<!--displays the link to change the rates-->
-    		<td class="ratetablecollumn"><a href="<?php echo '/admin/wijzigtarief/'.$row['service_id'] ?>">Wijzig</a></td>
+    		<td><a class="button" href="<?php echo '/admin/wijzigtarief/'.$row['service_id'] ?>">Wijzig</a></td>
     	    </tr>
 <?php } ?>
         </tbody>

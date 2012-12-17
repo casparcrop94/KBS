@@ -29,6 +29,9 @@ input[type="password"]:focus,
 textarea:focus {
 	outline: 2px solid #7a8bac;
 	border: none;
+	-moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) inset;
+	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) inset;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) inset;	
 }
 
 a {
@@ -105,6 +108,7 @@ table input[type="text"] {
 	color: #fff;
 	padding: 0 15px;
 	margin-top: 14px;
+	height: 36px;
 }
 
 #menu ul li a {
@@ -113,6 +117,43 @@ table input[type="text"] {
 
 #menu ul li a:hover {
 	text-decoration: underline;
+}
+
+#menu ul li ul.sub-menu,
+#menu ul li ul.sub-menu li ul {
+	display: none;
+}
+
+#menu ul li span {
+	cursor: pointer;
+}
+
+#menu ul li ul.sub-menu {
+	position: absolute;
+	z-index: 10000;
+	background-color: #768093;
+	width: 170px;
+	border-top:5px solid #fff;
+	top: 50px;
+}
+
+#menu ul li ul.sub-menu li {
+	float: none;
+	padding: 5px 10px 5px;
+	margin: 0;
+	height: 25px;
+	border-bottom: 1px solid #ccc;
+}
+
+#menu ul li ul.sub-menu li ul {
+	display: none;
+	position: relative;
+	background-color: #768093;
+	z-index: 10000;
+	left: 160px;
+	width: 200px;
+	border-left: 5px solid #fff;
+	top: -28px;
 }
 
 #content {
@@ -206,7 +247,7 @@ table input[type="text"] {
 .zoekresultaat{
     padding: 5px;
     border-bottom: 1px solid #333;
-    margin-bottom: 7 px;
+    margin-bottom: 7px;
 }
 
 .zoekresultaat a{
@@ -257,4 +298,56 @@ table input[type="text"] {
 .downloads .table {
 	height:40%;
 	}
->>>>>>> 734bbdf989c1f38e7d4bf4ec6c88ed9ee101cbc6
+	
+#Archives{
+	margin-left:25px;    
+	}
+	
+#Archivetitle{
+	 text-decoration-line: underline;
+	 text-decoration-color: #768093;
+	}
+	
+#Archive{
+	margin-left: 10px;  
+	}
+	
+#archiveyear{
+	margin-left: 5px;
+	padding: 5px;
+	}
+	
+#archivemonth{
+	margin-left: 5px;
+	list-style: none;
+	padding: 5px;
+	}
+	
+#home-upper{
+	height: 300px;
+	
+	}	
+	
+#home-about{
+	width: 420px;
+	
+	float: left;
+	margin-left: 5px;
+	}	
+	
+#home-links{
+	
+	width: 150px;
+	float: right;
+	padding-left: 20px;
+	}
+	
+#home-news{
+	   
+	}
+	
+#home-article{
+	margin: 5px;
+	border: #7a8bac inset medium;
+	padding: 10px;
+	}

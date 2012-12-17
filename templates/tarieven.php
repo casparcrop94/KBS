@@ -1,3 +1,4 @@
+<!--Author: Caspar Crop-->
 <?php
 //db connection
 $dbh = connectToDatabase();

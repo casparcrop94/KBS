@@ -6,6 +6,7 @@
 
 html {
 	font-family: Arial, Helvetica;
+	font-size: 14px;
 }
 
 body {
@@ -32,6 +33,9 @@ input[type="password"]:focus,
 textarea:focus {
 	outline: 2px solid #7a8bac;
 	border: none;
+	-moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) inset;
+	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) inset;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) inset;
 }
 
 input[type="submit"],
@@ -39,11 +43,51 @@ input[type="button"] {
 	border: 2px solid #456196;
 	background-color: #7a8bac;
 	color: #fff;
+	margin: 0 0 5px;
+}
+
+table {
+	width: 100%;
+	border: 1px solid #7a8bac;
+	border-collapse: collapse;
+}
+
+table tr th {
+	color: #7a8bac;
+    border-bottom: #7a8bac solid 1px;
+}
+
+table tr th,
+table tr td {
+	padding: 2px 0;
+	text-align: left;
+}
+
+table tr th.center,
+table tr td.center {
+	text-align: center;
+}
+
+table tr:nth-child(even) {
+	background: #fff;
+}
+
+table.hover tr:hover > td {
+	background-color: #fae8cb;
+}
+
+table.simple-table {
+	border-collapse: separate;
+	border: none;
+}
+
+table.simple-table tr:nth-child(even) {
+	background: transparent;
 }
 
 #login-form {
 	width: 150px;
-	height: 110px;
+	height: 130px;
 	margin: auto;
 	position: relative;
 	top: 25%;
@@ -54,6 +98,8 @@ input[type="button"] {
 #login-form table {
 	width: 100%;
 	text-align: center;
+	border: none;
+	border-collapse: separate;
 }
 
 #login-form table input[type="submit"] {
@@ -112,39 +158,10 @@ input[type="button"] {
 	padding: 5px 10px;
 }
 
-#rates{
-    position: absolute;
-    height:800px;
-    width: 960px;
-
-}
-
 #ratewarning{
     margin-bottom: 25px;
     height:40px;
     width:525px;
-}
-
-#ratetable{
-    width:750px;
-    border-color: #7a8bac;
-    border-right-style: inset;
-    border-left-style: inset;
-    border-bottom-style: inset;
-    border-top-style: inset;
-    border-right-width: 3px;
-    border-left-width: 3px;
-    border-bottom-width: 3px;
-    border-top-width: 3px;
-}
-.ratetablecollumn{
-    padding-right: 25px;
-}
-
-.thrate{
-    color: #7a8bac;
-    padding-right: 25px;
-    border-bottom: #7a8bac solid thin;
 }
 
 .message_error {
@@ -167,7 +184,7 @@ input[type="button"] {
 }
 
 #downloads{
-    height: 560px;
+    height: 510px;
 }
 
 #head{
@@ -178,17 +195,230 @@ input[type="button"] {
     height:15px;
 }
 
-table {
-	width: 100%;
-	border: 1px solid #7a8bac;
+
+.agenda {
+	height: 93.5%;
+	position: relative;
 }
 
-table tr th {
-	color: #7a8bac;
-    border-bottom: #7a8bac solid thin;
+.agenda table {
+	border: none;
 }
 
-table tr th,
-table tr td {
-	padding: 2px 0;
+.agenda table tr:nth-child(even) {
+	background-color: #f5f5f5;
 }
+
+.agenda #ag-page {
+	position: relative;
+	height: 90%;
+}
+
+.agenda #ag-container {
+	bottom: 0;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    top: 25px;
+    width: 100%;
+}
+
+.agenda table.ag-grid {
+	height: 100%;
+	border-right: 1px solid #7a8bac;
+}
+
+.agenda .ag-month-row {
+	left: 0;
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+}
+
+.agenda #ag-days {
+    table-layout: fixed;
+    width: 100%;
+}
+
+.agenda #ag-days tr td {
+	font-size: 12px;
+    font-weight: normal;
+    padding: 0 0 0 10px;
+    text-align: left;
+}
+
+.agenda .ag-day {
+    line-height: 16px;
+    overflow: hidden;
+    /*padding: 4px 9px 0;*/
+	width: 10%;
+	vertical-align: top;
+	border-bottom: 1px solid #7A8BAC;
+    border-left: 1px solid #7A8BAC;
+}
+
+.agenda .day-today {
+	background: none repeat scroll 0 0 #dfeff3;
+}
+
+.agenda #ag-days tr th.ag-day {
+	border-left: none;
+    padding: 4px 9px;
+}
+
+.agenda #agenda_month {
+	height: 100%;
+}
+
+.agenda .ag-non-month .ag-day-row span {
+	color: #777;
+}
+
+.agenda .ag-day-row {
+	clear:both;
+	padding: 2px 9px;
+}
+
+.agenda .ag-day-appointment {
+	background-color: #CAD6EC;
+    border: 1px solid #768093;
+    margin: 0 2px 2px;
+}
+
+.agenda .ag-non-month .ag-day-appointment {
+	background-color: #d9e4f9;
+    border: 1px solid #95a1b8;
+}
+
+.bewerkagendapunt table {
+	width: 600px;
+}
+
+.bewerkagendapunt table #start-time,
+.bewerkagendapunt table #end-time {
+	width: 70px;
+}
+
+.bewerkagendapunt table #start-date,
+.bewerkagendapunt table #end-date {
+	width: 80px;
+}
+
+.bewerkagendapunt #start-time-list {
+	border: 1px solid #95a1b8;
+    height: 112px;
+    overflow: auto;
+    text-align: center;
+    width: 70px;
+	display: none;
+	background: none repeat scroll 0 0 #FFFFFF;
+	position: absolute;
+}
+
+.bewerkagendapunt #start-time-list div {
+	cursor: pointer;
+}
+
+.bewerkagendapunt #start-time-list div:hover {
+	background-color: #CAD6EC;
+}
+
+#bubble-main,
+#bubble-edit-appointment {
+	display: none;
+	width: 350px;
+	height: 150px;
+	position: absolute;
+	background-color: #fff;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.bubble-content {
+	padding: 20px;
+	height: 120px;
+	width: 310px;
+}
+
+.bubble-content .appointment-options {
+    border-top: 1px solid #7A8BAC;
+    bottom: 10px;
+    padding-top: 10px;
+    position: absolute;
+    width: 310px;
+}
+
+.agenda .bubble-content table tr:nth-child(even) {
+	background-color: #fff;
+}
+
+.right {
+	float: right;
+}
+
+.left {
+	float: left;
+}
+
+.bottom-prong {
+	left: 48%;
+    bottom: -9px;
+    height: 9px;
+    overflow: hidden;
+    position: absolute;
+    width: 18px;
+}
+
+.prong-dk, .prong-lt {
+    left: 0;
+    position: absolute;
+    top: 0;
+}
+
+.bottom-prong .prong-dk, .bottom-prong .prong-lt {
+    border-bottom-width: 0;
+}
+
+.prong-dk {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: #CCCCCC transparent;
+    border-image: none;
+    border-style: solid;
+    border-width: 9px;
+}
+
+.bottom-prong .prong-dk, .bottom-prong .prong-lt {
+    border-bottom-width: 0;
+}
+
+.prong-lt {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: #FFFFFF transparent;
+    border-image: none;
+    border-style: solid;
+    border-width: 8px;
+    left: 1px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -42,19 +42,16 @@ $sth->execute();
 $res = $sth->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
-<?php
-echo($statusText . "<br/>\n");
-?>
 <form action="" method="post">
     <input type="button" onclick="window.location = '/admin/categorie/nieuw'" value="Nieuwe categorie"/>
     <input type="button" onclick="window.location = '/admin/artikel/nieuw'" value="Nieuw artikel"/>
     <input type="submit" name="option" value="Verwijder"/>
     <input type="submit" name="option" value="Publiceer"/>
     <input type="submit" name="option" value="Depubliceer"/>
-    <br/><br/>
-    <table>
+
+    <table class="hover">
 	<tr>
-	    <th><input type="checkbox" id="checkall" value=""/></th>
+	    <th class="center"><input type="checkbox" id="checkall" value=""/></th>
 	    <th>Titel</th> 
 	    <th>Categorie</th>
 	    <th>Datum aangemaakt</th>

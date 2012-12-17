@@ -29,7 +29,7 @@ if (isset ( $_POST ['submit'] )) {
 	
 	} elseif ($option == 'edit') {
 		// Edit a service
-		$sth = $db->prepare ( "UPDATE services SET service_id=:service_id, servicetext=:servicetext, pph=:pph, avgcost=:avgcost, article_id=:article_id, published=:published WHERE service_id=:service_id" );
+		$sth = $db->prepare ( "UPDATE services SET service_name=:servicename, servicetext=:servicetext, pph=:pph, avgcost=:avgcost, article_id=:article_id, published=:published WHERE service_id=:service_id" );
 		$sth->bindParam ( ":service_id", $service_id );
 		$sth->bindParam ( ":servicename", $servicename );
 		$sth->bindParam ( ":servicetext", $servicetext );
@@ -107,7 +107,7 @@ function haalartikelenop() {
 <form action="" method="post">
 	<input name="option" type="hidden" value="<?php echo $option; ?>" /> <input
 		name="service_id" type="hidden" value="<?php echo $service_id; ?>" />
-	<table>
+	<table class="simple-table">
 		<tr>
 			<td colspan="2">Titel:</td>
 		</tr>
