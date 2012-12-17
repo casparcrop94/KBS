@@ -18,21 +18,20 @@ $start_from = ($page - 1) * 4;
 
 //Het verbinden met de database wordt in dit stuk tekst gedaan, tevens wordt de SQL-querie hier uitgevoerd voor de resultaten.
 $dbh = connectToDatabase();
-$sth = $dbh->prepare(" SELECT * 
-                            FROM article 
-                            WHERE title LIKE '%$zoekwoord%'
-                            OR text LIKE '%$zoekwoord%' 
-			    LIMIT $start_from, 4
-                            ");
-$sth->execute();
-$result = $sth->fetchAll(PDO::FETCH_ASSOC);
+$sql1=" SELECT * 
+        FROM article 
+        WHERE title LIKE '%$zoekwoord%'
+        OR text LIKE '%$zoekwoord%' 
+	LIMIT $start_from, 4
+      ";
+$result1 = selectquery($sql1, $dbh)
 ?>
 
 <?php 
 echo "U heeft gezocht op $zoekwoord ";
 //De functie( foreach() ) om de zoekresultaten te laten zien voor het attribuut $zoekwoord, als het aantal resultaten groter is dan 0 wordt er geen foutmelding weergegeven
-if (count($result) > 0) {
-    foreach ($result as $row) {
+if (count($result1) > 0) {
+    foreach ($result1 as $row) {
 	?>
 
 	<div class="zoekresultaat">
@@ -49,13 +48,13 @@ if (count($result) > 0) {
 }
 ?>
 <?php
-$sth = $dbh->prepare("SELECT * 
-                            FROM article 
-                            WHERE title LIKE '%$zoekwoord%'
-                            OR text LIKE '%$zoekwoord%' ");
-$sth->execute();
-$result = $sth->fetchall(PDO::FETCH_ASSOC);
-$total_records = count($result);
+$sql2= "SELECT * 
+        FROM article 
+        WHERE title LIKE '%$zoekwoord%'
+        OR text LIKE '%$zoekwoord%' 
+       ";
+$result2= selectquery($sql2, $dbh);
+$total_records = count($result2);
 $total_pages = ceil($total_records / 4);
 
 for ($i = 1; $i <= $total_pages; $i++) {

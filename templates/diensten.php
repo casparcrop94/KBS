@@ -2,9 +2,9 @@
 <?php
 $dbh = connectToDatabase();
 
-$sth = $dbh->query("SELECT * FROM services WHERE Published=1"); // Haal alle diensten uit de database
-$sth->execute();
-$res = $sth->fetchAll(PDO::FETCH_ASSOC);
+$sql="SELECT * FROM services WHERE Published=1"; // Haal alle diensten uit de database
+
+$res = selectquery($sql, $dbh)
 ?>
 
         <table class="diensten">
