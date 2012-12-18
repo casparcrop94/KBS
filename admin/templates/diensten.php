@@ -1,10 +1,16 @@
-<!-- AUTEUR: RICHARD VAN DEN HOORN -->
 <?php
+/*
+ * @author Richard van den Hoorn
+ * @klas ICT M1 E1
+ * @projectGroup SSJ
+ */
 // connecting to the database
 $dbh = connectToDatabase ();
 
 // define $statustext
 $statusText = "";
+$style = "";
+
 
 // Check if case is defined
 if (isset ( $_GET ["case"] )) {

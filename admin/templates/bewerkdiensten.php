@@ -1,5 +1,9 @@
-<!-- AUTEUR: RICHARD VAN DEN HOORN -->
 <?php
+/*
+ * @author Richard van den Hoorn
+ * @klas ICT M1 E1
+ * @projectGroup SSJ
+ */
 // Sla verbinding op in $db
 $db = connectToDatabase ();
 $fouttext = '';
@@ -20,6 +24,15 @@ if (isset ( $_POST ['submit'] )) {
 	// Check if all formfields are filled.
 	if ($title == '' or $servicetext == '' or $pph == '' or $avgcost == '' or $article_id == '' or $published == '') {
 		$fouttext = 'Niet alle gegevens zijn ingevuld!';
+		// set original option into variable originaloption;
+		$originaloption = $option;
+		// set the option to renew, this means that the form is not filled
+		// correctly
+		$option = 'renew';
+		$option2 = 'renew';
+	}
+	elseif(is_numeric($pph)==false or is_numeric($avgcost)==false) {
+		$fouttext = 'De velden \'Prijs per uur\' en \'Gemiddelde prijs\' kunnen alleen numerieke waardes bevatten.';
 		// set original option into variable originaloption;
 		$originaloption = $option;
 		// set the option to renew, this means that the form is not filled

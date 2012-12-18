@@ -1,4 +1,9 @@
-<!-- AUTEUR: RICHARD VAN DEN HOORN -->
+<?php
+/*
+ * @author Richard van den Hoorn
+ * @klas ICT M1 E1
+ * @projectGroup SSJ
+ */
 <?php
 $fouttext = '';
 $option2 = '';
@@ -23,7 +28,7 @@ if (isset ( $_POST ['submit'] )) {
 		$option = 'renew';
 		$option2 = 'renew';
 	}
-	
+		
 	if ($option != 'renew') {
 		if ($option == 'new') {
 			// Insert new article

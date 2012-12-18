@@ -1,10 +1,9 @@
-<!--
-Auteur: Maarten Engels
-	s1058387
-	ICTM1e
--->
-
 <?php
+/*
+ * @author Maarten Engels
+ * @klas ICT M1 E1
+ * @projectGroup SSJ
+ */
 //Het woord dat ingevuld wordt in de zoekbalk wordt opgehaald en gebruikt als attribuut voor de SQL-querie.
 $zoekwoord = $_POST["zoekwoord123"];
 $_SESSION["zoekresultaat"] = $zoekwoord;

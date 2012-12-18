@@ -1,9 +1,9 @@
-<!--
-Auteur: Maarten Engels
-	s1058387
-	ICTM1E
--->
 <?php
+/*
+ * @author Maarten Engels
+ * @klas ICT M1 E1
+ * @projectGroup SSJ
+ */
 //Het zelfafhandelende gedeelte, waarbij het formulier wordt getoond als nog niet op de verstuur-knop is gedrukt
 if (isset($_POST["verstuur"])){
     //De attributen die worden opgeslagen vanuit het contactformulier, zodat in de e-mail die gestuurd wordt staat van wie het afkomstig is, wat het onderwerp is en wat de vraag is

@@ -1,4 +1,9 @@
 <?php
+/*
+ * @author Robert-John van Doesburg
+ * @klas ICT M1 E1
+ * @projectGroup SSJ
+ */
 session_start ();
 ob_start ();
 
@@ -62,7 +67,7 @@ if (! file_exists ( DOCROOT . 'templates/' . $page . '.php' )) {
 							<li><span>Contractenrecht</span>
 								<ul>
 									<li><a href="/particulier/contractrechten/wonen">Wonen</a></li>
-									<li><a href="/particulier/contractrechten/riezen">Reizen</a></li>
+									<li><a href="/particulier/contractrechten/reizen">Reizen</a></li>
 									<li><a href="/particulier/contractrechten/verkeer">Verkeer</a></li>
 									<li><a href="/particulier/contractrechten/internet-energie">Internet/energie</a></li>
 								</ul></li>

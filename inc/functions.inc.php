@@ -83,11 +83,11 @@ function isAjax()
 	}
 }
 
-function getNextMonth()
-{
 
-}
-
+/*
+ * @author Robert-John van Doesburg
+ * @desc Haal de maand op voor de agenda met eventueel gemaakte afspraken
+ */
 function getAgendaMonth($month = false, $year = false)
 {	
 	if (! $month)

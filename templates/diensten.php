@@ -1,5 +1,9 @@
-<!-- AUTEUR: RICHARD VAN DEN HOORN -->
 <?php
+/*
+ * @author Richard van den Hoorn
+ * @klas ICT M1 E1
+ * @projectGroup SSJ
+ */
 $dbh = connectToDatabase();
 
 $sql="SELECT * FROM services WHERE Published=1"; // Haal alle diensten uit de database
