@@ -331,7 +331,7 @@ function getAgendaMonth($month = false, $year = false)
 	
 	return $result;
 }
-
+// Erik de Vries
 function upload($files)
 {
 	ini_set("post_max_size", "30M");
