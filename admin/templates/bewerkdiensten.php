@@ -82,9 +82,7 @@ if (isset ( $_POST ['submit'] )) {
 }
 
 // Get option
-if (isset ( $option )) {
-	$option = $option;
-} else {
+if (empty ( $option )) {
 	$option = isset ( $_GET ["option"] ) ? $_GET ['option'] : 'new';
 }
 
