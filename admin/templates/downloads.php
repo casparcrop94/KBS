@@ -13,53 +13,77 @@ $dbh = connectToDatabase();
 $sql1 = "SELECT * FROM downloads ORDER BY ID DESC LIMIT $start_from, 20";
 $result1 = selectquery($sql1, $dbh);
 
-if (isset($_GET['action'])) {
+if (isset($_POST['option'])) {
 
-    if ($_GET['action'] == 'delete') {
-	$id = $_GET['ID'];
-	$sth = $dbh->prepare("SELECT file FROM downloads WHERE ID=:id");
-	$sth->bindParam(":id", $id, PDO::PARAM_STR);
+    if ($_POST['option'] == 'Verwijder') {
+	$id = $_POST['id'];
+	$id = implode(',', $_POST['id']);     // Zet de array om in een string, uit elkaar gehouden door ,
+	$id = mysql_real_escape_string($id);    // Maak de string veilig voor de database
+	$sth = $dbh->prepare("SELECT file, ID FROM downloads WHERE ID IN(" . $id . ")");
 	$sth->execute();
-	$result = $sth->fetch(PDO::FETCH_ASSOC);
+	$result = $sth->fetchAll(PDO::FETCH_ASSOC);
+
 //Delete functie, hier wordt de bestanden uit de map uploads, uit de database en van de site verwijdert.
-	if (unlink(DOCROOT . 'uploads/' . $result["file"])) {
-	    $sth = $dbh->prepare("DELETE FROM downloads Where ID=:id");
-	    $sth->bindParam(":id", $id, PDO::PARAM_STR);
-	    $sth->execute();
-	    header("location: /admin/downloads");
-	    exit;
+	foreach ($result as $file) {
+
+	    if (unlink(DOCROOT . 'uploads/' . $file["file"])) {
+		$sth = $dbh->prepare("DELETE FROM downloads WHERE ID=:id");
+		$sth->bindParam(":id", $file['ID'], PDO::PARAM_STR);
+		$sth->execute();
+	    }
 	}
+	header("location: /admin/downloads");
+	exit;
     }
 }
+
 //Upload functie
 if (isset($_POST['submit'])) {
-    upload($_FILES);
+    $upload = upload($_FILES);
+    if($upload === true){
+	header("location: /admin/downloads");
+	exit;
+    }
+    else{
+	//echo $upload;
+    }
 }
+
 // db
 $sth = $dbh->prepare("SELECT * FROM downloads");
 $sth->execute();
 $result = $sth->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <div id="downloads">
-    <table class="hover">
-	<tr id="head">    
-	    <th> Downloads </th>    
-	    <th> Grootte </th>
-	    <th> Verwijder </th>
-	</tr>
-	<?php foreach ($result1 as $row) {
-	    ?>
-    	<tr id="row">
-    	    <!-- Laat het bestand naam zien. -->
-    	    <td> <?php echo ($row["file"]); ?> </td>
-    	    <!-- Laat de size van het bestand zien in kb. -->
-    	    <td> <?php echo ($row["size"]); ?> kb </td>
-    	    <!-- Verwijder functie, verwijdert uit de map en de database. -->
-    	    <td> <a href="/admin/downloads/delete/<?php echo $row["ID"]; ?>">Verwijder</a></td>
-    	</tr>    
+    <?php
+    if(isset($upload)): ?>
+    <div class="message_error"> 
+	<p><?php echo $upload; ?></p>
+    </div>
+    <?php endif;?>
+    <form action="" method="post">
+	<input type="submit" name="option" value="Verwijder"/>
+	<table class="hover">
+	    <tr id="head"> 
+		<th class="center"><input type="checkbox" id="checkall" value=""/></th>
+		<th> Downloads </th>    
+		<th> Grootte </th>
 
-	<?php } ?>       
-    </table>
+	    </tr>
+	    <?php foreach ($result1 as $row) {
+		?>
+    	    <tr id="row">
+		    <?php echo("<td class=\"center\"><input type=\"checkbox\" value=" . $row['ID'] . " name=id[]/></td>"); ?>
+    		<!-- Laat het bestand naam zien. -->
+    		<td> <?php echo ($row["file"]); ?> </td>
+    		<!-- Laat de size van het bestand zien in kb. -->
+    		<td> <?php echo ($row["size"]); ?> kb </td>
+
+    	    </tr>    
+
+	    <?php } ?>       
+	</table>
+    </form>
 </div>
 <?php
 //db
