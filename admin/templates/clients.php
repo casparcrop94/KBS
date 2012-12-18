@@ -1,10 +1,9 @@
-<!--
-Auteur: Jelle Kapitein
-	s1058427
-	ICTM1e
--->
-
 <?php
+/*
+ * @author Jelle Kapitein
+ * @klas ICT M1 E1
+ * @projectGroup SSJ
+ */
 
 $dbh = connectToDatabase();
 
@@ -39,6 +38,8 @@ if(isset($_POST['search']) && !empty($_POST['search'])) {
 	    <th>Gebruikersnaam</th>
 	    <th>Volledige naam</th>
 	    <th>E-mail adres</th>
+	    <th>Bekijk berichten</th>
+	    <th>Verstuur bericht</th>
 	</tr>
 	
     <?php
@@ -49,6 +50,8 @@ if(isset($_POST['search']) && !empty($_POST['search'])) {
 	    <td><?php echo("<a href=/admin/clients/edit/".$row['ID'].">".$row['username'])."</a>" ?></td>
 	    <td><?php echo($row['name']); ?></td>
 	    <td><?php echo($row['email']); ?></td>
+	    <td> Link (Totaal) (Ongelezen) </td>
+	    <td><?php echo("<a href=/admin/clients/sendmessage/".$row['ID'].">(plaatje)</a>"); ?>
 	</tr>
     
     <?php

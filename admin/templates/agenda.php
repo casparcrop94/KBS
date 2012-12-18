@@ -1,3 +1,10 @@
+<?php 
+/*
+ * @author Robert-John van Doesburg
+ * @klas ICT M1 E1
+ * @projectGroup SSJ
+ */
+?>
 <script type="text/javascript" src="/scripts/agenda.js"></script>
 <?php 
 $result = getAgendaMonth();

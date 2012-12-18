@@ -1,5 +1,9 @@
-<!-- AUTEUR: RICHARD VAN DEN HOORN -->
 <?php
+/*
+ * @author Richard van den Hoorn
+ * @klas ICT M1 E1
+ * @projectGroup SSJ
+ */
 // Set connection with database into variable
 $dbh = connectToDatabase();  
 
