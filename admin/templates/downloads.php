@@ -11,10 +11,10 @@ if (isset($_GET["page"])) {
     $page = 1;
 };
 //worden 10 results weergegeven per pagina.
-$start_from = ($page - 1) * 20;
+$start_from = ($page - 1) * 10;
 //db
 $dbh = connectToDatabase();
-$sql1 = "SELECT * FROM downloads ORDER BY ID DESC LIMIT $start_from, 20";
+$sql1 = "SELECT * FROM downloads ORDER BY ID DESC LIMIT $start_from, 10";
 $result1 = selectquery($sql1, $dbh);
 
 if (isset($_POST['option'])) {
@@ -44,11 +44,10 @@ if (isset($_POST['option'])) {
 //Upload functie
 if (isset($_POST['submit'])) {
     $upload = upload($_FILES);
-    if($upload === true){
+    if ($upload === true) {
 	header("location: /admin/downloads");
 	exit;
-    }
-    else{
+    } else {
 	//echo $upload;
     }
 }
@@ -58,18 +57,46 @@ $sth = $dbh->prepare("SELECT * FROM downloads");
 $sth->execute();
 $result = $sth->fetchAll(PDO::FETCH_ASSOC);
 ?>
+<!-- Het formulier van documenten uploaden. -->  
+<p><strong>Nieuw bestand uploaden</strong></p>
+<form action="" method="post"
+      enctype="multipart/form-data">
+    <label for="file">Bestand uploaden:</label>
+    <input type="file" name="file" id="file" />
+    <br />
+    <input type="submit" name="submit" value="Upload" />
+</form>
+<p><strong>Bestaande bestanden overzicht en verwijderen</strong></p>
 <div id="downloads">
-    <?php
-    if(isset($upload)): ?>
-    <div class="message_error"> 
-	<p><?php echo $upload; ?></p>
-    </div>
-    <?php endif;?>
+    <?php if (isset($upload)): ?>
+        <div class="message_error"> 
+    	<p><?php echo $upload; ?></p>
+        </div>
+    <?php endif; ?>
+
     <form action="" method="post">
 	<input type="submit" name="option" value="Verwijder"/>
 	<table class="hover">
 	    <tr id="head"> 
 		<th class="center"><input type="checkbox" id="checkall" value=""/></th>
+    
+    <?php
+//db
+$sql2 = "SELECT * FROM downloads";
+$result2 = selectquery($sql2, $dbh);
+//het aantal records, aantal word berekent door $result bij elkaar optetellen
+$total_records = count($result2);
+//het aantal pages, aantal pages wordt berekend door het aantal records delen door 10
+$total_pages = ceil($total_records / 10);
+//$1 als er niet genoeg bestanden zijn voor 2 pagina's, is de pagination niet zichtbaar
+if ($total_pages > 1) {
+//$1 staat voor de pagina nummer, begint op 1
+    for ($i = 1; $i <= $total_pages; $i++) {
+//$1 (de pagina nummer) komt achter de url de staan en wordt weergegeven als $1 onder de tabel
+	echo "<a href='/admin/downloads/" . $i . "'>" . $i . "</a> ";
+    }
+}
+?>
 		<th> Downloads </th>    
 		<th> Grootte </th>
 
@@ -79,7 +106,7 @@ $result = $sth->fetchAll(PDO::FETCH_ASSOC);
     	    <tr id="row">
 		    <?php echo("<td class=\"center\"><input type=\"checkbox\" value=" . $row['ID'] . " name=id[]/></td>"); ?>
     		<!-- Laat het bestand naam zien. -->
-    		<td> <?php echo ($row["file"]); ?> </td>
+    		<td> <a href=http://kbs.nl/uploads/<?php echo rawurlencode($row["file"]) ?> > <?php echo $row["file"] ?> </a></td>
     		<!-- Laat de size van het bestand zien in kb. -->
     		<td> <?php echo ($row["size"]); ?> kb </td>
 
@@ -89,25 +116,4 @@ $result = $sth->fetchAll(PDO::FETCH_ASSOC);
 	</table>
     </form>
 </div>
-<?php
-//db
-$sql2 = "SELECT * FROM downloads";
-$result2 = selectquery($sql2, $dbh);
-//het aantal records, aantal word berekent door $result bij elkaar optetellen
-$total_records = count($result2);
-//het aantal pages, aantal pages wordt berekend door het aantal records delen door 10
-$total_pages = ceil($total_records / 20);
-//$1 staat voor de pagina nummer, begint op 1
-for ($i = 1; $i <= $total_pages; $i++) {
-//$1 (de pagina nummer) komt achter de url de staan en wordt weergegeven als $1 onder de tabel
-    echo "<a href='/admin/downloads/" . $i . "'>" . $i . "</a> ";
-};
-?>
-<!-- Het formulier van documenten uploaden. -->    
-<form action="" method="post"
-      enctype="multipart/form-data">
-    <label for="file">Bestand uploaden:</label>
-    <input type="file" name="file" id="file" />
-    <br />
-    <input type="submit" name="submit" value="Upload" />
-</form>
+

@@ -46,9 +46,12 @@ $result2 = selectquery($sql2, $dbh);
 $total_records = count($result2);
 //het aantal pages, aantal pages wordt berekend door het aantal records delen door 10
 $total_pages = ceil($total_records / 10);
+//$1 als er niet genoeg bestanden zijn voor 2 pagina's, is de pagination niet zichtbaar
+if ($total_pages > 1) {
 //$1 staat voor de pagina nummer, begint op 1
-for ($i = 1; $i <= $total_pages; $i++) {
+    for ($i = 1; $i <= $total_pages; $i++) {
 //$1 (de pagina nummer) komt achter de url de staan en wordt weergegeven als $1 onder de tabel
-    echo "<a href='/downloads/" . $i . "'>" . $i . "</a> ";
-};
+	echo "<a href='/downloads/" . $i . "'>" . $i . "</a> ";
+    }
+}
 ?>
