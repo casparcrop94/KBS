@@ -23,7 +23,7 @@ if (isset ( $_POST ['submit'] )) {
 		$option = 'renew';
 		$option2 = 'renew';
 	}
-	
+		
 	if ($option != 'renew') {
 		if ($option == 'new') {
 			// Insert new article

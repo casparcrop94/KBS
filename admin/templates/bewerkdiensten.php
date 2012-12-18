@@ -27,6 +27,15 @@ if (isset ( $_POST ['submit'] )) {
 		$option = 'renew';
 		$option2 = 'renew';
 	}
+	elseif(is_numeric($pph)==false or is_numeric($avgcost)==false) {
+		$fouttext = 'De velden \'Prijs per uur\' en \'Gemiddelde prijs\' kunnen alleen numerieke waardes bevatten.';
+		// set original option into variable originaloption;
+		$originaloption = $option;
+		// set the option to renew, this means that the form is not filled
+		// correctly
+		$option = 'renew';
+		$option2 = 'renew';
+	}
 	
 	if ($option != 'renew') {
 		if ($option == 'new') {
