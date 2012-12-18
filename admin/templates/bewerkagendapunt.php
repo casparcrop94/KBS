@@ -17,7 +17,7 @@ if(isset($_POST['save-agenda-point']))
 	
 	$db = connectToDatabase();
 	$sql = "
-		INSERT INTO `agenda`
+		REPLACE INTO `agenda`
 			(`id`, `naam`, `start_tijd`, `eind_tijd`, `start_datum`, `eind_datum`, `hele_dag`, `locatie`, `beschrijving`)
 		VALUES
 			(:id, :naam, :start_tijd, :eind_tijd, STR_TO_DATE(:start_datum, '%d-%m-%Y'), STR_TO_DATE(:eind_datum, '%d-%m-%Y'), :hele_dag, :locatie, :beschrijving)
@@ -125,7 +125,7 @@ if(isset($_GET['id']))
 		</tr>
 		<tr>
 			<td colspan="2">
-				<input id="whole_day" type="checkbox" name="whole-day" value="yes" <?php echo $whole_day?'checked="checked"':'';?> />
+				<input id="whole_day" type="checkbox" name="whole-day" value="yes" <?php echo isset($whole_day)?'checked="checked"':'';?> />
 				<label for="whole_day">Hele dag</label>
 			</td>
 		</tr>
