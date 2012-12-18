@@ -3,7 +3,6 @@ Auteur: Maarten Engels
 	s1058387
 	ICTM1e
 -->
-session_start();
 <?php
 //Het woord dat ingevuld wordt in de zoekbalk wordt opgehaald en gebruikt als attribuut voor de SQL-querie.
 $zoekwoord = mysql_real_escape_string($_POST["zoekwoord123"]);
