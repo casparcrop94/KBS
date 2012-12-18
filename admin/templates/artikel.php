@@ -19,18 +19,38 @@ if (isset ( $_POST ['option'] ) && isset ( $_POST ['id'] )) {
 	
 	if ($_POST ['option'] == "Verwijder") { // Als er op de verwijder knop is
 	                                        // gedrukt
-		$sth = $dbh->prepare ( "DELETE FROM article WHERE ID IN(" . $id . ")" ); // Verwijder
-		                                                                         // het
-		                                                                         // artikel
+		$sth = $dbh->prepare ( "DELETE FROM article WHERE ID IN(" . $id . ")" ); // Verwijder het artikel
 		$sth->execute ();
-		
-		$statusText = "Artikel succesvol verwijderd.";
+		if($sth==true){
+			$style='message_success';
+			$statusText = "Artikel succesvol verwijderd.";
+		}
+		else{
+			$style = 'message_error';
+			$statusText = "Er is een fout opgetreden tijdens het verwijderen van het artikel, het artikel is niet verwijderd!";
+		}
 	} elseif ($_POST ['option'] == "Publiceer") {
 		$sth = $dbh->prepare ( "UPDATE article SET published=1 WHERE ID IN (" . $id . ")" );
 		$sth->execute ();
+		if($sth==true){
+			$style='message_success';
+			$statusText = "Artikel succesvol gepubliceerd.";
+		}
+		else{
+			$style = 'message_error';
+			$statusText = "Er is een fout opgetreden tijdens het publiceren van het artikel, het artikel is niet gepubliceerd!";
+		}
 	} elseif ($_POST ['option'] == "Depubliceer") {
 		$sth = $dbh->prepare ( "UPDATE article SET published=0 WHERE ID IN (" . $id . ")" );
 		$sth->execute ();
+		if($sth==true){
+			$style='message_success';
+			$statusText = "Artikel succesvol gedepubliceerd.";
+		}
+		else{
+			$style = 'message_error';
+			$statusText = "Er is een fout opgetreden tijdens het depubliceren van het artikel, het artikel is niet gedepubliceerd!";
+		}
 	}
 }
 
