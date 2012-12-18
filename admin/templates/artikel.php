@@ -7,19 +7,20 @@
 
 $dbh = connectToDatabase (); // Maak verbinding met de database
 $statusText = "";
+$style = "";
 
 if (isset ( $_POST ['option'] ) && isset ( $_POST ['id'] )) {
 	$id = $_POST ['id']; // Haal de ID array op
 	$id = implode ( ',', $_POST ['id'] ); // Zet de array om in een string, uit
-	                                  // elkaar gehouden door ,
+	                                      // elkaar gehouden door ,
 	$id = mysql_real_escape_string ( $id ); // Maak de string veilig voor de
-	                                     // database
+	                                        // database
 	
 	if ($_POST ['option'] == "Verwijder") { // Als er op de verwijder knop is
-	                                       // gedrukt
+	                                        // gedrukt
 		$sth = $dbh->prepare ( "DELETE FROM article WHERE ID IN(" . $id . ")" ); // Verwijder
-		                                                                      // het
-		                                                                      // artikel
+		                                                                         // het
+		                                                                         // artikel
 		$sth->execute ();
 		
 		$statusText = "Artikel succesvol verwijderd.";
@@ -35,19 +36,19 @@ if (isset ( $_POST ['option'] ) && isset ( $_POST ['id'] )) {
 if (isset ( $_GET ["case"] )) {
 	if ($_GET ["case"] == "succes") {
 		$statusText = "Artikel succesvol opgeslagen.";
-		$style="message_success";
+		$style = "message_success";
 	} else {
 		$statusText = "Artikel niet succesvol opgeslagen.";
-		$style="message_error";
+		$style = "message_error";
 	}
 }
 
 $sth = $dbh->query ( "SELECT A.ID,title,C.name AS catname,date_added,date_edited,A.published FROM article A JOIN category C ON A.cat_id = C.cat_id ORDER BY ID" ); // Haal
-                                                                                                                                                                // alle
-                                                                                                                                                                // artikelen
-                                                                                                                                                                // uit
-                                                                                                                                                                // de
-                                                                                                                                                                // database
+                                                                                                                                                                   // alle
+                                                                                                                                                                   // artikelen
+                                                                                                                                                                   // uit
+                                                                                                                                                                   // de
+                                                                                                                                                                   // database
 $sth->execute ();
 
 $res = $sth->fetchAll ( PDO::FETCH_ASSOC );
@@ -79,15 +80,16 @@ $res = $sth->fetchAll ( PDO::FETCH_ASSOC );
 		echo ("<tr>");
 		echo ("<td align=\"center\"><input type=\"checkbox\" value=" . $row ['ID'] . " name=id[]/></td>");
 		echo ("<td><a href='/admin/artikel/bewerk/" . $row ['ID'] . "'>" . $row ['title'] . "</a></td>"); // Print
-		                                                                                               // de
-		                                                                                               // titel
+		                                                                                                  // de
+		                                                                                                  // titel
 		echo ("<td>" . $row ['catname'] . "</td>"); // Print de categorie
-		echo ("<td align=\"center\">" . $row ['date_added'] . "</td>"); // Print de
-		                                                              // datum
+		echo ("<td align=\"center\">" . $row ['date_added'] . "</td>"); // Print
+		                                                                // de
+		                                                                // datum
 		echo ("<td align=\"center\">" . $row ['date_edited'] . "</td>");
 		echo ("<td align=\"center\">" . ($row ['published'] == 1 ? "Ja" : "Nee") . "</td>"); // Print
-		                                                                                   // de
-		                                                                                   // publicatiestatus
+		                                                                                     // de
+		                                                                                     // publicatiestatus
 		echo ("</tr>");
 	}
 	?>
