@@ -80,7 +80,7 @@ if (! file_exists ( DOCROOT . 'templates/' . $page . '.php' )) {
 		    <?php include '/templates/' . $page . '.php'; ?>
 		</div>
 			<div id="right-content">
-				<form id="search-form" action="zoekresultaten" method="post">
+				<form id="search-form" action="/zoekresultaten" method="post">
 					<input type="text" name="zoekwoord123" placeholder="Zoeken" /> <input
 						type="image" src="/images/searcher.png" value="" />
 				</form>
