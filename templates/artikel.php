@@ -1,4 +1,9 @@
 <?php
+/*
+ * @author Jelle Kapitein & Richard van den Hoorn
+ * @klas ICT M1 E1
+ * @projectGroup SSJ
+ */
 if (isset ( $_GET ['parent_item'] )) {
 	$dbh = connectToDatabase ();
 	$parent=$_GET ["parent_item"];

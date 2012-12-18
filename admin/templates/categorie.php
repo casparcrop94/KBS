@@ -1,5 +1,9 @@
-<!-- AUTEUR: RICHARD VAN DEN HOORN -->
 <?php
+/*
+ * @author Richard van den Hoorn
+ * @klas ICT M1 E1
+ * @projectGroup SSJ
+ */
 // Set connection with database into variable
 $dbh = connectToDatabase();  
 
@@ -42,20 +46,38 @@ if(isset($_POST['option'])) {
 		if($_POST['option'] == "Publiceer") {
         	$sth = $dbh->prepare("UPDATE category SET published=1 WHERE cat_id IN($id)");
         	$sth->execute();
-        
-        	$statusText = "Categorie succesvol gepubliceerd.";
+        	if($sth==true){
+        		$style='message_success';
+        		$statusText = "Categorie succesvol gepubliceerd.";
+        	}
+        	else{
+        		$style = 'message_error';
+        		$statusText = "Er is een fout opgetreden tijdens het publiceren van de categorie, de categorie is niet gepubliceerd!";
+        	}
     	}
 		if($_POST['option'] == "Depubliceer") {
         	$sth = $dbh->prepare("UPDATE category SET published=0 WHERE cat_id IN($id)");
         	$sth->execute();
-        
-        	$statusText = "Categorie succesvol gedepubliceerd.";
+        	if($sth==true){
+        		$style='message_success';
+        		$statusText = "Categorie succesvol gedepubliceerd.";
+        	}
+        	else{
+        		$style = 'message_error';
+        		$statusText = "Er is een fout opgetreden tijdens het depubliceren van de categorie, de categorie is niet degepubliceerd!";
+        	}
     	}
 		if($_POST['option'] == "Verwijderen") {
         	$sth = $dbh->prepare("DELETE FROM category WHERE cat_id IN($id)");
         	$sth->execute();
-        
-        	$statusText = "Categorie succesvol verwijderd.";
+        	if($sth==true){
+        		$style='message_success';
+        		$statusText = "Categorie succesvol verwijderd.";
+        	}
+        	else{
+        		$style = 'message_error';
+        		$statusText = "Er is een fout opgetreden tijdens het verwijderen van de categorie, de categorie is niet verwijderd!";
+        	}
     	}
 	}	
 }

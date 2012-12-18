@@ -83,11 +83,11 @@ function isAjax()
 	}
 }
 
-function getNextMonth()
-{
 
-}
-
+/*
+ * @author Robert-John van Doesburg
+ * @desc Haal de maand op voor de agenda met eventueel gemaakte afspraken
+ */
 function getAgendaMonth($month = false, $year = false)
 {	
 	if (! $month)
@@ -412,7 +412,7 @@ function retreivearchive($dyear, $dmonth, $dbh)
 	// last changed at)
 	$sql = "SELECT ID, date_edited, title, TEXT, published
 	    FROM article
-	    WHERE (cat_id =10 AND published =1)
+	    WHERE (cat_id =11 AND published =1)
 		    AND (date_edited LIKE  '%$dyear-$dmonth-%')
 	    ORDER BY date_edited";
 	// executing the query
@@ -431,7 +431,7 @@ function retreivenewsarticle($dbh)
 	// last changed at)
 	$sql = "SELECT title, TEXT
  	    FROM article
- 	    WHERE (cat_id =10 AND published =1)
+ 	    WHERE (cat_id =11 AND published =1)
  	    ORDER BY date_added
  	    LIMIT 0, 3";
 	// executing the query

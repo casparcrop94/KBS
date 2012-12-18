@@ -1,5 +1,9 @@
-<!-- Erik de Vries -->
 <?php
+/*
+ * @author Erik de Vries
+ * @klas ICT M1 E1
+ * @projectGroup SSJ
+ */
 //haalt de page op voor de url
 if (isset($_GET["page"])) {
     $page = $_GET["page"];
