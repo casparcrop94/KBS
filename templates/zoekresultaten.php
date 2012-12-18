@@ -10,8 +10,10 @@ Auteur: Maarten Engels
  * @projectGroup SSJ
  */
 //Het woord dat ingevuld wordt in de zoekbalk wordt opgehaald en gebruikt als attribuut voor de SQL-querie.
-$zoekwoord = mysql_real_escape_string($_POST["zoekwoord123"]);
-$_SESSION["zoekresultaat"] = $zoekwoord;
+if(isset($_POST['zoekwoord123']) && !empty($_POST['zoekwoord123'])) {
+    $zoekwoord = mysql_real_escape_string($_POST["zoekwoord123"]);
+    $_SESSION["zoekresultaat"] = $zoekwoord;
+}
 //Zelfafhandelend formulier waarbij er naar resultatenpagina 1 gaat als er nog geen paginanummer is opgegeven
 if (isset($_GET["page"])) {
     $page = $_GET["page"];
@@ -21,12 +23,11 @@ if (isset($_GET["page"])) {
 if ($page > 1) {
     $zoekwoord = $_SESSION["zoekresultaat"];
 }
-VAR_dump($zoekwoord);
 
 $start_from = ($page - 1) * 4;
 
 //Zelfafhandelend formulier waarbij de resultaten 
-if (isset($_POST['zoekwoord123'])) {
+if (isset($zoekwoord) && !empty($zoekwoord)) {
 //Het verbinden met de database wordt in dit stuk tekst gedaan, tevens wordt de SQL-querie hier uitgevoerd voor de resultaten.
 
     $dbh = connectToDatabase();
@@ -53,7 +54,7 @@ if (isset($_POST['zoekwoord123'])) {
 	    <div class="zoekresultaat">
 	        <h3><?php echo $row["title"]; ?></h3>
 	        <p><?php echo strip_tags($row["text"]); ?></p>
-	        <a href="/article/<?php echo $row["ID"]; ?>">Lees meer</a>
+	        <a href="/artikel/<?php echo $row["ID"]; ?>">Lees meer</a>
 	    </div>
 
 	    <?php
@@ -75,7 +76,7 @@ if (isset($_POST['zoekwoord123'])) {
     $total_pages = ceil($total_records / 4);
 
     for ($i = 1; $i <= $total_pages; $i++) {
-	echo "<a href='/zoekresultaten/" . $i . "'>" . $i . "</a>";
+	echo "<a href='/zoekresultaten/" . $i . "'>" . $i . "</a>&nbsp;";
     };
 }
 ?>
