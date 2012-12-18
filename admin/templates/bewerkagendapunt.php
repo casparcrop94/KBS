@@ -1,4 +1,9 @@
-<?php
+<?php 
+/*
+ * @author Robert-John van Doesburg
+ * @klas ICT M1 E1
+ * @projectGroup SSJ
+ */
 if(isset($_POST['save-agenda-point']))
 {
 	$agenda_point_name = $_POST['title'];

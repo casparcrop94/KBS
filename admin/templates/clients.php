@@ -1,10 +1,9 @@
-<!--
-Auteur: Jelle Kapitein
-	s1058427
-	ICTM1e
--->
-
 <?php
+/*
+ * @author Jelle Kapitein
+ * @klas ICT M1 E1
+ * @projectGroup SSJ
+ */
 
 $dbh = connectToDatabase();
 
