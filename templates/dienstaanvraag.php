@@ -1,5 +1,6 @@
 <!--Auteur: Caspar Crop-->
 <?php
+//prepare the database collection
 $dbh = connectToDatabase();
 
 //if the user submitted the form, the following is done:
@@ -12,7 +13,7 @@ if (isset($_POST['vraagaan'])) {
     $residence=$_POST['residence'];
     $telephone=$_POST['telephone'];
     $mobile=$_POST['mobile'];
-    $service=;
+    $service=$_SESSION[askservice];
     
     if($name!="" or $email!="" or $address!="" or $zipcode!="" or $residence!="" or $telephone!="" or $mobile!=""){
     //check agenda
@@ -54,6 +55,14 @@ if (isset($_POST['vraagaan'])) {
 	<tr>
 	    <td>Mobiel</td>
 	    <td><input type="text" name="mobile" value="<?php echo($mobile)?>" /></td>
+	</tr>
+	<tr>
+	<td>Datum</td>
+	<td></td>
+	</tr>
+	<tr>
+	<td>Begintijd en eindtijd</td>
+	<td></td>
 	</tr>
 	<tr>
 	<td><input type="hidden" name="service" value=""></td>
