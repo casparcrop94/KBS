@@ -1,7 +1,9 @@
-<!--
-Auteur: RICHARD VAN DEN HOORN
--->
 <?php
+/*
+ * @author Richard van den Hoorn
+ * @klas ICT M1 E1
+ * @projectGroup SSJ
+ */
 
 $dbh = connectToDatabase (); // Maak verbinding met de database
 

@@ -4,6 +4,11 @@ Auteur: Maarten Engels
 	ICTM1e
 -->
 <?php
+/*
+ * @author Maarten Engels
+ * @klas ICT M1 E1
+ * @projectGroup SSJ
+ */
 //Het woord dat ingevuld wordt in de zoekbalk wordt opgehaald en gebruikt als attribuut voor de SQL-querie.
 $zoekwoord = mysql_real_escape_string($_POST["zoekwoord123"]);
 $_SESSION["zoekresultaat"] = $zoekwoord;

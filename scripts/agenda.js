@@ -209,6 +209,11 @@ $(document).ready(function()
 		);
 	});
 	
+	$('#edit-existing-appointment').live('click', function(){
+		var id = $('#appointment-id').val();
+		window.location.href = '/admin/agenda/bewerk/' + id;
+	});
+	
 	$('#end-date').datepicker({ 
 		dateFormat: "dd-mm-yy",
 		onSelect: function(dateText, inst) 
@@ -289,6 +294,12 @@ $(document).ready(function()
 			$('#end-time').show();
 		}
 	});
+	
+	if($('#whole_day').is(':checked'))
+	{
+		$('#start-time').hide();
+		$('#end-time').hide();
+	}
 });
 
 
