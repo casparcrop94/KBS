@@ -31,7 +31,6 @@ if(!file_exists(DOCROOT . 'admin/templates/' . $page . '.php'))
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<title>Juridische hulp - Admin</title>
 		<link rel="stylesheet" type="text/css" href="/styles/admin.css" />
-		<link rel="stylesheet" type="text/css" href="/styles/jqueryui/jquery-ui-1.9.2.custom.min.css" />
 		
 		<script type="text/javascript" src="/scripts/jquery.1.8.3.js"></script>
 		<script type="text/javascript" src="/scripts/jquery_ui.1.9.2.js"></script>
