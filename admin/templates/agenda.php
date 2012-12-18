@@ -59,7 +59,7 @@ $result = getAgendaMonth();
 		<div id="appointment-date"></div>
 		<div class="appointment-options">
 			<input class="left" type="button" id="delete-appointment" value="Verwijder definitief" />
-			<input class="right edit-appointment" type="button" value="Afspraak bewerken" />
+			<input class="right edit-appointment" type="button" value="Afspraak bewerken" id="edit-existing-appointment" />
 		</div>
 		<input type="hidden" id="appointment-id" />
 	</div>
