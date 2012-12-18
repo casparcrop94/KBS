@@ -46,7 +46,7 @@ if(isset($_POST['search']) && !empty($_POST['search'])) {
     ?>
 	<tr>
 	    <td align="center"><input type="checkbox" name="id[]" value="<?php echo($row['ID'])?>"/></td>
-	    <td><?php echo($row['username']); ?></td>
+	    <td><?php echo("<a href=/admin/clients/edit/".$row['ID'].">".$row['username'])."</a>" ?></td>
 	    <td><?php echo($row['name']); ?></td>
 	    <td><?php echo($row['email']); ?></td>
 	</tr>
