@@ -57,10 +57,13 @@ $result2 = selectquery($sql2, $dbh);
 $total_records = count($result2);
 //calculate pages by dividing total records by 20
 $total_pages = ceil($total_records / 20);
-//$i stands for the page number and starts at one
-for ($i = 1; $i <= $total_pages; $i++) {
-//$i (page number) implemented in link below table
-    echo "<a href='/admin/admintarieven/" . $i . "'>" . $i . "</a> ";
-};
+//check if page total is larger than 1, if it is larger, pages will be put in.
+if($total_pages>1){
+    //$i stands for the page number and starts at one
+    for ($i = 1; $i <= $total_pages; $i++) {
+	//$i (page number) implemented in link below table
+	echo "<a href='/admin/admintarieven/" . $i . "'>" . $i . "</a> ";
+    }
+}
 ?>
 </div>

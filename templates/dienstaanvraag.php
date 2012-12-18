@@ -101,9 +101,18 @@ else{
 	    <td><input type="text" name="mobile" value="" /></td>
 	</tr>
 	<tr>
+	<td>Datum</td>
+	<td></td>
+	</tr>
+	<tr>
+	<td>Begintijd en eindtijd</td>
+	<td></td>
+	</tr>
+	<tr>
 	<td><input type="hidden" name="service" value=""></td>
 	<td></td>
 	</tr>
+	
 	<tr>
 	    <td></td>
 	    <td><input type="submit" name="vraagaan" value="Vraag aan!" /></td>
