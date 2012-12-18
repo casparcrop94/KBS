@@ -54,7 +54,7 @@ if (isset($zoekwoord) && !empty($zoekwoord)) {
 	    <div class="zoekresultaat">
 	        <h3><?php echo $row["title"]; ?></h3>
 	        <p><?php echo strip_tags($row["text"]); ?></p>
-	        <a href="/article/<?php echo $row["ID"]; ?>">Lees meer</a>
+	        <a href="/artikel/<?php echo $row["ID"]; ?>">Lees meer</a>
 	    </div>
 
 	    <?php
@@ -76,7 +76,7 @@ if (isset($zoekwoord) && !empty($zoekwoord)) {
     $total_pages = ceil($total_records / 4);
 
     for ($i = 1; $i <= $total_pages; $i++) {
-	echo "<a href='/zoekresultaten/" . $i . "'>" . $i . "</a>";
+	echo "<a href='/zoekresultaten/" . $i . "'>" . $i . "</a>&nbsp;";
     };
 }
 ?>
