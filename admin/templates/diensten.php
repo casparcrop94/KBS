@@ -5,6 +5,8 @@ $dbh = connectToDatabase ();
 
 // define $statustext
 $statusText = "";
+$style = "";
+
 
 // Check if case is defined
 if (isset ( $_GET ["case"] )) {
