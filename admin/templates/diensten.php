@@ -1,8 +1,6 @@
 <?php
 /*
- * @author Richard van den Hoorn
- * @klas ICT M1 E1
- * @projectGroup SSJ
+ * @author Richard van den Hoorn @klas ICT M1 E1 @projectGroup SSJ
  */
 // connecting to the database
 $dbh = connectToDatabase ();
@@ -11,28 +9,28 @@ $dbh = connectToDatabase ();
 $statusText = "";
 $style = "";
 
-
 // Check if case is defined
-if (isset ( $_GET ["case"] )) {
-	if ($_GET ["case"] == "succes") {
+if(isset ( $_GET ["case"] )){
+	if($_GET ["case"] == "succes"){
 		$statusText = "Dienst succesvol opgeslagen.";
-		$style="message_success";
-	} else {
+		$style = "message_success";
+	}
+	else{
 		$statusText = "Dienst niet succesvol opgeslagen.";
-		$style="message_error";
+		$style = "message_error";
 	}
 }
 
 // Check if option is defined
-if (isset ( $_POST ['option'] )) {
+if(isset ( $_POST ['option'] )){
 	$statusText = "";
 	
-	if ($_POST ['option'] == "Nieuw") {
+	if($_POST ['option'] == "Nieuw"){
 		header ( "Location: /admin/diensten/nieuw" );
 		exit ();
 	}
 	
-	if (isset ( $_POST ['id'] )) {
+	if(isset ( $_POST ['id'] )){
 		// Get id from form in array
 		$id = $_POST ['id'];
 		// convert array to comma sepparated string
@@ -42,11 +40,11 @@ if (isset ( $_POST ['option'] )) {
 		// BindParam.
 		$id = mysql_real_escape_string ( $id );
 		
-		if ($_POST ['option'] == "Publiceer") {
+		if($_POST ['option'] == "Publiceer"){
 			$sth = $dbh->prepare ( "UPDATE services SET published=1 WHERE service_id IN($id)" );
 			$sth->execute ();
-			if($sth==true){
-				$style='message_success';
+			if($sth == true){
+				$style = 'message_success';
 				$statusText = "Dienst succesvol gepubliceerd.";
 			}
 			else{
@@ -54,11 +52,11 @@ if (isset ( $_POST ['option'] )) {
 				$statusText = "Er is een fout opgetreden tijdens het publiceren van de dienst, de dienst is niet gepubliceerd!";
 			}
 		}
-		if ($_POST ['option'] == "Depubliceer") {
+		if($_POST ['option'] == "Depubliceer"){
 			$sth = $dbh->prepare ( "UPDATE services SET published=0 WHERE service_id IN($id)" );
 			$sth->execute ();
-			if($sth==true){
-				$style='message_success';
+			if($sth == true){
+				$style = 'message_success';
 				$statusText = "Dienst succesvol gedepubliceerd.";
 			}
 			else{
@@ -66,11 +64,11 @@ if (isset ( $_POST ['option'] )) {
 				$statusText = "Er is een fout opgetreden tijdens het depubliceren van de dienst, de dienst is niet gedepubliceerd!";
 			}
 		}
-		if ($_POST ['option'] == "Verwijderen") {
+		if($_POST ['option'] == "Verwijderen"){
 			$sth = $dbh->prepare ( "DELETE FROM services WHERE service_id IN($id)" );
 			$sth->execute ();
-			if($sth==true){
-				$style='message_success';
+			if($sth == true){
+				$style = 'message_success';
 				$statusText = "Dienst succesvol verwijderd.";
 			}
 			else{
@@ -82,21 +80,19 @@ if (isset ( $_POST ['option'] )) {
 }
 
 $sth = $dbh->query ( "SELECT * FROM services" ); // Haal alle diensten uit de
-                                              // database
+// database
 $sth->execute ();
 $res = $sth->fetchAll ( PDO::FETCH_ASSOC );
 
 function haalartikelop($id) {
 	$dbh = connectToDatabase ();
-	$sth = $dbh->query ( "SELECT * FROM article WHERE ID=$id" ); // Haal alle
-	                                                          // diensten uit de
-	                                                          // database
+	$sth = $dbh->query ( "SELECT * FROM article WHERE ID=$id" ); // Haal alle diensten uit de database
 	$sth->bindparam ( ':id', $id );
 	$sth->execute ();
 	$res = $sth->fetchAll ( PDO::FETCH_ASSOC );
 	$title = '';
 	
-	foreach ( $res as $row ) {
+	foreach($res as $row){
 		$title = $row ['title'];
 	}
 	
@@ -119,7 +115,6 @@ function haalartikelop($id) {
 
 			<!--Displaying the tablehead-->
 			<thead>
-
 				<tr>
 					<th width="50" class="center"><input name="checkall"
 						type="checkbox" value="check" id="checkall"></th>
@@ -132,36 +127,35 @@ function haalartikelop($id) {
 
 			<!--Displaying the tablebody-->
 			<tbody>
-	    <?php
-					// displaying all the values
-					foreach ( $res as $row ) {
-						?>
-    	    <tr>
+	   		<?php
+						// displaying all the values
+						foreach($res as $row){
+							?>
+    	    	<tr>
 					<td class="center"><input name="id[]" type=checkbox
 						value="<?php echo $row['service_id']?>"></td>
 					<td><a
-						href="/admin/diensten/bewerk/<?php echo($row["service_id"]) ?>"><?php echo($row["servicename"]) ?></a>
-					</td>
+						href="/admin/diensten/bewerk/<?php echo($row["service_id"]) ?>"><?php echo($row["servicename"]) ?></a></td>
 					<td><?php echo($row["servicetext"]) ?></td>
 					<td><?php echo($row['published'] == 1 ? "Ja" : "Nee")?></td>
 					<td><?php
-						
-$title = haalartikelop ( $row ["article_id"] );
-						if ($title != '') {
-							?>
+							
+							$title = haalartikelop ( $row ["article_id"] );
+							if($title != ''){
+								?>
     						<a
 						href="/admin/artikel/bewerk/<?php echo $row["article_id"] ?>"><?php echo haalartikelop($row["article_id"]) ?></a>
     						<?php
-						
-} else {
-							print ("Geen artikel geselecteerd") ;
-						}
-						?> 
-    			</td>
+							
+							}
+							else{
+								print ("Geen artikel geselecteerd") ;
+							}
+							?> 
+    				</td>
 				</tr>
-<?php } ?>
-        </tbody>
-
+		<?php } ?>
+        	</tbody>
 		</table>
 	</form>
 </div>
