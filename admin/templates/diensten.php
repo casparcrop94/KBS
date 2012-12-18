@@ -45,20 +45,38 @@ if (isset ( $_POST ['option'] )) {
 		if ($_POST ['option'] == "Publiceer") {
 			$sth = $dbh->prepare ( "UPDATE services SET published=1 WHERE service_id IN($id)" );
 			$sth->execute ();
-			
-			$statusText = "Dienst succesvol gepubliceerd.";
+			if($sth==true){
+				$style='message_success';
+				$statusText = "Dienst succesvol gepubliceerd.";
+			}
+			else{
+				$style = 'message_error';
+				$statusText = "Er is een fout opgetreden tijdens het publiceren van de dienst, de dienst is niet gepubliceerd!";
+			}
 		}
 		if ($_POST ['option'] == "Depubliceer") {
 			$sth = $dbh->prepare ( "UPDATE services SET published=0 WHERE service_id IN($id)" );
 			$sth->execute ();
-			
-			$statusText = "Dienst succesvol gedepubliceerd.";
+			if($sth==true){
+				$style='message_success';
+				$statusText = "Dienst succesvol gedepubliceerd.";
+			}
+			else{
+				$style = 'message_error';
+				$statusText = "Er is een fout opgetreden tijdens het depubliceren van de dienst, de dienst is niet gedepubliceerd!";
+			}
 		}
 		if ($_POST ['option'] == "Verwijderen") {
 			$sth = $dbh->prepare ( "DELETE FROM services WHERE service_id IN($id)" );
 			$sth->execute ();
-			
-			$statusText = "Dienst succesvol verwijderd.";
+			if($sth==true){
+				$style='message_success';
+				$statusText = "Dienst succesvol verwijderd.";
+			}
+			else{
+				$style = 'message_error';
+				$statusText = "Er is een fout opgetreden tijdens het verwijderen van de dienst, de dienst is niet verwijderd!";
+			}
 		}
 	}
 }
