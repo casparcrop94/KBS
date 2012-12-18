@@ -1,5 +1,9 @@
-<!--Author: Caspar Crop-->
 <?php
+/*
+ * @author Caspar Crop
+ * @klas ICT M1 E1
+ * @projectGroup SSJ
+ */
 //db connection
 $dbh = connectToDatabase();
 

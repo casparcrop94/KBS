@@ -1,4 +1,9 @@
 <?php
+/*
+ * @author Robert-John van Doesburg
+ * @klas ICT M1 E1
+ * @projectGroup SSJ
+ */
 include DOCROOT . 'inc/functions.inc.php';
 
 if(isAjax())

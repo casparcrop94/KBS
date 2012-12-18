@@ -1,8 +1,22 @@
-<!-- AUTEUR: RICHARD VAN DEN HOORN -->
 <?php
+/*
+ * @author Richard van den Hoorn
+ * @klas ICT M1 E1
+ * @projectGroup SSJ
+ */
 // Sla verbinding op in $db
 $db = connectToDatabase ();
 $fouttext = '';
+$option2 = '';
+
+function checkDateTime($date) {
+	if (date ( 'Y-m-d H:i:s', strtotime ( $date ) ) == $date) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
 // Check if form is submitted
 if (isset ( $_POST ['submit'] )) {
 	// Get data from form and set data into variable.
@@ -15,17 +29,26 @@ if (isset ( $_POST ['submit'] )) {
 	$text = $_POST ['text'];
 	$published = $_POST ['published'];
 	
-	//Check if all formfields are filled.
+	// Check if all formfields are filled.
 	if ($title == '' or $category == '' or $date_added == '' or $date_edited == '' or $text == '' or $published == '') {
 		$fouttext = 'Niet alle gegevens zijn ingevuld!';
-		//set original option into variable originaloption;
+		// set original option into variable originaloption;
 		$originaloption = $option;
-		//set the option to renew, this means that the form is not filled correctly
+		// set the option to renew, this means that the form is not filled
+		// correctly
+		$option = 'renew';
+		$option2 = 'renew';
+	} elseif (checkDateTime ( $date_added ) == false or checkDateTime ( $date_edited ) == false) {
+		$fouttext = 'Datumnotatie is niet correct';
+		// set original option into variable originaloption;
+		$originaloption = $option;
+		// set the option to renew, this means that the form is not filled
+		// correctly
 		$option = 'renew';
 		$option2 = 'renew';
 	}
 	
-	//if option=renew article cannot be saved into database
+	// if option=renew article cannot be saved into database
 	if ($option != 'renew') {
 		
 		// Format date to databaseformat
@@ -126,7 +149,7 @@ if ($option == 'new') {
 		$published = '';
 		$unpublished = " selected";
 	}
-	//set option back to the originaloption
+	// set option back to the originaloption
 	$option = $originaloption;
 }
 // Get the different categorys
@@ -134,15 +157,15 @@ $sth = $db->prepare ( "SELECT * FROM category" );
 $sth->execute ();
 $categorys = $sth->fetchAll ( PDO::FETCH_ASSOC );
 
-if($option2=='renew'){
-?>
+if ($option2 == 'renew') {
+	?>
 <div class="message_error">
 	<p><?php echo $fouttext; ?></p>
 </div>
 <?php }?>
 <form action="" method="post">
-	<input name="option" type="hidden" value="<?php echo $option; ?>" /> <input
-		name="id" type="hidden" value="<?php echo $id; ?>" />
+	<input name="option" type="hidden" value="<?php echo $option; ?>" /> 
+	<input name="id" type="hidden" value="<?php echo $id; ?>" />
 	<table class="simple-table">
 		<tr>
 			<td colspan="2">Titel:</td>
