@@ -11,10 +11,10 @@ if (isset($_GET["page"])) {
     $page = 1;
 };
 //worden 10 results weergegeven per pagina.
-$start_from = ($page - 1) * 10;
+$start_from = ($page - 1) * 20;
 //db
 $dbh = connectToDatabase();
-$sql1 = "SELECT * FROM downloads ORDER BY ID DESC LIMIT $start_from, 10";
+$sql1 = "SELECT * FROM downloads ORDER BY ID DESC LIMIT $start_from, 20";
 $result1 = selectquery($sql1, $dbh);
 
 if (isset($_POST['option'])) {
@@ -87,7 +87,7 @@ $result2 = selectquery($sql2, $dbh);
 //het aantal records, aantal word berekent door $result bij elkaar optetellen
 $total_records = count($result2);
 //het aantal pages, aantal pages wordt berekend door het aantal records delen door 10
-$total_pages = ceil($total_records / 10);
+$total_pages = ceil($total_records / 20);
 //$1 als er niet genoeg bestanden zijn voor 2 pagina's, is de pagination niet zichtbaar
 if ($total_pages > 1) {
 //$1 staat voor de pagina nummer, begint op 1
