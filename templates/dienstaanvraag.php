@@ -14,7 +14,11 @@ if (isset($_POST['vraagaan'])) {
     $telephone=$_POST['telephone'];
     $mobile=$_POST['mobile'];
     
-    $selectsql="SELECT ";
+    $selectsql="SELECT servicename, pph, avgcost FROM services where service_id=:id";
+    $sth=$dbh->prepare($selectsql);
+    $sth->bindParam(":id", $_SESSION['service_id']);
+    $sth->execute();
+    $result=fetch(PDO::FETCH_ASSOC);
     
     if($name!="" or $email!="" or $address!="" or $zipcode!="" or $residence!="" or $telephone!="" or $mobile!=""){
     //check agenda

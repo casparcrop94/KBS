@@ -357,3 +357,17 @@ table input[type="text"] {
     margin: 2px;
     border: 1px solid #AAAADD;
 }
+
+#dalink{
+    border: 2px solid;
+    border-radius:10px;
+    -moz-border-radius:10px; /* Old Firefox */
+    background: #7a8bac;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+#dalink>a {
+    color: #F5F5F5;
+}
