@@ -1,4 +1,6 @@
 <?php
+
+
 /*
  * @author Richard van den Hoorn & Caspar Crop
  * @klas ICT M1 E1
@@ -7,24 +9,27 @@
 $dbh = connectToDatabase();
 
 if (isset($_GET['id'])) {
-    $sth = $dbh->prepare("SELECT * FROM article WHERE ID=:id");
-    $sth->bindParam(":id", $_GET['id']);
-    $sth->execute();
-    $res = $sth->fetchAll(PDO::FETCH_ASSOC);
-
-    $sth1 = $dbh->prepare("SELECT service_id FROM services WHERE article_id=:id");
+    $sth1 = $dbh->prepare("SELECT service_id, servicename, servicetext, article_id FROM services WHERE service_id=:id");
     //execution
     $sth1->bindParam(":id", $_GET['id']);
     $sth1->execute();
     //retrieving resulted data
-    $row = $sth1->fetch(PDO::FETCH_ASSOC);
-    $id = $row['id'];
-    
+    $result = $sth1->fetchAll(PDO::FETCH_ASSOC);
+
+    foreach ($result as $row){
+	$service_id = $row['service_id'];
+    $servicename = $row['servicename'];
+    $article_id = $row['article_id'];
+
+    $sth = $dbh->prepare("SELECT * FROM article WHERE ID=:id");
+    $sth->bindParam(":id", $article_id);
+    $sth->execute();
+    $res = $sth->fetchAll(PDO::FETCH_ASSOC);
+
     foreach ($res as $row) {
 	$date = date("d-m-Y H:i:s", strtotime($row ['date_added']));
 	$datee = date("d-m-Y H:i:s", strtotime($row ['date_edited']));
 	?>
-
 	<div class="artikel" id="title">
 	    <h2><?php echo $row['title'] ?></h2>
 	</div>
@@ -36,20 +41,17 @@ if (isset($_GET['id'])) {
 	</div>
 	<div class="artikel" id="text">
 	    <?php
-	    echo $row['text']; 
-	    echo '<br/><br/>';
-	    echo '<a href="/dienstaanvraag/'.$id.'">Vraag deze dienst aan</a>';
+	    echo $row['text'];
 	    ?>
-	
 	</div>
-	
 	<?php
     }
-    ?>
-       
-    <?php
     echo '<br/><br/>';
-	    echo '<a href="/dienstaanvraag/'.$id.'">Vraag deze dienst aan</a>';
+    echo '<a href="/dienstaanvraag/'.$service_id.'">Vraag de dienst '.$servicename.' aan</a>';
+    }
+    ?>
+
+    <?php
 } else {
 
     $sql = "SELECT * FROM services WHERE Published=1"; // Haal alle diensten uit de database
@@ -64,7 +66,7 @@ if (isset($_GET['id'])) {
 	if ($i == 0) {
 	    echo("<tr>");
 	}
-	echo("<td class=cell style='cursor: pointer' onclick=window.location='diensten/" . $row['article_id'] . "' >");
+	echo("<td class=cell style='cursor: pointer' onclick=window.location='diensten/" . $row['service_id'] . "' >");
 	echo("<div class=title><h2>" . $row['servicename'] . "</h2></div>");
 	echo("<br /><div class=discription>" . $row['servicetext'] . "</div>");
 	echo("</td>");

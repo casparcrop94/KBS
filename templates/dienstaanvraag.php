@@ -2,7 +2,7 @@
 <?php
 //prepare the database collection
 $dbh = connectToDatabase();
-
+$_SESSION['service_id']=$_GET['id'];
 //if the user submitted the form, the following is done:
 if (isset($_POST['vraagaan'])) {
 //put all inputs in variables    
@@ -13,7 +13,8 @@ if (isset($_POST['vraagaan'])) {
     $residence=$_POST['residence'];
     $telephone=$_POST['telephone'];
     $mobile=$_POST['mobile'];
-    $service=$_SESSION[askservice];
+    
+    $selectsql="SELECT ";
     
     if($name!="" or $email!="" or $address!="" or $zipcode!="" or $residence!="" or $telephone!="" or $mobile!=""){
     //check agenda
