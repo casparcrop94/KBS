@@ -353,7 +353,14 @@ table input[type="text"] {
 
 .pagination {
     text-align: right;
-    padding: 2px 5px 2px 5px;
-    margin: 2px;
-    border: 1px solid #AAAADD;
+    height: 1px;
+
+}
+
+.page {
+    border-color: #768093 transparent;
+    border-style: solid;
+    border-width: 8px;
+    text-align: left;
+    overflow: auto;
 }

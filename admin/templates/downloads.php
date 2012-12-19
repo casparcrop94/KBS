@@ -11,10 +11,10 @@ if (isset($_GET["page"])) {
     $page = 1;
 };
 //worden 10 results weergegeven per pagina.
-$start_from = ($page - 1) * 5;
+$start_from = ($page - 1) * 20;
 //db
 $dbh = connectToDatabase();
-$sql1 = "SELECT * FROM downloads ORDER BY ID DESC LIMIT $start_from, 5";
+$sql1 = "SELECT * FROM downloads ORDER BY ID DESC LIMIT $start_from, 20";
 $result1 = selectquery($sql1, $dbh);
 
 if (isset($_POST['option'])) {
@@ -79,27 +79,36 @@ $result = $sth->fetchAll(PDO::FETCH_ASSOC);
 	<table class="hover">
 	    <tr id="head"> 
 		<th class="center"><input type="checkbox" id="checkall" value=""/></th>
+	     <div class="page">
 	    <div class="pagination">   
-    <?php
+		<?php
 //db
-$sql2 = "SELECT * FROM downloads";
-$result2 = selectquery($sql2, $dbh);
+		$sql2 = "SELECT * FROM downloads";
+		$result2 = selectquery($sql2, $dbh);
 //het aantal records, aantal word berekent door $result bij elkaar optetellen
-$total_records = count($result2);
+		$total_records = count($result2);
 //het aantal pages, aantal pages wordt berekend door het aantal records delen door 10
-$total_pages = ceil($total_records / 5);
+		$total_pages = ceil($total_records / 20);
 //$1 als er niet genoeg bestanden zijn voor 2 pagina's, is de pagination niet zichtbaar
-if ($total_pages > 1) {
+		if ($total_pages > 1) {
 //$1 staat voor de pagina nummer, begint op 1
-    for ($i = 1; $i <= $total_pages; $i++) {
-//$1 (de pagina nummer) komt achter de url de staan en wordt weergegeven als $1 onder de tabel
-	echo "<a href='/admin/downloads/" . $i . "'>" . $i . "</a> ";
-    }
-}
-?>
+		    for ($i = 1; $i <= $total_pages; $i++) {
+// zorgt ervoor dat de paginanummer van de pagina waar hij nu op zit niet wordt weergegeven
+			if ($i != $page) {
+//$1 (de pagina nummer) komt achter de url de staan en wordt weergegeven als $1 boven de tabel
+			    echo "<a href='/admin/downloads/" . $i . "'>" . $i . "</a> ";
+			}
+		    }
+		}
+		?>
 	    </div>
-		<th> Downloads </th>    
-		<th> Grootte </th>
+	   
+		<!-- geeft weer op welke pagina je zit -->
+		<p> <strong> Pagina: <?php echo $i = $page ?> </strong> </p>
+	    </div>
+
+	    <th> Downloads </th>    
+	    <th> Grootte </th>
 
 	    </tr>
 	    <?php foreach ($result1 as $row) {

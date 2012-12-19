@@ -407,9 +407,16 @@ table.simple-table tr:nth-child(even) {
 
 .pagination {
     text-align: right;
-    padding: 2px 5px 2px 5px;
-    margin: 2px;
-    border: 1px solid #AAAADD;
+    height: 1px;
+
+}
+
+.page {
+    border-color: #FFFFFF transparent;
+    border-style: solid;
+    border-width: 8px;
+    text-align: left;
+    overflow: auto;
 }
 /*! jQuery UI - v1.9.2 - 2012-12-04
 * http://jqueryui.com
