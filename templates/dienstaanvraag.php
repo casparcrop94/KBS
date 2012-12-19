@@ -18,14 +18,22 @@ if (isset($_POST['vraagaan'])) {
     $sth=$dbh->prepare($selectsql);
     $sth->bindParam(":id", $_SESSION['service_id']);
     $sth->execute();
-    $result=fetch(PDO::FETCH_ASSOC);
+    $result= $sth->fetch(PDO::FETCH_ASSOC);
+    
+    $servicename=$result['servicename'];
+    $pph=$result['pph'];
+    $avgcost=$result['avgcost'];
     
     if($name!="" or $email!="" or $address!="" or $zipcode!="" or $residence!="" or $telephone!="" or $mobile!=""){
-    //check agenda
-    
-	
-	
-	
+	    $date = date ( 'd-m-Y' );
+	$sql="SELECT  start_datum FROM agenda WHERE start_datum=:date";    
+	$sth=$dbh->prepare($sql);
+	$sth->bindParam(':date', $date);
+	$sth->execute();
+	$result1= $sth->fetchAll(PDO::FETCH_ASSOC);
+	if(count($result1)==0){
+	    $sth=$dbh->prepare("INSERT INTO");
+	}
 	
     }
     else{
