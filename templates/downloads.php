@@ -38,6 +38,7 @@ $result1 = selectquery($sql1, $dbh)
 	<?php } ?> 
     </table>
 </div>
+<div class="pagination">
 <?php
 //db
 $sql2 = "SELECT * FROM downloads";
@@ -55,3 +56,4 @@ if ($total_pages > 1) {
     }
 }
 ?>
+</div>
