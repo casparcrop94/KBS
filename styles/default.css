@@ -288,10 +288,19 @@ table input[type="text"] {
     width: auto;
 }
 
+
 .cell {
     width: 50%;
     padding: 10px;
     border: 1px solid;
+    border-radius:5px;
+    -moz-border-radius:5px; /* Old Firefox */
+    /*background: #7a8bac;*/
+    /*opacity: 40%;*/
+    margin-bottom: 20px;
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 .downloads .table {

@@ -85,7 +85,7 @@ if (isset($_GET['id'])) {
     $result = selectquery($sql, $dbh)
     ?>
 
-    <table class="diensten">
+    <table  class="diensten">
 	<?php
 	//display 2 service blocks per row.
 	$i = 0;
