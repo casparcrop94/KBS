@@ -103,10 +103,10 @@ $res = $sth->fetchAll ( PDO::FETCH_ASSOC );
 		                                                                                                  // de
 		                                                                                                  // titel
 		echo ("<td>" . $row ['catname'] . "</td>"); // Print de categorie
-		echo ("<td align=\"center\">" . $row ['date_added'] . "</td>"); // Print
+		echo ("<td align=\"center\">" . date ('d-m-Y H:i:s', strtotime ($row ['date_added'])) . "</td>"); // Print
 		                                                                // de
 		                                                                // datum
-		echo ("<td align=\"center\">" . $row ['date_edited'] . "</td>");
+		echo ("<td align=\"center\">" . date ('d-m-Y H:i:s', strtotime ($row ['date_edited'])) . "</td>");
 		echo ("<td align=\"center\">" . ($row ['published'] == 1 ? "Ja" : "Nee") . "</td>"); // Print
 		                                                                                     // de
 		                                                                                     // publicatiestatus
