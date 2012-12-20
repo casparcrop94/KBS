@@ -1,9 +1,10 @@
 <?php 
 /*
- * @author Casper Crop
+ * @author Caspar Crop
  * @klas ICT M1 E1
  * @projectGroup SSJ
  */
+
 //connecting to the database
 $dbh = connectToDatabase();
 //checking page number
