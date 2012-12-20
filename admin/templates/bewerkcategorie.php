@@ -4,6 +4,7 @@
  * @klas ICT M1 E1
  * @projectGroup SSJ
  */
+
 $fouttext = '';
 $option2 = '';
 

@@ -1,7 +1,8 @@
 <!--Auteur: Caspar Crop-->
 <?php
+//prepare the database collection
 $dbh = connectToDatabase();
-
+$_SESSION['service_id']=$_GET['id'];
 //if the user submitted the form, the following is done:
 if (isset($_POST['vraagaan'])) {
 //put all inputs in variables    
@@ -12,14 +13,27 @@ if (isset($_POST['vraagaan'])) {
     $residence=$_POST['residence'];
     $telephone=$_POST['telephone'];
     $mobile=$_POST['mobile'];
-    $service=;
+    
+    $selectsql="SELECT servicename, pph, avgcost FROM services where service_id=:id";
+    $sth=$dbh->prepare($selectsql);
+    $sth->bindParam(":id", $_SESSION['service_id']);
+    $sth->execute();
+    $result= $sth->fetch(PDO::FETCH_ASSOC);
+    
+    $servicename=$result['servicename'];
+    $pph=$result['pph'];
+    $avgcost=$result['avgcost'];
     
     if($name!="" or $email!="" or $address!="" or $zipcode!="" or $residence!="" or $telephone!="" or $mobile!=""){
-    //check agenda
-    
-	
-	
-	
+	    $date = date ( 'd-m-Y' );
+	$sql="SELECT  start_datum FROM agenda WHERE start_datum=:date";    
+	$sth=$dbh->prepare($sql);
+	$sth->bindParam(':date', $date);
+	$sth->execute();
+	$result1= $sth->fetchAll(PDO::FETCH_ASSOC);
+	if(count($result1)==0){
+	    $sth=$dbh->prepare("INSERT INTO");
+	}
 	
     }
     else{
@@ -54,6 +68,14 @@ if (isset($_POST['vraagaan'])) {
 	<tr>
 	    <td>Mobiel</td>
 	    <td><input type="text" name="mobile" value="<?php echo($mobile)?>" /></td>
+	</tr>
+	<tr>
+	<td>Datum</td>
+	<td></td>
+	</tr>
+	<tr>
+	<td>Begintijd en eindtijd</td>
+	<td></td>
 	</tr>
 	<tr>
 	<td><input type="hidden" name="service" value=""></td>

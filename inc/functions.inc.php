@@ -331,7 +331,7 @@ function getAgendaMonth($month = false, $year = false)
 	
 	return $result;
 }
-
+// Erik de Vries
 function upload($files)
 {
 	ini_set("post_max_size", "30M");
@@ -350,7 +350,7 @@ function upload($files)
 	{
 		if ($files["file"]["error"] > 0)
 		{
-			echo "Return Code: " . $files["file"]["error"] . "<br />";
+			return "Return Code: " . $files["file"]["error"] . "<br />";
 		}
 		else
 		{
@@ -361,7 +361,7 @@ function upload($files)
 			// upload
 			if (file_exists(DOCROOT . 'uploads/' . $files["file"]["name"]))
 			{
-				echo $files["file"]["name"] . " bestaat al. ";
+				return $files["file"]["name"] . " bestaat al. ";
 			}
 			else
 			{
@@ -371,13 +371,14 @@ function upload($files)
 					$sth = $dbh->prepare("INSERT INTO downloads (file, size) 
                                  VALUES('$file' , '$size')");
 					$sth->execute();
+					return true;
 				}
 			}
 		}
 	}
 	else
 	{
-		echo "Invalid file";
+		return "Invalid file";
 	}
 }
 
