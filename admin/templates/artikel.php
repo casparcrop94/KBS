@@ -19,8 +19,8 @@ if (isset ( $_POST ['option'] ) && isset ( $_POST ['id'] )) {
 	if ($_POST ['option'] == "Verwijder") { // Als er op de verwijder knop is
 	                                        // gedrukt
 		$sth = $dbh->prepare ( "DELETE FROM article WHERE ID IN(" . $id . ")" ); // Verwijder het artikel
-		$sth->execute ();
-		if($sth==true){
+		$result = $sth->execute ();
+		if($result==true){
 			$style='message_success';
 			$statusText = "Artikel succesvol verwijderd.";
 		}
@@ -30,8 +30,8 @@ if (isset ( $_POST ['option'] ) && isset ( $_POST ['id'] )) {
 		}
 	} elseif ($_POST ['option'] == "Publiceer") {
 		$sth = $dbh->prepare ( "UPDATE article SET published=1 WHERE ID IN (" . $id . ")" );
-		$sth->execute ();
-		if($sth==true){
+		$result = $sth->execute ();
+		if($result==true){
 			$style='message_success';
 			$statusText = "Artikel succesvol gepubliceerd.";
 		}
@@ -41,8 +41,8 @@ if (isset ( $_POST ['option'] ) && isset ( $_POST ['id'] )) {
 		}
 	} elseif ($_POST ['option'] == "Depubliceer") {
 		$sth = $dbh->prepare ( "UPDATE article SET published=0 WHERE ID IN (" . $id . ")" );
-		$sth->execute ();
-		if($sth==true){
+		$result = $sth->execute ();
+		if($result==true){
 			$style='message_success';
 			$statusText = "Artikel succesvol gedepubliceerd.";
 		}
