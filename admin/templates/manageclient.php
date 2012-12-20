@@ -5,6 +5,18 @@ if(isset($_GET['option'])) {
     
     if($_GET['option'] == "remove") { 
 	$IDs = $_POST['id[]'];
+	$IDs = explode(",", $IDs);
+	
+	foreach($IDs as $row) {
+	    $sth = $dbh->prepare("DELETE FROM clients WHERE ID=:id");
+	    $sth->bindParam(":id", $row);
+	    $result = $sth->execute();
+	    
+	    if(!$result) {
+		// todo after merge
+	    }
+	}
+	
 	
     } elseif($_GET['option'] == "pwreset") {
 	$IDs = $_POST['id[]'];
@@ -28,12 +40,9 @@ if(isset($_GET['option'])) {
 	    //$sth->execute();
 	}
     }
-} elseif($_GET['option'] == "edit") { 
+}
+
+if($_GET['option'] == "edit") { 
     $id = $_GET['id'];
-} else {
-?>
-
-
-<?php
 }
 ?>
