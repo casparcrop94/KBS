@@ -25,6 +25,7 @@ $result = selectquery($sql, $dbh);
     <div id="ratewarning">
         <p>De prijzen die hier staan zijn geschatte prijzen voor gesprekken of diensten.
             <br/>Ook het uurtarief wordt hierbij weergeven</p>
+	<hr>
     </div>
         <!--Table-->
         <table>
@@ -46,9 +47,9 @@ $result = selectquery($sql, $dbh);
     		    <!--Display servicename -->
     		    <td class="ratetablecollumn"><?php echo($row["servicename"]) ?></td>
     		    <!--Display price per hour -->
-    		    <td class="ratetablecollumn"><?php echo($row["pph"]) ?></td>
+    		    <td class="ratetablecollumn"><?php echo('€ '.$row["pph"]) ?></td>
     		    <!--Display average cost-->
-    		    <td class="ratetablecollumn"><?php echo($row["avgcost"]) ?></td>
+    		    <td class="ratetablecollumn"><?php echo('€ '.$row["avgcost"]) ?></td>
     		</tr>
 		<?php } ?>
             </tbody>
